@@ -1,0 +1,65 @@
+[
+  {
+    "id": "s1",
+    "name": "Busasamana",
+    "district": "Nyanza",
+    "population": 45000,
+    "createdAt": "2026-08-18T12:51:15.660Z"
+  },
+  {
+    "id": "s2",
+    "name": "Muyira",
+    "district": "Nyanza",
+    "population": 27000,
+    "createdAt": "2026-08-18T12:51:15.661Z"
+  },
+  {
+    "id": "s3",
+    "name": "Ntyazo",
+    "district": "Nyanza",
+    "population": 24000,
+    "createdAt": "2026-08-18T12:51:15.661Z"
+  },
+  {
+    "id": "s4",
+    "name": "Jenda",
+    "district": "Nyabihu",
+    "population": 31000,
+    "createdAt": "2026-08-18T12:51:15.661Z"
+  },
+  {
+    "id": "s5",
+    "name": "Mukamira",
+    "district": "Nyabihu",
+    "population": 38000,
+    "createdAt": "2026-08-18T12:51:15.661Z"
+  },
+  {
+    "id": "s6",
+    "name": "Karago",
+    "district": "Nyabihu",
+    "population": 29000,
+    "createdAt": "2026-08-18T12:51:15.661Z"
+  },
+  {
+    "id": "s7",
+    "name": "Nyamirambo",
+    "district": "Nyarugenge",
+    "population": 92000,
+    "createdAt": "2026-08-18T12:51:15.661Z"
+  },
+  {
+    "id": "s8",
+    "name": "Muhima",
+    "district": "Nyarugenge",
+    "population": 54000,
+    "createdAt": "2026-08-18T12:51:15.661Z"
+  },
+  {
+    "id": "s9",
+    "name": "Kimisagara",
+    "district": "Nyarugenge",
+    "population": 61000,
+    "createdAt": "2026-08-18T12:51:15.661Z"
+  }
+]
