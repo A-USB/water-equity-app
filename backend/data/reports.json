@@ -6,5 +6,13 @@
     "reporterType": "official",
     "note": "dry season rationing",
     "date": "2026-08-18T12:51:16.598Z"
+  },
+  {
+    "id": "r1787142994455",
+    "sectorId": "s8",
+    "availabilityPercent": 73,
+    "reporterType": "official",
+    "note": "",
+    "date": "2026-08-19T12:36:34.457Z"
   }
 ]
