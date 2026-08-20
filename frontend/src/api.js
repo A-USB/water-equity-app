@@ -29,6 +29,28 @@ export async function login(username, password) {
   return handle(res);
 }
 
+export async function signup(payload) {
+  const res = await fetch(`${BASE}/auth/signup`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  return handle(res);
+}
+
+export async function getDistricts() {
+  const res = await fetch(`${BASE}/districts`, { headers: authHeaders() });
+  return handle(res);
+}
+
+export async function getDistrictSectors(district, page, pageSize) {
+  const res = await fetch(
+    `${BASE}/districts/${encodeURIComponent(district)}/sectors?page=${page}&pageSize=${pageSize}`,
+    { headers: authHeaders() }
+  );
+  return handle(res);
+}
+
 export async function getMe() {
   const res = await fetch(`${BASE}/me`, { headers: authHeaders() });
   return handle(res);
