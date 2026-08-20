@@ -145,6 +145,61 @@ app.post("/api/auth/login", (req, res) => {
   res.json({ token, ...session, sectorName });
 });
 
+app.post("/api/auth/signup", (req, res) => {
+  const { role, username, password, sectorName, district, population } = req.body;
+
+  if (!role || !username || !password) {
+    return res.status(400).json({ error: "role, username, and password are required" });
+  }
+  if (!["sector", "wasac"].includes(role)) {
+    return res.status(400).json({ error: "role must be 'sector' or 'wasac'" });
+  }
+  if (password.length < 6) {
+    return res.status(400).json({ error: "Password must be at least 6 characters" });
+  }
+
+  const users = readJSON(USERS_FILE);
+  if (users.some((u) => u.username === username)) {
+    return res.status(409).json({ error: "That username is already taken" });
+  }
+
+  let sectorId = null;
+  const sectors = readJSON(SECTORS_FILE);
+
+  if (role === "sector") {
+    if (!sectorName || !district || !population) {
+      return res.status(400).json({ error: "sectorName, district, and population are required for a sector account" });
+    }
+    const newSector = {
+      id: "s" + Date.now(),
+      name: sectorName,
+      district,
+      population: Number(population),
+      createdAt: new Date().toISOString(),
+    };
+    sectors.push(newSector);
+    writeJSON(SECTORS_FILE, sectors);
+    sectorId = newSector.id;
+  }
+
+  const newUser = {
+    id: "u_" + crypto.randomBytes(6).toString("hex"),
+    username,
+    role,
+    sectorId,
+    passwordHash: bcrypt.hashSync(password, 8),
+  };
+  const allUsers = readJSON(USERS_FILE);
+  allUsers.push(newUser);
+  writeJSON(USERS_FILE, allUsers);
+
+  const token = crypto.randomBytes(24).toString("hex");
+  const session = { userId: newUser.id, username: newUser.username, role: newUser.role, sectorId: newUser.sectorId };
+  sessions.set(token, session);
+
+  res.status(201).json({ token, ...session, sectorName: sectorName || null });
+});
+
 app.post("/api/auth/logout", authenticate, (req, res) => {
   const header = req.headers.authorization || "";
   sessions.delete(header.slice(7));
@@ -200,6 +255,53 @@ app.post("/api/sectors", authenticate, requireRole("wasac"), (req, res) => {
   writeJSON(USERS_FILE, users);
 
   res.status(201).json({ ...newSector, loginUsername: slug(newSector.name) });
+});
+
+app.get("/api/districts", authenticate, requireRole("wasac"), (req, res) => {
+  const sectors = readJSON(SECTORS_FILE);
+  const reports = readJSON(REPORTS_FILE);
+  const scored = computeScores(sectors, reports);
+
+  const byDistrict = {};
+  for (const s of scored) {
+    if (!byDistrict[s.district]) byDistrict[s.district] = [];
+    byDistrict[s.district].push(s);
+  }
+
+  const districts = Object.entries(byDistrict).map(([district, list]) => {
+    const reportedList = list.filter((s) => s.latestAvailability !== null);
+    const avgAvailability = reportedList.length
+      ? Math.round(reportedList.reduce((sum, s) => sum + s.latestAvailability, 0) / reportedList.length)
+      : null;
+    const avgNeedScore = Math.round(list.reduce((sum, s) => sum + s.needScore, 0) / list.length);
+    const totalPopulation = list.reduce((sum, s) => sum + s.population, 0);
+    return {
+      district,
+      sectorCount: list.length,
+      reportedCount: reportedList.length,
+      totalPopulation,
+      avgAvailability,
+      avgNeedScore,
+    };
+  });
+
+  districts.sort((a, b) => b.avgNeedScore - a.avgNeedScore);
+  res.json(districts);
+});
+
+app.get("/api/districts/:district/sectors", authenticate, requireRole("wasac"), (req, res) => {
+  const sectors = readJSON(SECTORS_FILE);
+  const reports = readJSON(REPORTS_FILE);
+  const scored = computeScores(sectors, reports).filter((s) => s.district === req.params.district);
+
+  const page = Math.max(1, parseInt(req.query.page) || 1);
+  const pageSize = Math.max(1, parseInt(req.query.pageSize) || 6);
+  const total = scored.length;
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+  const start = (page - 1) * pageSize;
+  const pageItems = scored.slice(start, start + pageSize);
+
+  res.json({ sectors: pageItems, total, page, pageSize, totalPages });
 });
 
 app.get("/api/sectors/:id/reports", authenticate, (req, res) => {
