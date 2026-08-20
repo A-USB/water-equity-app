@@ -1,18 +1,28 @@
 import { useEffect, useState, useCallback } from "react";
-import { getSectors } from "../api";
+import { getDistricts, getDistrictSectors } from "../api";
+import DistrictCard from "../components/DistrictCard";
 import SectorCard from "../components/SectorCard";
 import AddSectorForm from "../components/AddSectorForm";
+import Pagination from "../components/Pagination";
 import { colorForAvailability } from "../utils";
 
+const PAGE_SIZE = 6;
+
 export default function WasacPortal() {
-  const [sectors, setSectors] = useState(null);
+  const [districts, setDistricts] = useState(null);
   const [error, setError] = useState("");
   const [addingSector, setAddingSector] = useState(false);
 
-  const load = useCallback(async () => {
+  // null = districts overview; otherwise { district aggregate object }
+  const [openDistrict, setOpenDistrict] = useState(null);
+  const [sectorPage, setSectorPage] = useState(1);
+  const [sectorData, setSectorData] = useState(null);
+  const [sectorError, setSectorError] = useState("");
+
+  const loadDistricts = useCallback(async () => {
     try {
-      const data = await getSectors();
-      setSectors(data);
+      const data = await getDistricts();
+      setDistricts(data);
       setError("");
     } catch (err) {
       setError(err.message);
@@ -20,14 +30,42 @@ export default function WasacPortal() {
   }, []);
 
   useEffect(() => {
-    load();
-  }, [load]);
+    loadDistricts();
+  }, [loadDistricts]);
 
-  const reported = (sectors || []).filter((s) => s.latestAvailability !== null);
-  const avg = reported.length
-    ? Math.round(reported.reduce((sum, s) => sum + s.latestAvailability, 0) / reported.length)
-    : null;
-  const populations = (sectors || []).map((s) => s.population);
+  const loadSectorPage = useCallback(async (districtName, page) => {
+    try {
+      const data = await getDistrictSectors(districtName, page, PAGE_SIZE);
+      setSectorData(data);
+      setSectorError("");
+    } catch (err) {
+      setSectorError(err.message);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (openDistrict) loadSectorPage(openDistrict.district, sectorPage);
+  }, [openDistrict, sectorPage, loadSectorPage]);
+
+  function openDistrictView(d) {
+    setOpenDistrict(d);
+    setSectorPage(1);
+  }
+
+  function closeDistrictView() {
+    setOpenDistrict(null);
+    setSectorData(null);
+    loadDistricts();
+  }
+
+  const reportedTotal = (districts || []).reduce((sum, d) => sum + d.reportedCount, 0);
+  const weightedSum = (districts || []).reduce(
+    (sum, d) => sum + (d.avgAvailability ?? 0) * d.reportedCount,
+    0
+  );
+  const overallAvg = reportedTotal ? Math.round(weightedSum / reportedTotal) : null;
+
+  const populations = openDistrict && sectorData ? sectorData.sectors.map((s) => s.population) : [];
   const minPop = populations.length ? Math.min(...populations) : 0;
   const maxPop = populations.length ? Math.max(...populations) : 1;
 
@@ -35,57 +73,96 @@ export default function WasacPortal() {
     <>
       <header className="hero">
         <p className="eyebrow">WASAC · national view</p>
-        <h1>Sectors by need</h1>
+        <h1>{openDistrict ? openDistrict.district : "Dashboard"}</h1>
         <p className="hero-sub">
-          Every connected sector, ranked by need score — population and reported scarcity
-          combined — so the next allocation decision starts from the clearest picture available.
+          {openDistrict
+            ? `${openDistrict.sectorCount} sectors in ${openDistrict.district} district.`
+            : "Every district, ranked by need — population and reported scarcity combined across all its sectors."}
         </p>
 
         <div className="hero-stat">
           <div>
-            <span className="hero-stat-num" style={{ color: colorForAvailability(avg) }}>
-              {avg === null ? "—" : `${avg}%`}
+            <span
+              className="hero-stat-num"
+              style={{ color: colorForAvailability(openDistrict ? openDistrict.avgAvailability : overallAvg) }}
+            >
+              {(openDistrict ? openDistrict.avgAvailability : overallAvg) === null
+                ? "—"
+                : `${openDistrict ? openDistrict.avgAvailability : overallAvg}%`}
             </span>
-            <span className="hero-stat-label">average reported availability</span>
+            <span className="hero-stat-label">
+              {openDistrict ? "district avg availability" : "national avg availability"}
+            </span>
           </div>
           <div className="hero-gauge">
-            <div className="hero-gauge-line" style={{ background: colorForAvailability(avg) }} />
+            <div
+              className="hero-gauge-line"
+              style={{ background: colorForAvailability(openDistrict ? openDistrict.avgAvailability : overallAvg) }}
+            />
           </div>
         </div>
       </header>
 
       <main>
-        <div className="section-head">
-          <h2>All sectors ({sectors ? sectors.length : "…"})</h2>
-          <button className="btn-primary" onClick={() => setAddingSector((v) => !v)}>
-            {addingSector ? "Close" : "+ Add sector"}
-          </button>
-        </div>
+        {!openDistrict && (
+          <>
+            <div className="section-head">
+              <h2>Districts ({districts ? districts.length : "…"})</h2>
+              <button className="btn-primary" onClick={() => setAddingSector((v) => !v)}>
+                {addingSector ? "Close" : "+ Add sector"}
+              </button>
+            </div>
 
-        {addingSector && (
-          <div className="panel">
-            <AddSectorForm
-              onCancel={() => setAddingSector(false)}
-              onAdded={() => {
-                setAddingSector(false);
-                load();
-              }}
-            />
-          </div>
+            {addingSector && (
+              <div className="panel">
+                <AddSectorForm
+                  onCancel={() => setAddingSector(false)}
+                  onAdded={() => {
+                    setAddingSector(false);
+                    loadDistricts();
+                  }}
+                />
+              </div>
+            )}
+
+            {error && <p className="empty-state">{error}</p>}
+            {!error && districts === null && <p className="empty-state">Loading districts…</p>}
+            {!error && districts !== null && districts.length === 0 && (
+              <p className="empty-state">No sectors yet. Add one to start tracking.</p>
+            )}
+
+            {districts && districts.length > 0 && (
+              <div className="district-grid">
+                {districts.map((d) => (
+                  <DistrictCard key={d.district} d={d} onOpen={openDistrictView} />
+                ))}
+              </div>
+            )}
+          </>
         )}
 
-        {error && <p className="empty-state">{error}</p>}
-        {!error && sectors === null && <p className="empty-state">Loading sectors…</p>}
-        {!error && sectors !== null && sectors.length === 0 && (
-          <p className="empty-state">No sectors yet. Add one to start tracking.</p>
-        )}
+        {openDistrict && (
+          <>
+            <div className="section-head">
+              <button className="back-link" onClick={closeDistrictView}>
+                ← All districts
+              </button>
+            </div>
 
-        {sectors && sectors.length > 0 && (
-          <div className="sector-grid">
-            {sectors.map((s) => (
-              <SectorCard key={s.id} sector={s} minPop={minPop} maxPop={maxPop} onChanged={load} />
-            ))}
-          </div>
+            {sectorError && <p className="empty-state">{sectorError}</p>}
+            {!sectorError && !sectorData && <p className="empty-state">Loading sectors…</p>}
+
+            {sectorData && (
+              <>
+                <div className="sector-grid">
+                  {sectorData.sectors.map((s) => (
+                    <SectorCard key={s.id} sector={s} minPop={minPop} maxPop={maxPop} onChanged={() => loadSectorPage(openDistrict.district, sectorPage)} />
+                  ))}
+                </div>
+                <Pagination page={sectorData.page} totalPages={sectorData.totalPages} onChange={setSectorPage} />
+              </>
+            )}
+          </>
         )}
       </main>
     </>
