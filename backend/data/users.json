@@ -1,0 +1,72 @@
+[
+  {
+    "id": "u_wasac",
+    "username": "wasac_hq",
+    "role": "wasac",
+    "sectorId": null,
+    "passwordHash": "$2b$08$bYk3fNSCqUljoOUdfZfI7uD/Wqz5LPyE3bj4qlFOCGkoBp4B1yMVC"
+  },
+  {
+    "id": "u_s1",
+    "username": "busasamana",
+    "role": "sector",
+    "sectorId": "s1",
+    "passwordHash": "$2b$08$fSl643Ig5JmsT9IXqRPZzuG1ojH78JkIxU95.mSgR7r8qBZJ7o.V2"
+  },
+  {
+    "id": "u_s2",
+    "username": "muyira",
+    "role": "sector",
+    "sectorId": "s2",
+    "passwordHash": "$2b$08$RP8kHDLFmHH8uu/2Peh1.eRitPVdlsm72phdf53YCTvHT2/pvD.NG"
+  },
+  {
+    "id": "u_s3",
+    "username": "ntyazo",
+    "role": "sector",
+    "sectorId": "s3",
+    "passwordHash": "$2b$08$qVbWnOQk/sx9.yOAAekvheuH7H5YNdugP1ENhf5MqUl3oQZ7rb5NW"
+  },
+  {
+    "id": "u_s4",
+    "username": "jenda",
+    "role": "sector",
+    "sectorId": "s4",
+    "passwordHash": "$2b$08$/5eiqSAKjOHgOSue5eY4yef80ZnRQyhIitv5pqIF2M6JbqosvFiji"
+  },
+  {
+    "id": "u_s5",
+    "username": "mukamira",
+    "role": "sector",
+    "sectorId": "s5",
+    "passwordHash": "$2b$08$3ERwAJE1yMc2r5dntnZd4eCtY1zaSEVn4EFUuU6sDCTEcU4qqtzWa"
+  },
+  {
+    "id": "u_s6",
+    "username": "karago",
+    "role": "sector",
+    "sectorId": "s6",
+    "passwordHash": "$2b$08$8LvlPWEHtJqLTMWPKYg7Ku61MWIv71LBoyTNILZp1SB50HTj50AcK"
+  },
+  {
+    "id": "u_s7",
+    "username": "nyamirambo",
+    "role": "sector",
+    "sectorId": "s7",
+    "passwordHash": "$2b$08$A8wxW085zLw0AoRh981Mxe1A8NWDR4/UkmAjPkUhVaysFzLNWlYRO"
+  },
+  {
+    "id": "u_s8",
+    "username": "muhima",
+    "role": "sector",
+    "sectorId": "s8",
+    "passwordHash": "$2b$08$3b2E5SfJmCb8MG8R6B539.aFtWaxQ6jMYrsjkDzZ.MHS.muyOJWAa"
+  },
+  {
+    "id": "u_s9",
+    "username": "kimisagara",
+    "role": "sector",
+    "sectorId": "s9",
+    "passwordHash": "$2b$08$vTKumkhXZgyKs6XTt6EOp.Omz.8RG1omFwgYlYVGv8pZEbUWKyibe"
+  }
+]
