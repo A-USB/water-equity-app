@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { getMe } from "./api";
 import { loadAuth, saveAuth, clearAuth } from "./auth";
-import Login from "./components/Login";
+import AuthScreen from "./components/AuthScreen";
+import Sidebar from "./components/Sidebar";
 import SectorPortal from "./portals/SectorPortal";
 import WasacPortal from "./portals/WasacPortal";
 
@@ -14,7 +15,6 @@ export default function App() {
       setAuth(null);
       return;
     }
-    // validate the stored token is still a live session
     getMe()
       .then((me) => setAuth({ ...stored, ...me }))
       .catch(() => {
@@ -33,23 +33,23 @@ export default function App() {
     setAuth(null);
   }
 
-  if (auth === undefined) return null; // brief check on load, avoids a login-screen flash
+  if (auth === undefined) return null;
 
-  if (!auth) return <Login onLoggedIn={handleLoggedIn} />;
+  if (!auth) return <AuthScreen onLoggedIn={handleLoggedIn} />;
 
   return (
-    <div className="page">
-      <div className="topbar">
-        <span className="topbar-identity">
-          Signed in as <strong>{auth.username}</strong>
-          <span className="topbar-role">{auth.role === "wasac" ? "WASAC" : "Sector official"}</span>
-        </span>
-        <button className="btn-ghost" onClick={handleLogout}>
-          Sign out
-        </button>
+    <div className="shell">
+      <Sidebar
+        role={auth.role}
+        username={auth.username}
+        sectorName={auth.sectorName}
+        active="dashboard"
+        onNavigate={() => {}}
+        onLogout={handleLogout}
+      />
+      <div className="shell-main">
+        <div className="page">{auth.role === "sector" ? <SectorPortal auth={auth} /> : <WasacPortal />}</div>
       </div>
-
-      {auth.role === "sector" ? <SectorPortal auth={auth} /> : <WasacPortal />}
     </div>
   );
 }
