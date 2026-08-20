@@ -1,30 +1,51 @@
 # Amazi — Water Equity Monitor (pilot)
 
-A small full-stack app for tracking water availability by sector, weighted by
-population, and computing a "need score" to prioritize where attention should
-go next.
+A closed, two-portal system between **Sector officials** and **WASAC** — no
+public or citizen layer. Sectors report their own water availability; WASAC
+sees every sector ranked by a computed need score.
 
 - **Backend:** Express + a JSON file as the data store (no database setup needed).
   Swap `backend/data/*.json` for a real database later if this grows.
 - **Frontend:** React (Vite). Talks to the API through a dev proxy.
+- **Auth:** simple username/password login, sessions kept in memory on the
+  server. Good enough for a local pilot — see "Before this goes anywhere real" below.
 
-## What's in here
+## The two portals
 
-- `POST /api/sectors` — register a new sector (name, district, population)
-- `GET /api/sectors` — list all sectors with their latest reported availability
-  and computed need score, sorted highest-need first
-- `POST /api/reports` — submit a water availability report for a sector
-  (`reporterType`: `"official"` or `"citizen_check"`)
-- `GET /api/sectors/:id/reports` — report history for one sector
+- **Sector portal** — a sector official logs in and sees only their own
+  sector: current status, and a form to submit a new availability report.
+  They cannot see or report on any other sector.
+- **WASAC portal** — sees every sector, ranked by need score, and can
+  register new sectors (which auto-creates that sector's login).
+
+## API
+
+- `POST /api/auth/login` — `{ username, password }` → `{ token, role, sectorId, sectorName }`
+- `GET /api/me` — validate a token, return the current session
+- `GET /api/sectors` — WASAC gets every sector; a sector account gets only its own
+- `POST /api/sectors` — **WASAC only.** Register a new sector; auto-creates its login
+- `POST /api/reports` — **Sector accounts only.** Submits a report for *their own*
+  sector — `sectorId` is taken from the authenticated session, never from the request body
+- `GET /api/sectors/:id/reports` — full report history; a sector account can only
+  request its own sector's id
 
 **Need score** = 50% population weight + 50% scarcity weight (`100 - availability%`),
-both normalized 0–1 across current sectors. It's intentionally simple — tune the
-weighting in `backend/server.js` (`computeScores`) once you have real data to
-calibrate against.
+both normalized 0–1 across current sectors. Tune the weighting in
+`backend/server.js` (`computeScores`) once you have real data to calibrate against.
 
 The nine seeded sectors (three each in Nyanza, Nyabihu, Nyarugenge) use
 **illustrative population figures** — replace them with real NISR numbers before
 this is used for anything beyond a demo.
+
+## Demo accounts
+
+| Username | Password | Role |
+|---|---|---|
+| `wasac_hq` | `wasac123` | WASAC |
+| `nyamirambo`, `busasamana`, `jenda`, etc. (slugified sector name) | `sector123` | Sector |
+
+Every seeded sector shares the same demo password — fine for a pilot, not for
+production.
 
 ## Run it
 
@@ -46,10 +67,19 @@ Runs on `http://localhost:5173` and proxies `/api/*` to the backend.
 
 Open `http://localhost:5173` in your browser.
 
+## Before this goes anywhere real
+
+- Sessions live in an in-memory `Map` on the server — they reset if the
+  backend restarts, and there's no expiry. Fine for a pilot; swap for
+  JWTs or a real session store before wider rollout.
+- Every seeded sector shares one demo password. Force a password change
+  on first login before handing this to real Sector Executive Secretaries.
+- Pull real population figures from NISR instead of the illustrative seed data.
+
 ## Next steps to consider
 
 - Swap the JSON file store for SQLite/Postgres once you have real report volume.
-- Add auth so only the assigned Sector Executive Secretary can report for their sector.
-- Add the every-2-months citizen spot-check as a distinct view that flags sectors
-  where the official report and citizen report diverge significantly.
-- Pull real population figures from NISR instead of the seed data.
+- WASAC drill-down: click into a sector from the WASAC portal to see its full
+  report history, not just the latest number.
+- An allocation-planning view on the WASAC side — turn the ranked need list
+  into an actual suggested rationing schedule, not just a sorted table.

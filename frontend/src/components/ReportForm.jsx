@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { addReport } from "../api";
 
-export default function ReportForm({ sectorId, onSubmitted, onCancel }) {
+export default function ReportForm({ onSubmitted, onCancel }) {
   const [availability, setAvailability] = useState(50);
-  const [reporterType, setReporterType] = useState("official");
   const [note, setNote] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -13,7 +12,7 @@ export default function ReportForm({ sectorId, onSubmitted, onCancel }) {
     setBusy(true);
     setError("");
     try {
-      await addReport({ sectorId, availabilityPercent: Number(availability), reporterType, note });
+      await addReport({ availabilityPercent: Number(availability), note });
       onSubmitted();
     } catch (err) {
       setError(err.message);
@@ -36,14 +35,6 @@ export default function ReportForm({ sectorId, onSubmitted, onCancel }) {
           />
           <span className="slider-value">{availability}%</span>
         </div>
-      </label>
-
-      <label className="field">
-        <span>Reported by</span>
-        <select value={reporterType} onChange={(e) => setReporterType(e.target.value)}>
-          <option value="official">Sector official</option>
-          <option value="citizen_check">Citizen spot-check</option>
-        </select>
       </label>
 
       <label className="field">

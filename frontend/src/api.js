@@ -1,27 +1,63 @@
+import { loadAuth, clearAuth } from "./auth";
+
 const BASE = "/api";
 
-export async function getSectors() {
-  const res = await fetch(`${BASE}/sectors`);
-  if (!res.ok) throw new Error("Failed to load sectors");
+function authHeaders() {
+  const auth = loadAuth();
+  return auth?.token ? { Authorization: `Bearer ${auth.token}` } : {};
+}
+
+async function handle(res) {
+  if (res.status === 401) {
+    clearAuth();
+    window.location.reload();
+    throw new Error("Session expired");
+  }
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(body.error || "Request failed");
+  }
   return res.json();
+}
+
+export async function login(username, password) {
+  const res = await fetch(`${BASE}/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password }),
+  });
+  return handle(res);
+}
+
+export async function getMe() {
+  const res = await fetch(`${BASE}/me`, { headers: authHeaders() });
+  return handle(res);
+}
+
+export async function getSectors() {
+  const res = await fetch(`${BASE}/sectors`, { headers: authHeaders() });
+  return handle(res);
+}
+
+export async function getSectorReports(sectorId) {
+  const res = await fetch(`${BASE}/sectors/${sectorId}/reports`, { headers: authHeaders() });
+  return handle(res);
 }
 
 export async function addSector(sector) {
   const res = await fetch(`${BASE}/sectors`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...authHeaders() },
     body: JSON.stringify(sector),
   });
-  if (!res.ok) throw new Error((await res.json()).error || "Failed to add sector");
-  return res.json();
+  return handle(res);
 }
 
 export async function addReport(report) {
   const res = await fetch(`${BASE}/reports`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...authHeaders() },
     body: JSON.stringify(report),
   });
-  if (!res.ok) throw new Error((await res.json()).error || "Failed to submit report");
-  return res.json();
+  return handle(res);
 }

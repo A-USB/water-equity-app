@@ -2,7 +2,7 @@ import { useState } from "react";
 import ReportForm from "./ReportForm";
 import { colorForAvailability, formatNumber, relativeDate } from "../utils";
 
-export default function SectorCard({ sector, minPop, maxPop, onChanged }) {
+export default function SectorCard({ sector, minPop, maxPop, onChanged, canReport = false }) {
   const [reporting, setReporting] = useState(false);
 
   const popNorm = maxPop === minPop ? 0.5 : (sector.population - minPop) / (maxPop - minPop);
@@ -43,20 +43,20 @@ export default function SectorCard({ sector, minPop, maxPop, onChanged }) {
       </div>
       <p className="sector-card-date">Last report: {relativeDate(sector.latestReportDate)}</p>
 
-      {reporting ? (
-        <ReportForm
-          sectorId={sector.id}
-          onCancel={() => setReporting(false)}
-          onSubmitted={() => {
-            setReporting(false);
-            onChanged();
-          }}
-        />
-      ) : (
-        <button className="btn-ghost btn-block" onClick={() => setReporting(true)}>
-          + Add report
-        </button>
-      )}
+      {canReport &&
+        (reporting ? (
+          <ReportForm
+            onCancel={() => setReporting(false)}
+            onSubmitted={() => {
+              setReporting(false);
+              onChanged();
+            }}
+          />
+        ) : (
+          <button className="btn-ghost btn-block" onClick={() => setReporting(true)}>
+            + Add report
+          </button>
+        ))}
     </article>
   );
 }
