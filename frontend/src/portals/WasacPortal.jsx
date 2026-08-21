@@ -1,17 +1,21 @@
 import { useEffect, useState, useCallback } from "react";
-import { getDistricts, getDistrictSectors } from "../api";
+import { getDistricts, getDistrictSectors, getSectors } from "../api";
 import DistrictCard from "../components/DistrictCard";
 import SectorCard from "../components/SectorCard";
 import AddSectorForm from "../components/AddSectorForm";
 import Pagination from "../components/Pagination";
+import SectorDetailModal from "../components/SectorDetailModal";
+import NeedsAttention from "../components/NeedsAttention";
 import { colorForAvailability } from "../utils";
 
 const PAGE_SIZE = 6;
 
 export default function WasacPortal() {
   const [districts, setDistricts] = useState(null);
+  const [allSectors, setAllSectors] = useState([]);
   const [error, setError] = useState("");
   const [addingSector, setAddingSector] = useState(false);
+  const [detailSector, setDetailSector] = useState(null);
 
   // null = districts overview; otherwise { district aggregate object }
   const [openDistrict, setOpenDistrict] = useState(null);
@@ -21,8 +25,9 @@ export default function WasacPortal() {
 
   const loadDistricts = useCallback(async () => {
     try {
-      const data = await getDistricts();
-      setDistricts(data);
+      const [districtData, sectorData] = await Promise.all([getDistricts(), getSectors()]);
+      setDistricts(districtData);
+      setAllSectors(sectorData);
       setError("");
     } catch (err) {
       setError(err.message);
@@ -106,6 +111,8 @@ export default function WasacPortal() {
       <main>
         {!openDistrict && (
           <>
+            <NeedsAttention sectors={allSectors} onOpen={setDetailSector} />
+
             <div className="section-head">
               <h2>Districts ({districts ? districts.length : "…"})</h2>
               <button className="btn-primary" onClick={() => setAddingSector((v) => !v)}>
@@ -156,7 +163,14 @@ export default function WasacPortal() {
               <>
                 <div className="sector-grid">
                   {sectorData.sectors.map((s) => (
-                    <SectorCard key={s.id} sector={s} minPop={minPop} maxPop={maxPop} onChanged={() => loadSectorPage(openDistrict.district, sectorPage)} />
+                    <SectorCard
+                      key={s.id}
+                      sector={s}
+                      minPop={minPop}
+                      maxPop={maxPop}
+                      onChanged={() => loadSectorPage(openDistrict.district, sectorPage)}
+                      onOpenDetail={setDetailSector}
+                    />
                   ))}
                 </div>
                 <Pagination page={sectorData.page} totalPages={sectorData.totalPages} onChange={setSectorPage} />
@@ -165,6 +179,8 @@ export default function WasacPortal() {
           </>
         )}
       </main>
+
+      {detailSector && <SectorDetailModal sector={detailSector} onClose={() => setDetailSector(null)} />}
     </>
   );
 }
