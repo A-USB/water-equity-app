@@ -1,8 +1,9 @@
 const NAV = {
   wasac: [
     { key: "dashboard", label: "Dashboard" },
-    { key: "reports", label: "Reports", soon: true },
-    { key: "settings", label: "Settings", soon: true },
+    { key: "map", label: "Needs map" },
+    { key: "reports", label: "Reports" },
+    { key: "settings", label: "Settings" },
   ],
   sector: [{ key: "dashboard", label: "My Sector" }],
 };
@@ -21,11 +22,9 @@ export default function Sidebar({ role, username, sectorName, active, onNavigate
           <button
             key={item.key}
             className={`sidebar-nav-item ${active === item.key ? "sidebar-nav-active" : ""}`}
-            onClick={() => !item.soon && onNavigate(item.key)}
-            disabled={item.soon}
+            onClick={() => onNavigate(item.key)}
           >
             <span>{item.label}</span>
-            {item.soon && <span className="soon-badge">soon</span>}
           </button>
         ))}
       </nav>
