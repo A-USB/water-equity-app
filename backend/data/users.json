@@ -68,5 +68,12 @@
     "role": "sector",
     "sectorId": "s9",
     "passwordHash": "$2b$08$vTKumkhXZgyKs6XTt6EOp.Omz.8RG1omFwgYlYVGv8pZEbUWKyibe"
+  },
+  {
+    "id": "u_9e1b9a1cd63d",
+    "username": "wasac",
+    "role": "wasac",
+    "sectorId": null,
+    "passwordHash": "$2b$08$BYIGPRILZrU9hK41cUxxDeMmrjzov6zzN6nX2uvxl9iJvSA/Wl5XG"
   }
 ]
