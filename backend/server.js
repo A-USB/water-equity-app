@@ -345,5 +345,15 @@ app.post("/api/reports", authenticate, requireRole("sector"), (req, res) => {
   res.status(201).json(newReport);
 });
 
+app.get("/api/reports", authenticate, requireRole("wasac"), (req, res) => {
+  const sectorsById = Object.fromEntries(readJSON(SECTORS_FILE).map((sector) => [sector.id, sector]));
+  const reports = readJSON(REPORTS_FILE).map((report) => ({
+    ...report,
+    sectorName: sectorsById[report.sectorId]?.name || "Unknown sector",
+    district: sectorsById[report.sectorId]?.district || "Unknown district",
+  })).sort((a, b) => new Date(b.date) - new Date(a.date));
+  res.json(reports);
+});
+
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Water equity API running on port ${PORT}`));
