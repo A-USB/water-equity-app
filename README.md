@@ -7,7 +7,7 @@ WASAC sees every district, drills into its sectors, and ranks everything by
 a computed need score.
 
 - **Backend:** Express + a JSON file as the data store (no database setup needed).
-- **Frontend:** React (Vite) with a sidebar shell. Talks to the API through a dev proxy.
+- **Frontend:** React (Vite) with a sidebar shell and recharts for trend charts. Talks to the API through a dev proxy.
 - **Auth:** username/password, self-service signup for both roles, sessions
   kept in memory on the server. Good enough for a local pilot — see
   "Before this goes anywhere real" below.
@@ -22,8 +22,16 @@ a computed need score.
    status, a form to submit a new report, and their report history.
 5. **WASAC portal (dashboard)** — districts shown as cards with aggregated
    stats (avg availability across the district's sectors, total population,
-   how many sectors have reported, an average need score). Click a district
-   to drill into its sectors, paginated 6 at a time.
+   how many sectors have reported, an average need score, and how many need
+   attention). Click a district to drill into its sectors, paginated 6 at a time.
+6. **Sector drill-down** — click any sector (from a district view or the
+   "Needs attention" panel) to open its full report history plus a trend
+   chart of availability over time.
+7. **Stale-report alerts** — a sector with no report in over 14 days is
+   flagged "Stale"; over 30 days (or never reported) is flagged "Needs
+   attention." Shows on the sector card itself, rolls up into a count on
+   each district card, and surfaces as a ranked national list at the top of
+   the WASAC dashboard.
 
 ## API
 
@@ -42,6 +50,11 @@ both normalized 0–1 across current sectors. Tune the weighting in
 `backend/server.js` (`computeScores`) once you have real data to calibrate against.
 District `avgNeedScore` is a plain average of its sectors' need scores;
 `avgAvailability` only counts sectors that have actually reported.
+
+**Staleness** — a sector is "Stale" past 14 days since its last report, and
+"Needs attention" past 30 days or if it's never reported at all. The threshold
+is `STALE_DAYS` in `backend/server.js` and must be kept in sync with the same
+constant in `frontend/src/utils.js`.
 
 The nine seeded sectors (three each in Nyanza, Nyabihu, Nyarugenge) use
 **illustrative population figures** — replace them with real NISR numbers before
@@ -90,9 +103,8 @@ Open `http://localhost:5173` in your browser.
 ## Next steps to consider
 
 - Swap the JSON file store for SQLite/Postgres once you have real report volume.
-- WASAC drill-down: click into an individual sector from the district view to
-  see its full report history, not just the latest number.
 - An allocation-planning view — turn the ranked need list into an actual
   suggested rationing schedule, not just a sorted table.
 - Sidebar "Reports" and "Settings" are placeholders for now — you'll want to
   say what should live there.
+- A district-level map view — see below.
