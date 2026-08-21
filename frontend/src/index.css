@@ -703,3 +703,119 @@ main { padding-top: 40px; }
   font-size: 13px;
   color: var(--c-ink-soft);
 }
+
+/* ---------- landing ---------- */
+.landing {
+  min-height: 100dvh;
+  background: linear-gradient(180deg, var(--c-deep) 0%, #0d2f39 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+}
+
+.landing-inner {
+  max-width: 640px;
+  width: 100%;
+  text-align: center;
+}
+
+.landing .eyebrow {
+  color: #9fc2c0;
+}
+
+.landing-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(48px, 9vw, 76px);
+  color: white;
+  margin: 8px 0 20px;
+  letter-spacing: -0.01em;
+}
+
+.landing-sub {
+  color: #cfe4e2;
+  font-size: 17px;
+  line-height: 1.65;
+  margin: 0 auto 32px;
+  max-width: 560px;
+}
+
+.landing-gauges {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.landing-gauge {
+  width: 88px;
+}
+
+.landing-gauge .gauge-track {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+}
+
+.landing-gauge-label {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #9fc2c0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.landing-cta {
+  padding: 13px 28px;
+  font-size: 15px;
+  background: white;
+  color: var(--c-deep);
+  margin-bottom: 56px;
+}
+
+.landing-cta:hover { background: #e6efee; }
+
+.landing-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  text-align: left;
+}
+
+@media (max-width: 560px) {
+  .landing-cards { grid-template-columns: 1fr; }
+}
+
+.landing-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.landing-card-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9fc2c0;
+  margin: 0 0 8px;
+}
+
+.landing-card h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 8px;
+}
+
+.landing-card p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: #cfe4e2;
+  margin: 0;
+}

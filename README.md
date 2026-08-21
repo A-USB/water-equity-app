@@ -14,12 +14,13 @@ a computed need score.
 
 ## Flow
 
-1. **Role select** — "Executive Secretary" or "WASAC".
-2. **Sign in or sign up** for that role. Sector signup also registers the
+1. **Landing page** — explains what Amazi is and what each portal does, before asking anyone to sign in.
+2. **Role select** — "Executive Secretary" or "WASAC".
+3. **Sign in or sign up** for that role. Sector signup also registers the
    sector itself (name, district, population) in one step.
-3. **Sector portal** — an official sees only their own sector: current
+4. **Sector portal** — an official sees only their own sector: current
    status, a form to submit a new report, and their report history.
-4. **WASAC portal (dashboard)** — districts shown as cards with aggregated
+5. **WASAC portal (dashboard)** — districts shown as cards with aggregated
    stats (avg availability across the district's sectors, total population,
    how many sectors have reported, an average need score). Click a district
    to drill into its sectors, paginated 6 at a time.
