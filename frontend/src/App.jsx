@@ -6,9 +6,13 @@ import AuthScreen from "./components/AuthScreen";
 import Sidebar from "./components/Sidebar";
 import SectorPortal from "./portals/SectorPortal";
 import WasacPortal from "./portals/WasacPortal";
+import ReportsPage from "./portals/ReportsPage";
+import SettingsPage from "./portals/SettingsPage";
+import NeedsMapPage from "./portals/NeedsMapPage";
 
 export default function App() {
   const [auth, setAuth] = useState(undefined); // undefined = still checking, null = logged out
+  const [activePage, setActivePage] = useState("dashboard");
   const [stage, setStage] = useState("landing"); // "landing" | "auth" — only matters while logged out
 
   useEffect(() => {
@@ -52,12 +56,21 @@ export default function App() {
         role={auth.role}
         username={auth.username}
         sectorName={auth.sectorName}
-        active="dashboard"
-        onNavigate={() => {}}
+        active={activePage}
+        onNavigate={setActivePage}
         onLogout={handleLogout}
       />
       <div className="shell-main">
-        <div className="page">{auth.role === "sector" ? <SectorPortal auth={auth} /> : <WasacPortal />}</div>
+        <div className="page">
+          {auth.role === "sector" ? <SectorPortal auth={auth} /> : (
+            <>
+              {activePage === "dashboard" && <WasacPortal />}
+              {activePage === "map" && <NeedsMapPage />}
+              {activePage === "reports" && <ReportsPage />}
+              {activePage === "settings" && <SettingsPage auth={auth} />}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
