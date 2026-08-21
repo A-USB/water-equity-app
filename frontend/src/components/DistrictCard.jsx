@@ -33,6 +33,7 @@ export default function DistrictCard({ d, onOpen }) {
         <span>
           {d.reportedCount}/{d.sectorCount} reporting
         </span>
+        {d.staleCount > 0 && <span className="district-stale-flag">⚠ {d.staleCount} need attention</span>}
       </div>
     </article>
   );
