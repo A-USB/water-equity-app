@@ -22,6 +22,17 @@ export function formatNumber(n) {
   return new Intl.NumberFormat("en-RW").format(n);
 }
 
+// Keep in sync with STALE_DAYS in the backend's server.js.
+const STALE_DAYS = 14;
+
+export function reportStatus(iso) {
+  if (!iso) return { level: "critical", label: "No report yet", days: null };
+  const days = Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
+  if (days > 30) return { level: "critical", label: `${days} days since last report`, days };
+  if (days > STALE_DAYS) return { level: "stale", label: `${days} days since last report`, days };
+  return { level: "fresh", label: `${days} day${days === 1 ? "" : "s"} ago`, days };
+}
+
 export function relativeDate(iso) {
   if (!iso) return "no reports yet";
   const days = Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
