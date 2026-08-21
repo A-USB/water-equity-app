@@ -2,113 +2,29 @@ import { useState } from "react";
 import { login, signup } from "../api";
 
 const ROLES = {
-  sector: { label: "Executive Secretary", sub: "Report your sector's water availability" },
-  wasac: { label: "WASAC", sub: "View and manage all sectors nationally" },
+  sector: {
+    label: "I'm an Executive Secretary",
+    sub: "Report my sector's water status",
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+        <path d="M3 21h18M4 21V8l8-5 8 5v13M9 21v-6h6v6M9 12h.01M15 12h.01M9 8h.01M15 8h.01" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  wasac: {
+    label: "I'm from WASAC",
+    sub: "View and manage all sectors",
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+        <path d="M12 3C9 7 6 10.5 6 14a6 6 0 0 0 12 0c0-3.5-3-7-6-11Z" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
 };
 
 export default function AuthScreen({ onLoggedIn }) {
-  const [role, setRole] = useState(null);
-  const [mode, setMode] = useState("login");
-
-  if (!role) {
-    return (
-      <div className="login-page">
-        <div className="role-select-card">
-          <p className="eyebrow">Water Equity Monitor</p>
-          <h1 className="login-title">Amazi</h1>
-          <p className="hero-sub">Continue as —</p>
-          {Object.entries(ROLES).map(([key, r]) => (
-            <button key={key} className="role-option" onClick={() => setRole(key)}>
-              <span className="role-option-label">{r.label}</span>
-              <span className="role-option-sub">{r.sub}</span>
-            </button>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="login-page">
-      <div className="login-card">
-        <button className="back-link" onClick={() => setRole(null)}>
-          ← Change role
-        </button>
-        <p className="eyebrow">{ROLES[role].label}</p>
-        <h1 className="login-title">Amazi</h1>
-
-        <div className="tab-row">
-          <button className={`tab ${mode === "login" ? "tab-active" : ""}`} onClick={() => setMode("login")}>
-            Sign in
-          </button>
-          <button className={`tab ${mode === "signup" ? "tab-active" : ""}`} onClick={() => setMode("signup")}>
-            Sign up
-          </button>
-        </div>
-
-        {mode === "login" ? (
-          <LoginForm onLoggedIn={onLoggedIn} />
-        ) : (
-          <SignupForm role={role} onLoggedIn={onLoggedIn} />
-        )}
-
-        {mode === "login" && (
-          <p className="login-hint">
-            {role === "wasac" ? (
-              <>
-                Demo: <code>wasac_hq</code> / <code>wasac123</code>
-              </>
-            ) : (
-              <>
-                Demo: slugified sector name (e.g. <code>nyamirambo</code>) / <code>sector123</code>
-              </>
-            )}
-          </p>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function LoginForm({ onLoggedIn }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    setBusy(true);
-    setError("");
-    try {
-      const auth = await login(username, password);
-      onLoggedIn(auth);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <label className="field">
-        <span>Username</span>
-        <input value={username} onChange={(e) => setUsername(e.target.value)} autoFocus required />
-      </label>
-      <label className="field">
-        <span>Password</span>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-      </label>
-      {error && <p className="form-error">{error}</p>}
-      <button type="submit" className="btn-primary btn-block" disabled={busy}>
-        {busy ? "Signing in…" : "Sign in"}
-      </button>
-    </form>
-  );
-}
-
-function SignupForm({ role, onLoggedIn }) {
+  const [mode, setMode] = useState("login"); // "login" | "signup"
+  const [role, setRole] = useState("sector");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [sectorName, setSectorName] = useState("");
@@ -117,16 +33,21 @@ function SignupForm({ role, onLoggedIn }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
+  const isSignup = mode === "signup";
+
   async function handleSubmit(e) {
     e.preventDefault();
     setBusy(true);
     setError("");
     try {
-      const payload = { role, username, password };
-      if (role === "sector") {
-        Object.assign(payload, { sectorName, district, population: Number(population) });
+      let auth;
+      if (isSignup) {
+        const payload = { role, username, password };
+        if (role === "sector") Object.assign(payload, { sectorName, district, population: Number(population) });
+        auth = await signup(payload);
+      } else {
+        auth = await login(username, password);
       }
-      const auth = await signup(payload);
       onLoggedIn(auth);
     } catch (err) {
       setError(err.message);
@@ -136,48 +57,98 @@ function SignupForm({ role, onLoggedIn }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      {role === "sector" && (
-        <>
+    <div className="login-page">
+      <div className="auth-card">
+        <h1 className="auth-title">{isSignup ? "Create your account" : "Sign in to your account"}</h1>
+        <p className="auth-subtitle">
+          {isSignup ? "Enter your details to get started" : "Enter your credentials to continue"}
+        </p>
+
+        <div className="auth-role-row">
+          {Object.entries(ROLES).map(([key, r]) => (
+            <button
+              type="button"
+              key={key}
+              className={`auth-role-card ${role === key ? "auth-role-active" : ""}`}
+              onClick={() => setRole(key)}
+            >
+              <span className="auth-role-icon">{r.icon}</span>
+              <span className="auth-role-label">{r.label}</span>
+              <span className="auth-role-sub">{r.sub}</span>
+            </button>
+          ))}
+        </div>
+
+        <form onSubmit={handleSubmit}>
+          {isSignup && role === "sector" && (
+            <>
+              <label className="field">
+                <span>Sector name</span>
+                <input value={sectorName} onChange={(e) => setSectorName(e.target.value)} placeholder="e.g. Kigoma" required />
+              </label>
+              <div className="field-row">
+                <label className="field">
+                  <span>District</span>
+                  <input value={district} onChange={(e) => setDistrict(e.target.value)} placeholder="e.g. Nyanza" required />
+                </label>
+                <label className="field">
+                  <span>Population</span>
+                  <input
+                    type="number"
+                    min="0"
+                    value={population}
+                    onChange={(e) => setPopulation(e.target.value)}
+                    placeholder="e.g. 22000"
+                    required
+                  />
+                </label>
+              </div>
+            </>
+          )}
+
           <label className="field">
-            <span>Sector name</span>
-            <input value={sectorName} onChange={(e) => setSectorName(e.target.value)} placeholder="e.g. Kigoma" required />
+            <span>Username</span>
+            <input value={username} onChange={(e) => setUsername(e.target.value)} placeholder="e.g. nyamirambo" required />
           </label>
+
           <label className="field">
-            <span>District</span>
-            <input value={district} onChange={(e) => setDistrict(e.target.value)} placeholder="e.g. Nyanza" required />
-          </label>
-          <label className="field">
-            <span>Population</span>
+            <span>Password</span>
             <input
-              type="number"
-              min="0"
-              value={population}
-              onChange={(e) => setPopulation(e.target.value)}
-              placeholder="e.g. 22000"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              minLength={isSignup ? 6 : undefined}
               required
             />
+            {isSignup && <span className="field-hint">Must be at least 6 characters long</span>}
           </label>
-        </>
-      )}
-      <label className="field">
-        <span>Choose a username</span>
-        <input value={username} onChange={(e) => setUsername(e.target.value)} required />
-      </label>
-      <label className="field">
-        <span>Choose a password</span>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          minLength={6}
-          required
-        />
-      </label>
-      {error && <p className="form-error">{error}</p>}
-      <button type="submit" className="btn-primary btn-block" disabled={busy}>
-        {busy ? "Creating account…" : "Create account"}
-      </button>
-    </form>
+
+          {error && <p className="form-error">{error}</p>}
+
+          <button type="submit" className="btn-primary btn-block auth-submit" disabled={busy}>
+            {busy ? "Please wait…" : isSignup ? "Create your account" : "Sign in"}
+          </button>
+        </form>
+
+        <p className="auth-switch">
+          {isSignup ? (
+            <>
+              Already have an account?{" "}
+              <button type="button" onClick={() => setMode("login")}>
+                Sign in
+              </button>
+            </>
+          ) : (
+            <>
+              Don't have an account?{" "}
+              <button type="button" onClick={() => setMode("signup")}>
+                Sign up
+              </button>
+            </>
+          )}
+        </p>
+      </div>
+    </div>
   );
 }
