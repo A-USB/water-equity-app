@@ -83,3 +83,8 @@ export async function addReport(report) {
   });
   return handle(res);
 }
+
+export async function getReports() {
+  const res = await fetch(`${BASE}/reports`, { headers: authHeaders() });
+  return handle(res);
+}
