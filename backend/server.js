@@ -76,6 +76,17 @@ ensureSeed();
 // in-memory session store — fine for a local pilot; swap for JWT/Redis later
 const sessions = new Map();
 
+// A sector is considered "needs attention" if it has never reported, or its
+// last report is older than this. Keep in sync with STALE_DAYS in the
+// frontend's utils.js if you change this.
+const STALE_DAYS = 14;
+
+function isStale(latestReportDate) {
+  if (!latestReportDate) return true;
+  const days = (Date.now() - new Date(latestReportDate).getTime()) / 86400000;
+  return days > STALE_DAYS;
+}
+
 // ---------- scoring ----------
 function computeScores(sectors, reports) {
   const latestBySector = {};
@@ -275,10 +286,12 @@ app.get("/api/districts", authenticate, requireRole("wasac"), (req, res) => {
       : null;
     const avgNeedScore = Math.round(list.reduce((sum, s) => sum + s.needScore, 0) / list.length);
     const totalPopulation = list.reduce((sum, s) => sum + s.population, 0);
+    const staleCount = list.filter((s) => isStale(s.latestReportDate)).length;
     return {
       district,
       sectorCount: list.length,
       reportedCount: reportedList.length,
+      staleCount,
       totalPopulation,
       avgAvailability,
       avgNeedScore,
