@@ -61,5 +61,992 @@
     "district": "Nyarugenge",
     "population": 61000,
     "createdAt": "2026-08-18T12:51:15.661Z"
+  },
+  {
+    "id": "demo_bugesera_1",
+    "name": "Bugesera Sector 1",
+    "district": "Bugesera",
+    "population": 23000,
+    "createdAt": "2026-08-21T11:06:09.321Z"
+  },
+  {
+    "id": "demo_bugesera_2",
+    "name": "Bugesera Sector 2",
+    "district": "Bugesera",
+    "population": 24000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_bugesera_3",
+    "name": "Bugesera Sector 3",
+    "district": "Bugesera",
+    "population": 25000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_bugesera_4",
+    "name": "Bugesera Sector 4",
+    "district": "Bugesera",
+    "population": 26000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_bugesera_5",
+    "name": "Bugesera Sector 5",
+    "district": "Bugesera",
+    "population": 27000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_burera_1",
+    "name": "Burera Sector 1",
+    "district": "Burera",
+    "population": 40000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_burera_2",
+    "name": "Burera Sector 2",
+    "district": "Burera",
+    "population": 41000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_burera_3",
+    "name": "Burera Sector 3",
+    "district": "Burera",
+    "population": 42000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_burera_4",
+    "name": "Burera Sector 4",
+    "district": "Burera",
+    "population": 43000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_burera_5",
+    "name": "Burera Sector 5",
+    "district": "Burera",
+    "population": 44000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gakenke_1",
+    "name": "Gakenke Sector 1",
+    "district": "Gakenke",
+    "population": 39000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gakenke_2",
+    "name": "Gakenke Sector 2",
+    "district": "Gakenke",
+    "population": 40000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gakenke_3",
+    "name": "Gakenke Sector 3",
+    "district": "Gakenke",
+    "population": 41000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gakenke_4",
+    "name": "Gakenke Sector 4",
+    "district": "Gakenke",
+    "population": 42000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gakenke_5",
+    "name": "Gakenke Sector 5",
+    "district": "Gakenke",
+    "population": 43000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gasabo_1",
+    "name": "Gasabo Sector 1",
+    "district": "Gasabo",
+    "population": 40000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gasabo_2",
+    "name": "Gasabo Sector 2",
+    "district": "Gasabo",
+    "population": 41000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gasabo_3",
+    "name": "Gasabo Sector 3",
+    "district": "Gasabo",
+    "population": 42000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gasabo_4",
+    "name": "Gasabo Sector 4",
+    "district": "Gasabo",
+    "population": 43000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gasabo_5",
+    "name": "Gasabo Sector 5",
+    "district": "Gasabo",
+    "population": 44000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gatsibo_1",
+    "name": "Gatsibo Sector 1",
+    "district": "Gatsibo",
+    "population": 56000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gatsibo_2",
+    "name": "Gatsibo Sector 2",
+    "district": "Gatsibo",
+    "population": 57000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gatsibo_3",
+    "name": "Gatsibo Sector 3",
+    "district": "Gatsibo",
+    "population": 58000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gatsibo_4",
+    "name": "Gatsibo Sector 4",
+    "district": "Gatsibo",
+    "population": 59000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gatsibo_5",
+    "name": "Gatsibo Sector 5",
+    "district": "Gatsibo",
+    "population": 18000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gicumbi_1",
+    "name": "Gicumbi Sector 1",
+    "district": "Gicumbi",
+    "population": 53000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gicumbi_2",
+    "name": "Gicumbi Sector 2",
+    "district": "Gicumbi",
+    "population": 54000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gicumbi_3",
+    "name": "Gicumbi Sector 3",
+    "district": "Gicumbi",
+    "population": 55000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gicumbi_4",
+    "name": "Gicumbi Sector 4",
+    "district": "Gicumbi",
+    "population": 56000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gicumbi_5",
+    "name": "Gicumbi Sector 5",
+    "district": "Gicumbi",
+    "population": 57000,
+    "createdAt": "2026-08-21T11:06:09.324Z"
+  },
+  {
+    "id": "demo_gisagara_1",
+    "name": "Gisagara Sector 1",
+    "district": "Gisagara",
+    "population": 32000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_gisagara_2",
+    "name": "Gisagara Sector 2",
+    "district": "Gisagara",
+    "population": 33000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_gisagara_3",
+    "name": "Gisagara Sector 3",
+    "district": "Gisagara",
+    "population": 34000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_gisagara_4",
+    "name": "Gisagara Sector 4",
+    "district": "Gisagara",
+    "population": 35000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_gisagara_5",
+    "name": "Gisagara Sector 5",
+    "district": "Gisagara",
+    "population": 36000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_huye_1",
+    "name": "Huye Sector 1",
+    "district": "Huye",
+    "population": 22000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_huye_2",
+    "name": "Huye Sector 2",
+    "district": "Huye",
+    "population": 23000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_huye_3",
+    "name": "Huye Sector 3",
+    "district": "Huye",
+    "population": 24000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_huye_4",
+    "name": "Huye Sector 4",
+    "district": "Huye",
+    "population": 25000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_huye_5",
+    "name": "Huye Sector 5",
+    "district": "Huye",
+    "population": 26000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_kamonyi_1",
+    "name": "Kamonyi Sector 1",
+    "district": "Kamonyi",
+    "population": 49000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_kamonyi_2",
+    "name": "Kamonyi Sector 2",
+    "district": "Kamonyi",
+    "population": 50000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_kamonyi_3",
+    "name": "Kamonyi Sector 3",
+    "district": "Kamonyi",
+    "population": 51000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_kamonyi_4",
+    "name": "Kamonyi Sector 4",
+    "district": "Kamonyi",
+    "population": 52000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_kamonyi_5",
+    "name": "Kamonyi Sector 5",
+    "district": "Kamonyi",
+    "population": 53000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_karongi_1",
+    "name": "Karongi Sector 1",
+    "district": "Karongi",
+    "population": 26000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_karongi_2",
+    "name": "Karongi Sector 2",
+    "district": "Karongi",
+    "population": 27000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_karongi_3",
+    "name": "Karongi Sector 3",
+    "district": "Karongi",
+    "population": 28000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_karongi_4",
+    "name": "Karongi Sector 4",
+    "district": "Karongi",
+    "population": 29000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_karongi_5",
+    "name": "Karongi Sector 5",
+    "district": "Karongi",
+    "population": 30000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_kayonza_1",
+    "name": "Kayonza Sector 1",
+    "district": "Kayonza",
+    "population": 18000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_kayonza_2",
+    "name": "Kayonza Sector 2",
+    "district": "Kayonza",
+    "population": 19000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_kayonza_3",
+    "name": "Kayonza Sector 3",
+    "district": "Kayonza",
+    "population": 20000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_kayonza_4",
+    "name": "Kayonza Sector 4",
+    "district": "Kayonza",
+    "population": 21000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_kayonza_5",
+    "name": "Kayonza Sector 5",
+    "district": "Kayonza",
+    "population": 22000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_kicukiro_1",
+    "name": "Kicukiro Sector 1",
+    "district": "Kicukiro",
+    "population": 36000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_kicukiro_2",
+    "name": "Kicukiro Sector 2",
+    "district": "Kicukiro",
+    "population": 37000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_kicukiro_3",
+    "name": "Kicukiro Sector 3",
+    "district": "Kicukiro",
+    "population": 38000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_kicukiro_4",
+    "name": "Kicukiro Sector 4",
+    "district": "Kicukiro",
+    "population": 39000,
+    "createdAt": "2026-08-21T11:06:09.325Z"
+  },
+  {
+    "id": "demo_kicukiro_5",
+    "name": "Kicukiro Sector 5",
+    "district": "Kicukiro",
+    "population": 40000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_kirehe_1",
+    "name": "Kirehe Sector 1",
+    "district": "Kirehe",
+    "population": 21000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_kirehe_2",
+    "name": "Kirehe Sector 2",
+    "district": "Kirehe",
+    "population": 22000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_kirehe_3",
+    "name": "Kirehe Sector 3",
+    "district": "Kirehe",
+    "population": 23000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_kirehe_4",
+    "name": "Kirehe Sector 4",
+    "district": "Kirehe",
+    "population": 24000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_kirehe_5",
+    "name": "Kirehe Sector 5",
+    "district": "Kirehe",
+    "population": 25000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_muhanga_1",
+    "name": "Muhanga Sector 1",
+    "district": "Muhanga",
+    "population": 30000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_muhanga_2",
+    "name": "Muhanga Sector 2",
+    "district": "Muhanga",
+    "population": 31000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_muhanga_3",
+    "name": "Muhanga Sector 3",
+    "district": "Muhanga",
+    "population": 32000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_muhanga_4",
+    "name": "Muhanga Sector 4",
+    "district": "Muhanga",
+    "population": 33000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_muhanga_5",
+    "name": "Muhanga Sector 5",
+    "district": "Muhanga",
+    "population": 34000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_musanze_1",
+    "name": "Musanze Sector 1",
+    "district": "Musanze",
+    "population": 46000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_musanze_2",
+    "name": "Musanze Sector 2",
+    "district": "Musanze",
+    "population": 47000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_musanze_3",
+    "name": "Musanze Sector 3",
+    "district": "Musanze",
+    "population": 48000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_musanze_4",
+    "name": "Musanze Sector 4",
+    "district": "Musanze",
+    "population": 49000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_musanze_5",
+    "name": "Musanze Sector 5",
+    "district": "Musanze",
+    "population": 50000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_ngoma_1",
+    "name": "Ngoma Sector 1",
+    "district": "Ngoma",
+    "population": 37000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_ngoma_2",
+    "name": "Ngoma Sector 2",
+    "district": "Ngoma",
+    "population": 38000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_ngoma_3",
+    "name": "Ngoma Sector 3",
+    "district": "Ngoma",
+    "population": 39000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_ngoma_4",
+    "name": "Ngoma Sector 4",
+    "district": "Ngoma",
+    "population": 40000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_ngoma_5",
+    "name": "Ngoma Sector 5",
+    "district": "Ngoma",
+    "population": 41000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_ngororero_1",
+    "name": "Ngororero Sector 1",
+    "district": "Ngororero",
+    "population": 24000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_ngororero_2",
+    "name": "Ngororero Sector 2",
+    "district": "Ngororero",
+    "population": 25000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_ngororero_3",
+    "name": "Ngororero Sector 3",
+    "district": "Ngororero",
+    "population": 26000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_ngororero_4",
+    "name": "Ngororero Sector 4",
+    "district": "Ngororero",
+    "population": 27000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_ngororero_5",
+    "name": "Ngororero Sector 5",
+    "district": "Ngororero",
+    "population": 28000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyabihu_4",
+    "name": "Nyabihu Sector 4",
+    "district": "Nyabihu",
+    "population": 26000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyabihu_5",
+    "name": "Nyabihu Sector 5",
+    "district": "Nyabihu",
+    "population": 27000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyagatare_1",
+    "name": "Nyagatare Sector 1",
+    "district": "Nyagatare",
+    "population": 35000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyagatare_2",
+    "name": "Nyagatare Sector 2",
+    "district": "Nyagatare",
+    "population": 36000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyagatare_3",
+    "name": "Nyagatare Sector 3",
+    "district": "Nyagatare",
+    "population": 37000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyagatare_4",
+    "name": "Nyagatare Sector 4",
+    "district": "Nyagatare",
+    "population": 38000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyagatare_5",
+    "name": "Nyagatare Sector 5",
+    "district": "Nyagatare",
+    "population": 39000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyamagabe_1",
+    "name": "Nyamagabe Sector 1",
+    "district": "Nyamagabe",
+    "population": 30000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyamagabe_2",
+    "name": "Nyamagabe Sector 2",
+    "district": "Nyamagabe",
+    "population": 31000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyamagabe_3",
+    "name": "Nyamagabe Sector 3",
+    "district": "Nyamagabe",
+    "population": 32000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyamagabe_4",
+    "name": "Nyamagabe Sector 4",
+    "district": "Nyamagabe",
+    "population": 33000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyamagabe_5",
+    "name": "Nyamagabe Sector 5",
+    "district": "Nyamagabe",
+    "population": 34000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyamasheke_1",
+    "name": "Nyamasheke Sector 1",
+    "district": "Nyamasheke",
+    "population": 49000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyamasheke_2",
+    "name": "Nyamasheke Sector 2",
+    "district": "Nyamasheke",
+    "population": 50000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyamasheke_3",
+    "name": "Nyamasheke Sector 3",
+    "district": "Nyamasheke",
+    "population": 51000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyamasheke_4",
+    "name": "Nyamasheke Sector 4",
+    "district": "Nyamasheke",
+    "population": 52000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyamasheke_5",
+    "name": "Nyamasheke Sector 5",
+    "district": "Nyamasheke",
+    "population": 53000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyanza_4",
+    "name": "Nyanza Sector 4",
+    "district": "Nyanza",
+    "population": 29000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyanza_5",
+    "name": "Nyanza Sector 5",
+    "district": "Nyanza",
+    "population": 30000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyarugenge_4",
+    "name": "Nyarugenge Sector 4",
+    "district": "Nyarugenge",
+    "population": 55000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyarugenge_5",
+    "name": "Nyarugenge Sector 5",
+    "district": "Nyarugenge",
+    "population": 56000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyaruguru_1",
+    "name": "Nyaruguru Sector 1",
+    "district": "Nyaruguru",
+    "population": 59000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyaruguru_2",
+    "name": "Nyaruguru Sector 2",
+    "district": "Nyaruguru",
+    "population": 18000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyaruguru_3",
+    "name": "Nyaruguru Sector 3",
+    "district": "Nyaruguru",
+    "population": 19000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyaruguru_4",
+    "name": "Nyaruguru Sector 4",
+    "district": "Nyaruguru",
+    "population": 20000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_nyaruguru_5",
+    "name": "Nyaruguru Sector 5",
+    "district": "Nyaruguru",
+    "population": 21000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_rubavu_1",
+    "name": "Rubavu Sector 1",
+    "district": "Rubavu",
+    "population": 50000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_rubavu_2",
+    "name": "Rubavu Sector 2",
+    "district": "Rubavu",
+    "population": 51000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_rubavu_3",
+    "name": "Rubavu Sector 3",
+    "district": "Rubavu",
+    "population": 52000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_rubavu_4",
+    "name": "Rubavu Sector 4",
+    "district": "Rubavu",
+    "population": 53000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_rubavu_5",
+    "name": "Rubavu Sector 5",
+    "district": "Rubavu",
+    "population": 54000,
+    "createdAt": "2026-08-21T11:06:09.326Z"
+  },
+  {
+    "id": "demo_ruhango_1",
+    "name": "Ruhango Sector 1",
+    "district": "Ruhango",
+    "population": 37000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_ruhango_2",
+    "name": "Ruhango Sector 2",
+    "district": "Ruhango",
+    "population": 38000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_ruhango_3",
+    "name": "Ruhango Sector 3",
+    "district": "Ruhango",
+    "population": 39000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_ruhango_4",
+    "name": "Ruhango Sector 4",
+    "district": "Ruhango",
+    "population": 40000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_ruhango_5",
+    "name": "Ruhango Sector 5",
+    "district": "Ruhango",
+    "population": 41000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rulindo_1",
+    "name": "Rulindo Sector 1",
+    "district": "Rulindo",
+    "population": 24000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rulindo_2",
+    "name": "Rulindo Sector 2",
+    "district": "Rulindo",
+    "population": 25000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rulindo_3",
+    "name": "Rulindo Sector 3",
+    "district": "Rulindo",
+    "population": 26000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rulindo_4",
+    "name": "Rulindo Sector 4",
+    "district": "Rulindo",
+    "population": 27000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rulindo_5",
+    "name": "Rulindo Sector 5",
+    "district": "Rulindo",
+    "population": 28000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rusizi_1",
+    "name": "Rusizi Sector 1",
+    "district": "Rusizi",
+    "population": 55000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rusizi_2",
+    "name": "Rusizi Sector 2",
+    "district": "Rusizi",
+    "population": 56000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rusizi_3",
+    "name": "Rusizi Sector 3",
+    "district": "Rusizi",
+    "population": 57000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rusizi_4",
+    "name": "Rusizi Sector 4",
+    "district": "Rusizi",
+    "population": 58000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rusizi_5",
+    "name": "Rusizi Sector 5",
+    "district": "Rusizi",
+    "population": 59000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rutsiro_1",
+    "name": "Rutsiro Sector 1",
+    "district": "Rutsiro",
+    "population": 19000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rutsiro_2",
+    "name": "Rutsiro Sector 2",
+    "district": "Rutsiro",
+    "population": 20000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rutsiro_3",
+    "name": "Rutsiro Sector 3",
+    "district": "Rutsiro",
+    "population": 21000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rutsiro_4",
+    "name": "Rutsiro Sector 4",
+    "district": "Rutsiro",
+    "population": 22000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rutsiro_5",
+    "name": "Rutsiro Sector 5",
+    "district": "Rutsiro",
+    "population": 23000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rwamagana_1",
+    "name": "Rwamagana Sector 1",
+    "district": "Rwamagana",
+    "population": 58000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rwamagana_2",
+    "name": "Rwamagana Sector 2",
+    "district": "Rwamagana",
+    "population": 59000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rwamagana_3",
+    "name": "Rwamagana Sector 3",
+    "district": "Rwamagana",
+    "population": 18000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rwamagana_4",
+    "name": "Rwamagana Sector 4",
+    "district": "Rwamagana",
+    "population": 19000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
+  },
+  {
+    "id": "demo_rwamagana_5",
+    "name": "Rwamagana Sector 5",
+    "district": "Rwamagana",
+    "population": 20000,
+    "createdAt": "2026-08-21T11:06:09.327Z"
   }
 ]
