@@ -9,6 +9,7 @@ import NeedsAttention from "../components/NeedsAttention";
 import { colorForAvailability } from "../utils";
 
 const PAGE_SIZE = 6;
+const DISTRICT_PAGE_SIZE = 6;
 
 export default function WasacPortal() {
   const [districts, setDistricts] = useState(null);
@@ -22,6 +23,7 @@ export default function WasacPortal() {
   const [sectorPage, setSectorPage] = useState(1);
   const [sectorData, setSectorData] = useState(null);
   const [sectorError, setSectorError] = useState("");
+  const [districtPage, setDistrictPage] = useState(1);
 
   const loadDistricts = useCallback(async () => {
     try {
@@ -73,6 +75,11 @@ export default function WasacPortal() {
   const populations = openDistrict && sectorData ? sectorData.sectors.map((s) => s.population) : [];
   const minPop = populations.length ? Math.min(...populations) : 0;
   const maxPop = populations.length ? Math.max(...populations) : 1;
+  const districtTotalPages = Math.max(1, Math.ceil((districts?.length || 0) / DISTRICT_PAGE_SIZE));
+  const visibleDistricts = (districts || []).slice(
+    (districtPage - 1) * DISTRICT_PAGE_SIZE,
+    districtPage * DISTRICT_PAGE_SIZE
+  );
 
   return (
     <>
@@ -140,11 +147,12 @@ export default function WasacPortal() {
 
             {districts && districts.length > 0 && (
               <div className="district-grid">
-                {districts.map((d) => (
+                {visibleDistricts.map((d) => (
                   <DistrictCard key={d.district} d={d} onOpen={openDistrictView} />
                 ))}
               </div>
             )}
+            <Pagination page={districtPage} totalPages={districtTotalPages} onChange={setDistrictPage} />
           </>
         )}
 
