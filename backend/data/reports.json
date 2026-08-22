@@ -14,5 +14,1337 @@
     "reporterType": "official",
     "note": "",
     "date": "2026-08-19T12:36:34.457Z"
+  },
+  {
+    "id": "demo_r_s1",
+    "sectorId": "s1",
+    "availabilityPercent": 72,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-15T11:06:09.327Z"
+  },
+  {
+    "id": "demo_r_s2",
+    "sectorId": "s2",
+    "availabilityPercent": 73,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-14T11:06:09.327Z"
+  },
+  {
+    "id": "demo_r_s3",
+    "sectorId": "s3",
+    "availabilityPercent": 74,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-13T11:06:09.327Z"
+  },
+  {
+    "id": "demo_r_s4",
+    "sectorId": "s4",
+    "availabilityPercent": 75,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:09.327Z"
+  },
+  {
+    "id": "demo_r_s5",
+    "sectorId": "s5",
+    "availabilityPercent": 76,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:09.327Z"
+  },
+  {
+    "id": "demo_r_s6",
+    "sectorId": "s6",
+    "availabilityPercent": 77,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:09.327Z"
+  },
+  {
+    "id": "demo_r_s9",
+    "sectorId": "s9",
+    "availabilityPercent": 80,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-15T11:06:09.327Z"
+  },
+  {
+    "id": "demo_r_demo_bugesera_1",
+    "sectorId": "demo_bugesera_1",
+    "availabilityPercent": 68,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:09.453Z"
+  },
+  {
+    "id": "demo_r_demo_bugesera_2",
+    "sectorId": "demo_bugesera_2",
+    "availabilityPercent": 69,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:09.525Z"
+  },
+  {
+    "id": "demo_r_demo_bugesera_3",
+    "sectorId": "demo_bugesera_3",
+    "availabilityPercent": 70,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:09.583Z"
+  },
+  {
+    "id": "demo_r_demo_bugesera_4",
+    "sectorId": "demo_bugesera_4",
+    "availabilityPercent": 71,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T11:06:09.640Z"
+  },
+  {
+    "id": "demo_r_demo_bugesera_5",
+    "sectorId": "demo_bugesera_5",
+    "availabilityPercent": 72,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-15T11:06:09.693Z"
+  },
+  {
+    "id": "demo_r_demo_burera_1",
+    "sectorId": "demo_burera_1",
+    "availabilityPercent": 39,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T11:06:09.750Z"
+  },
+  {
+    "id": "demo_r_demo_burera_2",
+    "sectorId": "demo_burera_2",
+    "availabilityPercent": 40,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-15T11:06:09.800Z"
+  },
+  {
+    "id": "demo_r_demo_burera_3",
+    "sectorId": "demo_burera_3",
+    "availabilityPercent": 41,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-14T11:06:09.855Z"
+  },
+  {
+    "id": "demo_r_demo_burera_4",
+    "sectorId": "demo_burera_4",
+    "availabilityPercent": 42,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-13T11:06:09.906Z"
+  },
+  {
+    "id": "demo_r_demo_burera_5",
+    "sectorId": "demo_burera_5",
+    "availabilityPercent": 43,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:09.965Z"
+  },
+  {
+    "id": "demo_r_demo_gakenke_1",
+    "sectorId": "demo_gakenke_1",
+    "availabilityPercent": 36,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:10.018Z"
+  },
+  {
+    "id": "demo_r_demo_gakenke_2",
+    "sectorId": "demo_gakenke_2",
+    "availabilityPercent": 37,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:10.072Z"
+  },
+  {
+    "id": "demo_r_demo_gakenke_3",
+    "sectorId": "demo_gakenke_3",
+    "availabilityPercent": 38,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:10.129Z"
+  },
+  {
+    "id": "demo_r_demo_gakenke_4",
+    "sectorId": "demo_gakenke_4",
+    "availabilityPercent": 39,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T11:06:10.184Z"
+  },
+  {
+    "id": "demo_r_demo_gakenke_5",
+    "sectorId": "demo_gakenke_5",
+    "availabilityPercent": 40,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-15T11:06:10.239Z"
+  },
+  {
+    "id": "demo_r_demo_gasabo_1",
+    "sectorId": "demo_gasabo_1",
+    "availabilityPercent": 39,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T11:06:10.291Z"
+  },
+  {
+    "id": "demo_r_demo_gasabo_2",
+    "sectorId": "demo_gasabo_2",
+    "availabilityPercent": 40,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-15T11:06:10.349Z"
+  },
+  {
+    "id": "demo_r_demo_gasabo_3",
+    "sectorId": "demo_gasabo_3",
+    "availabilityPercent": 41,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-14T11:06:10.403Z"
+  },
+  {
+    "id": "demo_r_demo_gasabo_4",
+    "sectorId": "demo_gasabo_4",
+    "availabilityPercent": 42,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-13T11:06:10.456Z"
+  },
+  {
+    "id": "demo_r_demo_gasabo_5",
+    "sectorId": "demo_gasabo_5",
+    "availabilityPercent": 43,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:10.508Z"
+  },
+  {
+    "id": "demo_r_demo_gatsibo_1",
+    "sectorId": "demo_gatsibo_1",
+    "availabilityPercent": 53,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:10.565Z"
+  },
+  {
+    "id": "demo_r_demo_gatsibo_2",
+    "sectorId": "demo_gatsibo_2",
+    "availabilityPercent": 54,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:10.618Z"
+  },
+  {
+    "id": "demo_r_demo_gatsibo_3",
+    "sectorId": "demo_gatsibo_3",
+    "availabilityPercent": 55,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T11:06:10.670Z"
+  },
+  {
+    "id": "demo_r_demo_gatsibo_4",
+    "sectorId": "demo_gatsibo_4",
+    "availabilityPercent": 56,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-15T11:06:10.721Z"
+  },
+  {
+    "id": "demo_r_demo_gatsibo_5",
+    "sectorId": "demo_gatsibo_5",
+    "availabilityPercent": 57,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-14T11:06:10.774Z"
+  },
+  {
+    "id": "demo_r_demo_gicumbi_1",
+    "sectorId": "demo_gicumbi_1",
+    "availabilityPercent": 40,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-15T11:06:10.824Z"
+  },
+  {
+    "id": "demo_r_demo_gicumbi_2",
+    "sectorId": "demo_gicumbi_2",
+    "availabilityPercent": 41,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-14T11:06:10.882Z"
+  },
+  {
+    "id": "demo_r_demo_gicumbi_3",
+    "sectorId": "demo_gicumbi_3",
+    "availabilityPercent": 42,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-13T11:06:10.942Z"
+  },
+  {
+    "id": "demo_r_demo_gicumbi_4",
+    "sectorId": "demo_gicumbi_4",
+    "availabilityPercent": 43,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:11.006Z"
+  },
+  {
+    "id": "demo_r_demo_gicumbi_5",
+    "sectorId": "demo_gicumbi_5",
+    "availabilityPercent": 44,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:11.058Z"
+  },
+  {
+    "id": "demo_r_demo_gisagara_1",
+    "sectorId": "demo_gisagara_1",
+    "availabilityPercent": 35,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:11.119Z"
+  },
+  {
+    "id": "demo_r_demo_gisagara_2",
+    "sectorId": "demo_gisagara_2",
+    "availabilityPercent": 36,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:11.188Z"
+  },
+  {
+    "id": "demo_r_demo_gisagara_3",
+    "sectorId": "demo_gisagara_3",
+    "availabilityPercent": 37,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:11.267Z"
+  },
+  {
+    "id": "demo_r_demo_gisagara_4",
+    "sectorId": "demo_gisagara_4",
+    "availabilityPercent": 38,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:11.330Z"
+  },
+  {
+    "id": "demo_r_demo_gisagara_5",
+    "sectorId": "demo_gisagara_5",
+    "availabilityPercent": 39,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T11:06:11.441Z"
+  },
+  {
+    "id": "demo_r_demo_huye_1",
+    "sectorId": "demo_huye_1",
+    "availabilityPercent": 43,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:11.504Z"
+  },
+  {
+    "id": "demo_r_demo_huye_2",
+    "sectorId": "demo_huye_2",
+    "availabilityPercent": 44,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:11.591Z"
+  },
+  {
+    "id": "demo_r_demo_huye_3",
+    "sectorId": "demo_huye_3",
+    "availabilityPercent": 45,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:11.684Z"
+  },
+  {
+    "id": "demo_r_demo_huye_4",
+    "sectorId": "demo_huye_4",
+    "availabilityPercent": 46,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:11.746Z"
+  },
+  {
+    "id": "demo_r_demo_huye_5",
+    "sectorId": "demo_huye_5",
+    "availabilityPercent": 47,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T11:06:11.821Z"
+  },
+  {
+    "id": "demo_r_demo_kamonyi_1",
+    "sectorId": "demo_kamonyi_1",
+    "availabilityPercent": 78,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:11.880Z"
+  },
+  {
+    "id": "demo_r_demo_kamonyi_2",
+    "sectorId": "demo_kamonyi_2",
+    "availabilityPercent": 79,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T11:06:11.959Z"
+  },
+  {
+    "id": "demo_r_demo_kamonyi_3",
+    "sectorId": "demo_kamonyi_3",
+    "availabilityPercent": 80,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-15T11:06:12.031Z"
+  },
+  {
+    "id": "demo_r_demo_kamonyi_4",
+    "sectorId": "demo_kamonyi_4",
+    "availabilityPercent": 81,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-14T11:06:12.094Z"
+  },
+  {
+    "id": "demo_r_demo_kamonyi_5",
+    "sectorId": "demo_kamonyi_5",
+    "availabilityPercent": 82,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-13T11:06:12.147Z"
+  },
+  {
+    "id": "demo_r_demo_karongi_1",
+    "sectorId": "demo_karongi_1",
+    "availabilityPercent": 69,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:12.205Z"
+  },
+  {
+    "id": "demo_r_demo_karongi_2",
+    "sectorId": "demo_karongi_2",
+    "availabilityPercent": 70,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:12.281Z"
+  },
+  {
+    "id": "demo_r_demo_karongi_3",
+    "sectorId": "demo_karongi_3",
+    "availabilityPercent": 71,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T11:06:12.344Z"
+  },
+  {
+    "id": "demo_r_demo_karongi_4",
+    "sectorId": "demo_karongi_4",
+    "availabilityPercent": 72,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-15T11:06:12.427Z"
+  },
+  {
+    "id": "demo_r_demo_karongi_5",
+    "sectorId": "demo_karongi_5",
+    "availabilityPercent": 73,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-14T11:06:12.503Z"
+  },
+  {
+    "id": "demo_r_demo_kayonza_1",
+    "sectorId": "demo_kayonza_1",
+    "availabilityPercent": 89,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-14T11:06:12.587Z"
+  },
+  {
+    "id": "demo_r_demo_kayonza_2",
+    "sectorId": "demo_kayonza_2",
+    "availabilityPercent": 90,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-13T11:06:12.669Z"
+  },
+  {
+    "id": "demo_r_demo_kayonza_3",
+    "sectorId": "demo_kayonza_3",
+    "availabilityPercent": 35,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:12.723Z"
+  },
+  {
+    "id": "demo_r_demo_kayonza_4",
+    "sectorId": "demo_kayonza_4",
+    "availabilityPercent": 36,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:12.802Z"
+  },
+  {
+    "id": "demo_r_demo_kayonza_5",
+    "sectorId": "demo_kayonza_5",
+    "availabilityPercent": 37,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:12.867Z"
+  },
+  {
+    "id": "demo_r_demo_kicukiro_1",
+    "sectorId": "demo_kicukiro_1",
+    "availabilityPercent": 53,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:12.942Z"
+  },
+  {
+    "id": "demo_r_demo_kicukiro_2",
+    "sectorId": "demo_kicukiro_2",
+    "availabilityPercent": 54,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:13.030Z"
+  },
+  {
+    "id": "demo_r_demo_kicukiro_3",
+    "sectorId": "demo_kicukiro_3",
+    "availabilityPercent": 55,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T11:06:13.098Z"
+  },
+  {
+    "id": "demo_r_demo_kicukiro_4",
+    "sectorId": "demo_kicukiro_4",
+    "availabilityPercent": 56,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-15T11:06:13.170Z"
+  },
+  {
+    "id": "demo_r_demo_kicukiro_5",
+    "sectorId": "demo_kicukiro_5",
+    "availabilityPercent": 57,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-14T11:06:13.231Z"
+  },
+  {
+    "id": "demo_r_demo_kirehe_1",
+    "sectorId": "demo_kirehe_1",
+    "availabilityPercent": 48,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-15T11:06:13.302Z"
+  },
+  {
+    "id": "demo_r_demo_kirehe_2",
+    "sectorId": "demo_kirehe_2",
+    "availabilityPercent": 49,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-14T11:06:13.403Z"
+  },
+  {
+    "id": "demo_r_demo_kirehe_3",
+    "sectorId": "demo_kirehe_3",
+    "availabilityPercent": 50,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-13T11:06:13.491Z"
+  },
+  {
+    "id": "demo_r_demo_kirehe_4",
+    "sectorId": "demo_kirehe_4",
+    "availabilityPercent": 51,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:13.593Z"
+  },
+  {
+    "id": "demo_r_demo_kirehe_5",
+    "sectorId": "demo_kirehe_5",
+    "availabilityPercent": 52,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:13.660Z"
+  },
+  {
+    "id": "demo_r_demo_muhanga_1",
+    "sectorId": "demo_muhanga_1",
+    "availabilityPercent": 55,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T11:06:13.758Z"
+  },
+  {
+    "id": "demo_r_demo_muhanga_2",
+    "sectorId": "demo_muhanga_2",
+    "availabilityPercent": 56,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-15T11:06:13.823Z"
+  },
+  {
+    "id": "demo_r_demo_muhanga_3",
+    "sectorId": "demo_muhanga_3",
+    "availabilityPercent": 57,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-14T11:06:13.880Z"
+  },
+  {
+    "id": "demo_r_demo_muhanga_4",
+    "sectorId": "demo_muhanga_4",
+    "availabilityPercent": 58,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-13T11:06:13.940Z"
+  },
+  {
+    "id": "demo_r_demo_muhanga_5",
+    "sectorId": "demo_muhanga_5",
+    "availabilityPercent": 59,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:14.016Z"
+  },
+  {
+    "id": "demo_r_demo_musanze_1",
+    "sectorId": "demo_musanze_1",
+    "availabilityPercent": 75,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:14.074Z"
+  },
+  {
+    "id": "demo_r_demo_musanze_2",
+    "sectorId": "demo_musanze_2",
+    "availabilityPercent": 76,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:14.129Z"
+  },
+  {
+    "id": "demo_r_demo_musanze_3",
+    "sectorId": "demo_musanze_3",
+    "availabilityPercent": 77,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:14.189Z"
+  },
+  {
+    "id": "demo_r_demo_musanze_4",
+    "sectorId": "demo_musanze_4",
+    "availabilityPercent": 78,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:14.244Z"
+  },
+  {
+    "id": "demo_r_demo_musanze_5",
+    "sectorId": "demo_musanze_5",
+    "availabilityPercent": 79,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T11:06:14.309Z"
+  },
+  {
+    "id": "demo_r_demo_ngoma_1",
+    "sectorId": "demo_ngoma_1",
+    "availabilityPercent": 74,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-13T11:06:14.366Z"
+  },
+  {
+    "id": "demo_r_demo_ngoma_2",
+    "sectorId": "demo_ngoma_2",
+    "availabilityPercent": 75,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:14.422Z"
+  },
+  {
+    "id": "demo_r_demo_ngoma_3",
+    "sectorId": "demo_ngoma_3",
+    "availabilityPercent": 76,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:14.477Z"
+  },
+  {
+    "id": "demo_r_demo_ngoma_4",
+    "sectorId": "demo_ngoma_4",
+    "availabilityPercent": 77,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:14.535Z"
+  },
+  {
+    "id": "demo_r_demo_ngoma_5",
+    "sectorId": "demo_ngoma_5",
+    "availabilityPercent": 78,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:14.591Z"
+  },
+  {
+    "id": "demo_r_demo_ngororero_1",
+    "sectorId": "demo_ngororero_1",
+    "availabilityPercent": 67,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:14.645Z"
+  },
+  {
+    "id": "demo_r_demo_ngororero_2",
+    "sectorId": "demo_ngororero_2",
+    "availabilityPercent": 68,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:14.707Z"
+  },
+  {
+    "id": "demo_r_demo_ngororero_3",
+    "sectorId": "demo_ngororero_3",
+    "availabilityPercent": 69,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:14.789Z"
+  },
+  {
+    "id": "demo_r_demo_ngororero_4",
+    "sectorId": "demo_ngororero_4",
+    "availabilityPercent": 70,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:14.852Z"
+  },
+  {
+    "id": "demo_r_demo_ngororero_5",
+    "sectorId": "demo_ngororero_5",
+    "availabilityPercent": 71,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T11:06:14.913Z"
+  },
+  {
+    "id": "demo_r_demo_nyabihu_4",
+    "sectorId": "demo_nyabihu_4",
+    "availabilityPercent": 69,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:14.980Z"
+  },
+  {
+    "id": "demo_r_demo_nyabihu_5",
+    "sectorId": "demo_nyabihu_5",
+    "availabilityPercent": 70,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:15.039Z"
+  },
+  {
+    "id": "demo_r_demo_nyagatare_1",
+    "sectorId": "demo_nyagatare_1",
+    "availabilityPercent": 88,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-15T11:06:15.099Z"
+  },
+  {
+    "id": "demo_r_demo_nyagatare_2",
+    "sectorId": "demo_nyagatare_2",
+    "availabilityPercent": 89,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-14T11:06:15.156Z"
+  },
+  {
+    "id": "demo_r_demo_nyagatare_3",
+    "sectorId": "demo_nyagatare_3",
+    "availabilityPercent": 90,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-13T11:06:15.210Z"
+  },
+  {
+    "id": "demo_r_demo_nyagatare_4",
+    "sectorId": "demo_nyagatare_4",
+    "availabilityPercent": 35,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:15.269Z"
+  },
+  {
+    "id": "demo_r_demo_nyagatare_5",
+    "sectorId": "demo_nyagatare_5",
+    "availabilityPercent": 36,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:15.319Z"
+  },
+  {
+    "id": "demo_r_demo_nyamagabe_1",
+    "sectorId": "demo_nyamagabe_1",
+    "availabilityPercent": 87,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T11:06:15.390Z"
+  },
+  {
+    "id": "demo_r_demo_nyamagabe_2",
+    "sectorId": "demo_nyamagabe_2",
+    "availabilityPercent": 88,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-15T11:06:15.445Z"
+  },
+  {
+    "id": "demo_r_demo_nyamagabe_3",
+    "sectorId": "demo_nyamagabe_3",
+    "availabilityPercent": 89,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-14T11:06:15.498Z"
+  },
+  {
+    "id": "demo_r_demo_nyamagabe_4",
+    "sectorId": "demo_nyamagabe_4",
+    "availabilityPercent": 90,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-13T11:06:15.554Z"
+  },
+  {
+    "id": "demo_r_demo_nyamagabe_5",
+    "sectorId": "demo_nyamagabe_5",
+    "availabilityPercent": 35,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:15.607Z"
+  },
+  {
+    "id": "demo_r_demo_nyamasheke_1",
+    "sectorId": "demo_nyamasheke_1",
+    "availabilityPercent": 90,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-13T11:06:15.660Z"
+  },
+  {
+    "id": "demo_r_demo_nyamasheke_2",
+    "sectorId": "demo_nyamasheke_2",
+    "availabilityPercent": 35,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:15.718Z"
+  },
+  {
+    "id": "demo_r_demo_nyamasheke_3",
+    "sectorId": "demo_nyamasheke_3",
+    "availabilityPercent": 36,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:15.772Z"
+  },
+  {
+    "id": "demo_r_demo_nyamasheke_4",
+    "sectorId": "demo_nyamasheke_4",
+    "availabilityPercent": 37,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:15.823Z"
+  },
+  {
+    "id": "demo_r_demo_nyamasheke_5",
+    "sectorId": "demo_nyamasheke_5",
+    "availabilityPercent": 38,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:15.878Z"
+  },
+  {
+    "id": "demo_r_demo_nyanza_4",
+    "sectorId": "demo_nyanza_4",
+    "availabilityPercent": 84,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:15.931Z"
+  },
+  {
+    "id": "demo_r_demo_nyanza_5",
+    "sectorId": "demo_nyanza_5",
+    "availabilityPercent": 85,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:15.985Z"
+  },
+  {
+    "id": "demo_r_demo_nyarugenge_4",
+    "sectorId": "demo_nyarugenge_4",
+    "availabilityPercent": 82,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-13T11:06:16.039Z"
+  },
+  {
+    "id": "demo_r_demo_nyarugenge_5",
+    "sectorId": "demo_nyarugenge_5",
+    "availabilityPercent": 83,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:16.094Z"
+  },
+  {
+    "id": "demo_r_demo_nyaruguru_1",
+    "sectorId": "demo_nyaruguru_1",
+    "availabilityPercent": 74,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-13T11:06:16.146Z"
+  },
+  {
+    "id": "demo_r_demo_nyaruguru_2",
+    "sectorId": "demo_nyaruguru_2",
+    "availabilityPercent": 75,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:16.205Z"
+  },
+  {
+    "id": "demo_r_demo_nyaruguru_3",
+    "sectorId": "demo_nyaruguru_3",
+    "availabilityPercent": 76,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:16.261Z"
+  },
+  {
+    "id": "demo_r_demo_nyaruguru_4",
+    "sectorId": "demo_nyaruguru_4",
+    "availabilityPercent": 77,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:16.313Z"
+  },
+  {
+    "id": "demo_r_demo_nyaruguru_5",
+    "sectorId": "demo_nyaruguru_5",
+    "availabilityPercent": 78,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:16.367Z"
+  },
+  {
+    "id": "demo_r_demo_rubavu_1",
+    "sectorId": "demo_rubavu_1",
+    "availabilityPercent": 67,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:16.418Z"
+  },
+  {
+    "id": "demo_r_demo_rubavu_2",
+    "sectorId": "demo_rubavu_2",
+    "availabilityPercent": 68,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:16.471Z"
+  },
+  {
+    "id": "demo_r_demo_rubavu_3",
+    "sectorId": "demo_rubavu_3",
+    "availabilityPercent": 69,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:16.526Z"
+  },
+  {
+    "id": "demo_r_demo_rubavu_4",
+    "sectorId": "demo_rubavu_4",
+    "availabilityPercent": 70,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:16.579Z"
+  },
+  {
+    "id": "demo_r_demo_rubavu_5",
+    "sectorId": "demo_rubavu_5",
+    "availabilityPercent": 71,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T11:06:16.635Z"
+  },
+  {
+    "id": "demo_r_demo_ruhango_1",
+    "sectorId": "demo_ruhango_1",
+    "availabilityPercent": 66,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-13T11:06:16.689Z"
+  },
+  {
+    "id": "demo_r_demo_ruhango_2",
+    "sectorId": "demo_ruhango_2",
+    "availabilityPercent": 67,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:16.743Z"
+  },
+  {
+    "id": "demo_r_demo_ruhango_3",
+    "sectorId": "demo_ruhango_3",
+    "availabilityPercent": 68,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:16.800Z"
+  },
+  {
+    "id": "demo_r_demo_ruhango_4",
+    "sectorId": "demo_ruhango_4",
+    "availabilityPercent": 69,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:16.857Z"
+  },
+  {
+    "id": "demo_r_demo_ruhango_5",
+    "sectorId": "demo_ruhango_5",
+    "availabilityPercent": 70,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:16.917Z"
+  },
+  {
+    "id": "demo_r_demo_rulindo_1",
+    "sectorId": "demo_rulindo_1",
+    "availabilityPercent": 81,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-14T11:06:16.978Z"
+  },
+  {
+    "id": "demo_r_demo_rulindo_2",
+    "sectorId": "demo_rulindo_2",
+    "availabilityPercent": 82,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-13T11:06:17.032Z"
+  },
+  {
+    "id": "demo_r_demo_rulindo_3",
+    "sectorId": "demo_rulindo_3",
+    "availabilityPercent": 83,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:17.087Z"
+  },
+  {
+    "id": "demo_r_demo_rulindo_4",
+    "sectorId": "demo_rulindo_4",
+    "availabilityPercent": 84,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:17.141Z"
+  },
+  {
+    "id": "demo_r_demo_rulindo_5",
+    "sectorId": "demo_rulindo_5",
+    "availabilityPercent": 85,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:17.192Z"
+  },
+  {
+    "id": "demo_r_demo_rusizi_1",
+    "sectorId": "demo_rusizi_1",
+    "availabilityPercent": 58,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-13T11:06:17.244Z"
+  },
+  {
+    "id": "demo_r_demo_rusizi_2",
+    "sectorId": "demo_rusizi_2",
+    "availabilityPercent": 59,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-20T11:06:17.304Z"
+  },
+  {
+    "id": "demo_r_demo_rusizi_3",
+    "sectorId": "demo_rusizi_3",
+    "availabilityPercent": 60,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:17.370Z"
+  },
+  {
+    "id": "demo_r_demo_rusizi_4",
+    "sectorId": "demo_rusizi_4",
+    "availabilityPercent": 61,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:17.466Z"
+  },
+  {
+    "id": "demo_r_demo_rusizi_5",
+    "sectorId": "demo_rusizi_5",
+    "availabilityPercent": 62,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:17.526Z"
+  },
+  {
+    "id": "demo_r_demo_rutsiro_1",
+    "sectorId": "demo_rutsiro_1",
+    "availabilityPercent": 76,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-19T11:06:17.579Z"
+  },
+  {
+    "id": "demo_r_demo_rutsiro_2",
+    "sectorId": "demo_rutsiro_2",
+    "availabilityPercent": 77,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:17.639Z"
+  },
+  {
+    "id": "demo_r_demo_rutsiro_3",
+    "sectorId": "demo_rutsiro_3",
+    "availabilityPercent": 78,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:17.697Z"
+  },
+  {
+    "id": "demo_r_demo_rutsiro_4",
+    "sectorId": "demo_rutsiro_4",
+    "availabilityPercent": 79,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T11:06:17.759Z"
+  },
+  {
+    "id": "demo_r_demo_rutsiro_5",
+    "sectorId": "demo_rutsiro_5",
+    "availabilityPercent": 80,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-15T11:06:17.817Z"
+  },
+  {
+    "id": "demo_r_demo_rwamagana_1",
+    "sectorId": "demo_rwamagana_1",
+    "availabilityPercent": 69,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-18T11:06:17.886Z"
+  },
+  {
+    "id": "demo_r_demo_rwamagana_2",
+    "sectorId": "demo_rwamagana_2",
+    "availabilityPercent": 70,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-17T11:06:17.972Z"
+  },
+  {
+    "id": "demo_r_demo_rwamagana_3",
+    "sectorId": "demo_rwamagana_3",
+    "availabilityPercent": 71,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T11:06:18.047Z"
+  },
+  {
+    "id": "demo_r_demo_rwamagana_4",
+    "sectorId": "demo_rwamagana_4",
+    "availabilityPercent": 72,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-15T11:06:18.123Z"
+  },
+  {
+    "id": "demo_r_demo_rwamagana_5",
+    "sectorId": "demo_rwamagana_5",
+    "availabilityPercent": 73,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-14T11:06:18.192Z"
   }
 ]
