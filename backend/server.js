@@ -24,6 +24,77 @@ function slug(name) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "_");
 }
 
+// Illustrative national coverage for the pilot. These are district names only;
+// replace the generated sector and population values with official NISR data
+// before any operational use.
+const RWANDA_DISTRICTS = [
+  "Bugesera", "Burera", "Gakenke", "Gasabo", "Gatsibo", "Gicumbi", "Gisagara", "Huye",
+  "Kamonyi", "Karongi", "Kayonza", "Kicukiro", "Kirehe", "Muhanga", "Musanze", "Ngoma",
+  "Ngororero", "Nyabihu", "Nyagatare", "Nyamagabe", "Nyamasheke", "Nyanza", "Nyarugenge",
+  "Nyaruguru", "Rubavu", "Ruhango", "Rulindo", "Rusizi", "Rutsiro", "Rwamagana",
+];
+
+function textHash(value) {
+  return [...value].reduce((hash, char) => ((hash * 31) + char.charCodeAt(0)) >>> 0, 7);
+}
+
+function ensureNationalDemoCoverage() {
+  const sectors = readJSON(SECTORS_FILE);
+  const reports = readJSON(REPORTS_FILE);
+  const users = readJSON(USERS_FILE);
+  let sectorsChanged = false;
+  let reportsChanged = false;
+  let usersChanged = false;
+
+  for (const district of RWANDA_DISTRICTS) {
+    const districtSectors = sectors.filter((sector) => sector.district === district);
+    for (let position = districtSectors.length + 1; position <= 5; position += 1) {
+      const id = `demo_${slug(district)}_${position}`;
+      const sector = {
+        id,
+        name: `${district} Sector ${position}`,
+        district,
+        population: 18000 + ((textHash(`${district}-${position}`) % 42) * 1000),
+        createdAt: new Date().toISOString(),
+      };
+      sectors.push(sector);
+      districtSectors.push(sector);
+      sectorsChanged = true;
+    }
+  }
+
+  for (const sector of sectors) {
+    if (!users.some((user) => user.sectorId === sector.id)) {
+      users.push({
+        id: `u_${sector.id}`,
+        username: slug(sector.name),
+        role: "sector",
+        sectorId: sector.id,
+        passwordHash: bcrypt.hashSync("sector123", 8),
+      });
+      usersChanged = true;
+    }
+    if (!reports.some((report) => report.sectorId === sector.id)) {
+      const seed = textHash(sector.id);
+      const date = new Date(Date.now() - ((seed % 8) + 1) * 86400000).toISOString();
+      reports.push({
+        id: `demo_r_${sector.id}`,
+        sectorId: sector.id,
+        availabilityPercent: 35 + (seed % 56),
+        reporterType: "demo",
+        reportedBy: "demo_seed",
+        note: "Illustrative national demo reading.",
+        date,
+      });
+      reportsChanged = true;
+    }
+  }
+
+  if (sectorsChanged) writeJSON(SECTORS_FILE, sectors);
+  if (reportsChanged) writeJSON(REPORTS_FILE, reports);
+  if (usersChanged) writeJSON(USERS_FILE, users);
+}
+
 function ensureSeed() {
   if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR);
 
@@ -72,6 +143,7 @@ function ensureSeed() {
   }
 }
 ensureSeed();
+ensureNationalDemoCoverage();
 
 // in-memory session store — fine for a local pilot; swap for JWT/Redis later
 const sessions = new Map();
