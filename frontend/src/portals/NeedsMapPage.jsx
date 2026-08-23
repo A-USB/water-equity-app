@@ -1,27 +1,8 @@
 import { useEffect, useState } from "react";
 import { getDistricts } from "../api";
 import { colorForAvailability } from "../utils";
+import { featurePath } from "../mapUtils";
 import rwandaDistricts from "../data/rwanda-districts.min.json";
-
-const BOUNDS = { west: 28.8617, east: 30.8998, south: -2.8403, north: -1.0471 };
-
-function project([longitude, latitude]) {
-  const x = 5 + ((longitude - BOUNDS.west) / (BOUNDS.east - BOUNDS.west)) * 90;
-  const y = 95 - ((latitude - BOUNDS.south) / (BOUNDS.north - BOUNDS.south)) * 90;
-  return [x, y];
-}
-
-function ringPath(ring) {
-  return ring.map((point, index) => {
-    const [x, y] = project(point);
-    return `${index ? "L" : "M"}${x.toFixed(2)} ${y.toFixed(2)}`;
-  }).join(" ") + "Z";
-}
-
-function featurePath(feature) {
-  const polygons = feature.geometry.type === "Polygon" ? [feature.geometry.coordinates] : feature.geometry.coordinates;
-  return polygons.map((polygon) => polygon.map(ringPath).join(" ")).join(" ");
-}
 
 export default function NeedsMapPage() {
   const [districts, setDistricts] = useState(null);

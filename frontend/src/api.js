@@ -88,3 +88,8 @@ export async function getReports() {
   const res = await fetch(`${BASE}/reports`, { headers: authHeaders() });
   return handle(res);
 }
+
+export async function getPublicDistricts() {
+  const res = await fetch(`${BASE}/public/districts`);
+  return handle(res);
+}
