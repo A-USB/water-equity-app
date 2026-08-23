@@ -8,7 +8,7 @@ const NAV = {
   sector: [{ key: "dashboard", label: "My Sector" }],
 };
 
-export default function Sidebar({ role, username, sectorName, active, onNavigate, onLogout }) {
+export default function Sidebar({ role, username, sectorName, active, onNavigate, onLogout, theme, onToggleTheme }) {
   const items = NAV[role] || [];
   return (
     <aside className="sidebar">
@@ -30,6 +30,15 @@ export default function Sidebar({ role, username, sectorName, active, onNavigate
       </nav>
 
       <div className="sidebar-footer">
+        <button
+          className="theme-toggle"
+          onClick={onToggleTheme}
+          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+        >
+          <span className={`theme-toggle-option ${theme === "light" ? "theme-toggle-active" : ""}`}>Light</span>
+          <span className={`theme-toggle-option ${theme === "dark" ? "theme-toggle-active" : ""}`}>Dark</span>
+        </button>
+
         <div className="sidebar-identity">
           <span className="sidebar-identity-name">{sectorName || username}</span>
           <span className="sidebar-identity-role">{username}</span>

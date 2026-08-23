@@ -22,7 +22,7 @@ const STEPS = [
   },
 ];
 
-export default function Home({ onContinue }) {
+export default function Home({ onContinue, theme, onToggleTheme }) {
   const [districts, setDistricts] = useState(null);
 
   useEffect(() => {
@@ -46,9 +46,12 @@ export default function Home({ onContinue }) {
     <div className="home">
       <nav className="home-nav">
         <span className="home-nav-mark">Amazi</span>
-        <button className="home-nav-signin" onClick={onContinue}>
-          Sign in →
-        </button>
+        <div className="home-nav-actions">
+          <button className="home-theme-toggle" onClick={onToggleTheme}>
+            {theme === "dark" ? "Light mode" : "Dark mode"}
+          </button>
+          <button className="home-nav-signin" onClick={onContinue}>Sign in →</button>
+        </div>
       </nav>
 
       <header className="home-hero">
