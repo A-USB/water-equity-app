@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getMe } from "./api";
 import { loadAuth, saveAuth, clearAuth } from "./auth";
+import { loadTheme, saveTheme } from "./theme";
 import Home from "./components/Home";
 import AuthScreen from "./components/AuthScreen";
 import Sidebar from "./components/Sidebar";
@@ -14,6 +15,16 @@ export default function App() {
   const [auth, setAuth] = useState(undefined); // undefined = still checking, null = logged out
   const [activePage, setActivePage] = useState("dashboard");
   const [stage, setStage] = useState("landing"); // "landing" | "auth" — only matters while logged out
+  const [theme, setTheme] = useState(loadTheme);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    saveTheme(theme);
+  }, [theme]);
+
+  function toggleTheme() {
+    setTheme((t) => (t === "dark" ? "light" : "dark"));
+  }
 
   useEffect(() => {
     const stored = loadAuth();
@@ -44,7 +55,7 @@ export default function App() {
 
   if (!auth) {
     return stage === "landing" ? (
-      <Home onContinue={() => setStage("auth")} />
+      <Home onContinue={() => setStage("auth")} theme={theme} onToggleTheme={toggleTheme} />
     ) : (
       <AuthScreen onLoggedIn={handleLoggedIn} />
     );
@@ -59,6 +70,8 @@ export default function App() {
         active={activePage}
         onNavigate={setActivePage}
         onLogout={handleLogout}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
       <div className="shell-main">
         <div className="page">
