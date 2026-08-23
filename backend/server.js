@@ -340,6 +340,31 @@ app.post("/api/sectors", authenticate, requireRole("wasac"), (req, res) => {
   res.status(201).json({ ...newSector, loginUsername: slug(newSector.name) });
 });
 
+// ---------- public (no auth) — powers the homepage preview and, later, a
+// citizen-facing map. Deliberately trimmed: no population, no staleness/
+// compliance data, nothing that isn't already implied by "is there water".
+app.get("/api/public/districts", (req, res) => {
+  const sectors = readJSON(SECTORS_FILE);
+  const reports = readJSON(REPORTS_FILE);
+  const scored = computeScores(sectors, reports);
+
+  const byDistrict = {};
+  for (const s of scored) {
+    if (!byDistrict[s.district]) byDistrict[s.district] = [];
+    byDistrict[s.district].push(s);
+  }
+
+  const districts = Object.entries(byDistrict).map(([district, list]) => {
+    const reportedList = list.filter((s) => s.latestAvailability !== null);
+    const avgAvailability = reportedList.length
+      ? Math.round(reportedList.reduce((sum, s) => sum + s.latestAvailability, 0) / reportedList.length)
+      : null;
+    return { district, sectorCount: list.length, avgAvailability };
+  });
+
+  res.json(districts);
+});
+
 app.get("/api/districts", authenticate, requireRole("wasac"), (req, res) => {
   const sectors = readJSON(SECTORS_FILE);
   const reports = readJSON(REPORTS_FILE);
