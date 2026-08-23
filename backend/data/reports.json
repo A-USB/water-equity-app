@@ -1346,5 +1346,14 @@
     "reportedBy": "demo_seed",
     "note": "Illustrative national demo reading.",
     "date": "2026-08-14T11:06:18.192Z"
+  },
+  {
+    "id": "demo_r_s1787431804306",
+    "sectorId": "s1787431804306",
+    "availabilityPercent": 49,
+    "reporterType": "demo",
+    "reportedBy": "demo_seed",
+    "note": "Illustrative national demo reading.",
+    "date": "2026-08-16T14:43:56.049Z"
   }
 ]
