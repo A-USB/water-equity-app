@@ -1069,5 +1069,12 @@
     "role": "sector",
     "sectorId": "demo_rwamagana_5",
     "passwordHash": "$2b$08$K28EzLs3yrBzHw9GOIRxzefkMhEUcYXLESJhJOBp80ptMwZyWl/AS"
+  },
+  {
+    "id": "u_361873dfcb8c",
+    "username": " mnlk n ln ",
+    "role": "sector",
+    "sectorId": "s1787431804306",
+    "passwordHash": "$2b$08$zXWptbPi9FaLL2R15R2yQuvEbVI5ngl74WLjtIXrKFOauXn1.9v0e"
   }
 ]
