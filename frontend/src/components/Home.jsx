@@ -3,6 +3,7 @@ import { getPublicDistricts } from "../api";
 import { colorForAvailability, formatNumber } from "../utils";
 import { featurePath } from "../mapUtils";
 import rwandaDistricts from "../data/rwanda-districts.min.json";
+import SiteFooter from "./SiteFooter";
 
 const STEPS = [
   {
@@ -45,12 +46,14 @@ export default function Home({ onContinue, theme, onToggleTheme }) {
   return (
     <div className="home">
       <nav className="home-nav">
-        <span className="home-nav-mark">Amazi</span>
-        <div className="home-nav-actions">
-          <button className="home-theme-toggle" onClick={onToggleTheme}>
-            {theme === "dark" ? "Light mode" : "Dark mode"}
-          </button>
-          <button className="home-nav-signin" onClick={onContinue}>Sign in →</button>
+        <div className="home-nav-inner">
+          <span className="home-nav-mark">Amazi</span>
+          <div className="home-nav-actions">
+            <button className="home-theme-toggle" onClick={onToggleTheme}>
+              {theme === "dark" ? "Light mode" : "Dark mode"}
+            </button>
+            <button className="home-nav-signin" onClick={onContinue}>Sign in →</button>
+          </div>
         </div>
       </nav>
 
@@ -139,7 +142,7 @@ export default function Home({ onContinue, theme, onToggleTheme }) {
         </div>
       </section>
 
-      <section className="home-cards">
+      <section className="home-cards" id="portals">
         <div className="landing-card">
           <p className="landing-card-eyebrow">For Sector officials</p>
           <h3>Report your sector</h3>
@@ -158,12 +161,7 @@ export default function Home({ onContinue, theme, onToggleTheme }) {
         </div>
       </section>
 
-      <footer className="home-footer">
-        <span>Amazi — a water equity pilot for Rwanda.</span>
-        <button className="home-nav-signin" onClick={onContinue}>
-          Sign in →
-        </button>
-      </footer>
+      <SiteFooter onContinue={onContinue} />
     </div>
   );
 }

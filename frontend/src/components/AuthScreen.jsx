@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { login, signup } from "../api";
+import Footer from "./Footer";
 
 const ROLES = {
   sector: {
@@ -58,6 +59,7 @@ export default function AuthScreen({ onLoggedIn }) {
 
   return (
     <div className="login-page">
+      <div className="login-page-center">
       <div className="auth-card">
         <h1 className="auth-title">{isSignup ? "Create your account" : "Sign in to your account"}</h1>
         <p className="auth-subtitle">
@@ -149,6 +151,8 @@ export default function AuthScreen({ onLoggedIn }) {
           )}
         </p>
       </div>
+      </div>
+      <Footer />
     </div>
   );
 }
