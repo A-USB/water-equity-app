@@ -5,6 +5,7 @@ import { loadTheme, saveTheme } from "./theme";
 import Home from "./components/Home";
 import AuthScreen from "./components/AuthScreen";
 import Sidebar from "./components/Sidebar";
+import Footer from "./components/Footer";
 import SectorPortal from "./portals/SectorPortal";
 import WasacPortal from "./portals/WasacPortal";
 import ReportsPage from "./portals/ReportsPage";
@@ -84,6 +85,7 @@ export default function App() {
             </>
           )}
         </div>
+        <Footer />
       </div>
     </div>
   );
