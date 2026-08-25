@@ -5,7 +5,7 @@ export default function SiteFooter({ onContinue }) {
     <footer className="site-footer">
       <div className="site-footer-top">
         <div className="site-footer-brand">
-          <span className="site-footer-mark">Amazi<span aria-hidden="true">.</span></span>
+          <span className="site-footer-mark">Mira</span>
           <p>A clearer picture of water access, built for the people who keep Rwanda flowing.</p>
           <div className="site-footer-socials" aria-label="Social media">
             <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -45,12 +45,12 @@ export default function SiteFooter({ onContinue }) {
         <div className="site-footer-col">
           <p className="site-footer-heading">Resources</p>
           <a href="https://www.wasac.rw" target="_blank" rel="noopener noreferrer">WASAC official site</a>
-          <a href="#how-it-works">About Amazi</a>
+          <a href="#how-it-works">About Mira</a>
         </div>
       </div>
 
       <div className="site-footer-bottom">
-        <span>© {YEAR} Amazi. Built for equitable water access.</span>
+        <span>© {YEAR} Mira. Built for equitable water access.</span>
         <div className="site-footer-legal">
           <a href="#how-it-works">Privacy</a>
           <a href="#how-it-works">Terms</a>
