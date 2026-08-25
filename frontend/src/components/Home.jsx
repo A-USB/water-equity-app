@@ -47,7 +47,7 @@ export default function Home({ onContinue, theme, onToggleTheme }) {
     <div className="home">
       <nav className="home-nav">
         <div className="home-nav-inner">
-          <span className="home-nav-mark">Amazi</span>
+          <span className="home-nav-mark">Mira</span>
           <div className="home-nav-actions">
             <button className="home-theme-toggle" onClick={onToggleTheme}>
               {theme === "dark" ? "Light mode" : "Dark mode"}
@@ -65,7 +65,7 @@ export default function Home({ onContinue, theme, onToggleTheme }) {
           </h1>
           <p className="home-hero-sub">
             Rwanda's water doesn't run short everywhere at once — some districts stay dry for
-            weeks in the dry season while others never notice. Amazi connects Sector officials
+            weeks in the dry season while others never notice. Mira connects Sector officials
             reporting from the ground to WASAC's national view, and turns that data into a live
             picture of where water actually is.
           </p>
