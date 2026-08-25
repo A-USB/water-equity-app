@@ -1,4 +1,4 @@
-# Amazi — Water Equity Monitor (pilot)
+# Mira — Water Equity Monitor (pilot)
 
 A closed, two-portal system between **Sector officials** and **WASAC** — no
 public or citizen layer. Users pick their role up front, then sign in or
@@ -14,7 +14,7 @@ a computed need score.
 
 ## Flow
 
-1. **Landing page** — explains what Amazi is and what each portal does, before asking anyone to sign in.
+1. **Landing page** — explains what Mira is and what each portal does, before asking anyone to sign in.
 2. **Role select** — "Executive Secretary" or "WASAC".
 3. **Sign in or sign up** for that role. Sector signup also registers the
    sector itself (name, district, population) in one step.
@@ -62,9 +62,9 @@ this is used for anything beyond a demo.
 
 ## Demo accounts
 
-| Username | Password | Role |
-|---|---|---|
-| `wasac_hq` | `wasac123` | WASAC |
+| Username                                                          | Password    | Role   |
+| ----------------------------------------------------------------- | ----------- | ------ |
+| `wasac_hq`                                                        | `wasac123`  | WASAC  |
 | `nyamirambo`, `busasamana`, `jenda`, etc. (slugified sector name) | `sector123` | Sector |
 
 Or just use the signup form to create your own of either kind.
@@ -72,19 +72,23 @@ Or just use the signup form to create your own of either kind.
 ## Run it
 
 **Backend** (in one terminal):
+
 ```
 cd backend
 npm install
 npm run dev        # or: npm start
 ```
+
 Runs on `http://localhost:4000`.
 
 **Frontend** (in another terminal):
+
 ```
 cd frontend
 npm install
 npm run dev
 ```
+
 Runs on `http://localhost:5173` and proxies `/api/*` to the backend.
 
 Open `http://localhost:5173` in your browser.
