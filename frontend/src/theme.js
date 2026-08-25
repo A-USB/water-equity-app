@@ -1,4 +1,4 @@
-const KEY = "amazi_theme";
+const KEY = "Mira_theme";
 
 export function loadTheme() {
   try {
