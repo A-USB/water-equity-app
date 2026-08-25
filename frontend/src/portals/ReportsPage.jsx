@@ -9,7 +9,7 @@ function downloadCsv(reports) {
   const rows = [["Date", "District", "Sector", "Availability (%)", "Reported by", "Note"], ...reports.map((report) => [new Date(report.date).toLocaleString(), report.district, report.sectorName, report.availabilityPercent, report.reportedBy || "—", report.note || ""])];
   const csv = rows.map((row) => row.map((cell) => `"${String(cell).replaceAll('"', '""')}"`).join(",")).join("\n");
   const url = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
-  const link = document.createElement("a"); link.href = url; link.download = "amazi-reports.csv"; link.click(); URL.revokeObjectURL(url);
+  const link = document.createElement("a"); link.href = url; link.download = "Mira-reports.csv"; link.click(); URL.revokeObjectURL(url);
 }
 
 export default function ReportsPage() {
