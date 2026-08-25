@@ -1,4 +1,4 @@
-const KEY = "amazi_auth";
+const KEY = "Mira_auth";
 
 export function saveAuth(auth) {
   localStorage.setItem(KEY, JSON.stringify(auth));
