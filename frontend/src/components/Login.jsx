@@ -25,7 +25,7 @@ export default function Login({ onLoggedIn }) {
     <div className="login-page">
       <div className="login-card">
         <p className="eyebrow">Water Equity Monitor</p>
-        <h1 className="login-title">Amazi</h1>
+        <h1 className="login-title">Mira</h1>
         <p className="hero-sub">Sign in as a sector official or as WASAC.</p>
 
         <form onSubmit={handleSubmit}>
