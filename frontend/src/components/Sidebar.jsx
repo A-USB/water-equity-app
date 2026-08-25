@@ -13,7 +13,7 @@ export default function Sidebar({ role, username, sectorName, active, onNavigate
   return (
     <aside className="sidebar">
       <div className="sidebar-brand">
-        <span className="sidebar-brand-mark">Amazi</span>
+        <span className="sidebar-brand-mark">Mira</span>
         <span className="sidebar-brand-sub">{role === "wasac" ? "WASAC" : "Sector portal"}</span>
       </div>
 
