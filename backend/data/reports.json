@@ -1355,5 +1355,21 @@
     "reportedBy": "demo_seed",
     "note": "Illustrative national demo reading.",
     "date": "2026-08-16T14:43:56.049Z"
+  },
+  {
+    "id": "r1787736516981",
+    "sectorId": "s7",
+    "availabilityPercent": 55,
+    "note": "",
+    "reportedBy": "nyamirambo",
+    "date": "2026-08-26T09:28:36.981Z"
+  },
+  {
+    "id": "r1787736533825",
+    "sectorId": "s7",
+    "availabilityPercent": 50,
+    "note": "houses urgently need water",
+    "reportedBy": "nyamirambo",
+    "date": "2026-08-26T09:28:53.825Z"
   }
 ]
