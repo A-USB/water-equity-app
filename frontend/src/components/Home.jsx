@@ -47,8 +47,8 @@ export default function Home({ onContinue, theme, onToggleTheme }) {
     <div className="home">
       <nav className="home-nav">
         <div className="home-nav-inner">
-          <span className="home-nav-mark">Mira</span>
-          <div className="home-nav-actions">
+        <img src="/logo.svg" alt="Mira" className="home-nav-logo" />         
+        <div className="home-nav-actions">
             <button className="home-theme-toggle" onClick={onToggleTheme}>
               {theme === "dark" ? "Light mode" : "Dark mode"}
             </button>
