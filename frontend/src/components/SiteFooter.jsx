@@ -5,7 +5,7 @@ export default function SiteFooter({ onContinue }) {
     <footer className="site-footer">
       <div className="site-footer-top">
         <div className="site-footer-brand">
-          <span className="site-footer-mark">Mira</span>
+          <img src="/logo.svg" alt="Mira" className="home-nav-logo" />         
           <p>A clearer picture of water access, built for the people who keep Rwanda flowing.</p>
           <div className="site-footer-socials" aria-label="Social media">
             <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
