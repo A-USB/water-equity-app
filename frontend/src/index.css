@@ -62,6 +62,56 @@
 
 html, body, #root { height: 100%; }
 
+/* Smooth light to dark mode transitions */
+body,
+#root,
+.shell,
+.shell-main,
+.page,
+.sidebar,
+.sidebar-nav-item,
+.sidebar-collapse,
+.sidebar-avatar,
+.sidebar-brand-sub,
+.sidebar-identity-name,
+.sidebar-identity-role,
+.panel,
+.sector-card,
+.modal-card,
+.stat-card,
+.metric-card,
+.hero,
+.hero h1,
+.hero-sub,
+.eyebrow,
+.section-head h2,
+.field input,
+.field select,
+.field label,
+.btn-primary,
+.btn-secondary,
+.btn-ghost,
+.table-wrap,
+.history-table,
+.history-table th,
+.history-table td,
+.site-footer,
+.app-footer,
+.home,
+.home-hero,
+.home-nav,
+.home-card,
+.auth-card,
+.empty-state,
+.gauge-track {
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              fill 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              stroke 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 body {
   margin: 0;
   background: var(--c-bg);
@@ -476,34 +526,44 @@ main { padding-top: 40px; }
 }
 
 .sidebar {
-  width: 220px;
+  width: 248px;
   flex-shrink: 0;
   background: var(--c-sidebar-bg);
   color: var(--c-sidebar-ink);
   display: flex;
   flex-direction: column;
-  padding: 24px 16px;
+  padding: 24px 22px;
   position: sticky;
   top: 0;
   height: 100dvh;
-  transition: width 180ms ease, padding 180ms ease;
+  transition: width 180ms ease, padding 180ms ease, background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1), border-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-right: 1px solid var(--c-sidebar-line);
 }
 
 .sidebar-avatar { 
-  width: 38px; 
-  height: 38px; 
+  width: 36px; 
+  height: 36px; 
   border-radius: 50%; 
   display: grid; 
   place-items: center; 
   background: var(--c-deep); 
   color: white; 
-  font-family: var(--font-display); font-size: 19px; 
+  font-family: var(--font-display); 
+  font-size: 16px; 
+  font-weight: 600;
+  flex-shrink: 0;
 }
 
 .sidebar-collapsed {
-  width: 76px;
-  padding-left: 10px;
-  padding-right: 10px;
+  width: 92px;
+  padding: 24px 22px;
+}
+
+.sidebar-brand {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 28px;
+  padding: 0 4px;
 }
 
 .sidebar-brand-row {
@@ -511,13 +571,14 @@ main { padding-top: 40px; }
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+  min-height: 34px;
 }
 
 .sidebar-collapse {
   display: grid;
   place-items: center;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   flex-shrink: 0;
   border: none;
   border-radius: 8px;
@@ -525,14 +586,6 @@ main { padding-top: 40px; }
   color: var(--c-sidebar-ink);
   cursor: pointer;
   transition: background 160ms ease, color 160ms ease;
-}
-
-.sidebar-collapse svg {
-  transition: transform 160ms ease;
-}
-
-.sidebar-collapsed .sidebar-collapse svg {
-  transform: scaleX(-1);
 }
 
 .sidebar-collapse:hover {
@@ -543,36 +596,31 @@ main { padding-top: 40px; }
 .sidebar-collapsed .sidebar-brand {
   padding: 0;
   align-items: center;
+  margin-bottom: 24px;
 }
 
-.sidebar-collapsed .sidebar-brand-row { flex-direction: column; width: 100%; gap: 10px; }
+.sidebar-collapsed .sidebar-brand-row {
+  justify-content: center;
+  width: 100%;
+}
+
 .sidebar-collapsed .sidebar-brand-sub,
 .sidebar-collapsed .sidebar-nav-label,
 .sidebar-collapsed .sidebar-identity {
   display: none;
 }
 
-.sidebar-brand {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 32px;
-  padding: 0 8px;
-}
-
-/* The logo carries the wordmark itself, so it's the only brand element —
-   no separate text label to keep in sync. Fixed height + auto width means
-   it scales as one image and never stretches or gets swapped for text. */
 .sidebar-logo {
-  height: 36px;
+  height: 32px;
   width: auto;
-  max-width: 160px;
+  max-width: 140px;
   object-fit: contain;
   display: block;
 }
 
 .sidebar-collapsed .sidebar-logo {
   height: 26px;
-  max-width: 60px;
+  max-width: 48px;
 }
 
 .sidebar-brand-sub {
@@ -581,13 +629,13 @@ main { padding-top: 40px; }
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--c-sidebar-muted);
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 6px;
   flex: 1;
 }
 
@@ -604,79 +652,110 @@ main { padding-top: 40px; }
   font-size: 14px;
   cursor: pointer;
   gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
   transition: background 160ms ease, color 160ms ease;
+  position: relative;
 }
 
-.sidebar-nav-item:hover:not(:disabled) { background: var(--c-sidebar-hover); }
-.sidebar-nav-item:disabled { color: var(--c-sidebar-muted); opacity: 0.65; cursor: default; }
+.sidebar-nav-item:hover:not(:disabled) { 
+  background: var(--c-sidebar-hover); 
+  color: var(--c-sidebar-strong);
+}
+
+.sidebar-nav-item:disabled { 
+  color: var(--c-sidebar-muted); 
+  opacity: 0.65; 
+  cursor: default; 
+}
 
 .sidebar-nav-active {
   background: var(--c-sidebar-active);
   color: var(--c-sidebar-strong);
   font-weight: 600;
-  border-right: 3px solid var(--c-good);
+}
+
+.sidebar-nav-active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--c-good);
 }
 
 .sidebar-nav-icon {
   width: 20px;
+  height: 20px;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.82;
+  opacity: 0.85;
 }
 
-.sidebar-nav-active .sidebar-nav-icon { opacity: 1; }
+.sidebar-nav-active .sidebar-nav-icon { 
+  opacity: 1; 
+  color: var(--c-sidebar-strong);
+}
 
 .sidebar-collapsed .sidebar-nav-item {
   justify-content: center;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 10px 0;
 }
 
-.sidebar-collapsed .sidebar-footer {
-  padding-top: 12px;
-}
-
-.soon-badge {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  text-transform: uppercase;
-  background: var(--c-sidebar-active);
-  padding: 2px 6px;
-  border-radius: 999px;
+.sidebar-collapsed .sidebar-nav-active::before {
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
 }
 
 .sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   padding-top: 14px;
-  margin-top: 14px;
+  margin-top: auto;
+  border-top: 1px solid var(--c-sidebar-line);
+}
+
+.sidebar-collapsed .sidebar-footer {
+  padding-top: 14px;
 }
 
 .sidebar-identity {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 10px;
-  padding: 0 8px;
+  margin-bottom: 8px;
+  padding: 4px 8px;
 }
 
-.sidebar-identity-text{
+.sidebar-identity-text {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
+
 .sidebar-identity-name {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--c-sidebar-strong);
-  font-weight: 500;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sidebar-identity-role {
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--c-sidebar-muted);
-}
-.sidebar-avatar {
-
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .shell-main {

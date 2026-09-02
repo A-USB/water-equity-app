@@ -69,11 +69,19 @@ const LOGOUT_ICON = (
 );
 
 const COLLAPSE_ICON = (
-  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <Icon>
     <rect x="3" y="4" width="18" height="16" rx="3" />
     <line x1="9" y1="4" x2="9" y2="20" />
     <polyline points="14 9 11 12 14 15" />
-  </svg>
+  </Icon>
+);
+
+const EXPAND_ICON = (
+  <Icon>
+    <rect x="3" y="4" width="18" height="16" rx="3" />
+    <line x1="9" y1="4" x2="9" y2="20" />
+    <polyline points="12 9 15 12 12 15" />
+  </Icon>
 );
 
 const NAV = {
@@ -95,15 +103,17 @@ export default function Sidebar({ role, username, sectorName, active, onNavigate
       <header className="sidebar-brand">
         <div className="sidebar-brand-row">
           <img src="/logo.svg" alt="Mira" className="sidebar-logo" />
-          <button
-            className="sidebar-collapse"
-            type="button"
-            onClick={() => setCollapsed((value) => !value)}
-            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-            title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          >
-            {COLLAPSE_ICON}
-          </button>
+          {!collapsed && (
+            <button
+              className="sidebar-collapse"
+              type="button"
+              onClick={() => setCollapsed(true)}
+              aria-label="Collapse sidebar"
+              title="Collapse sidebar"
+            >
+              {COLLAPSE_ICON}
+            </button>
+          )}
         </div>
         {!collapsed && <span className="sidebar-brand-sub">{role === "wasac" ? "WASAC" : "Sector portal"}</span>}
       </header>
@@ -128,13 +138,14 @@ export default function Sidebar({ role, username, sectorName, active, onNavigate
       <footer className="sidebar-footer">
         {!collapsed && (
           <div className="sidebar-identity">
-  <span className="sidebar-avatar">{(sectorName || username || "?").slice(0, 1).toUpperCase()}</span>
-  <div className="sidebar-identity-text">
-    <span className="sidebar-identity-name">{sectorName || username}</span>
-    <span className="sidebar-identity-role">{username}</span>
-  </div>
-</div>
+            <span className="sidebar-avatar">{(sectorName || username || "?").slice(0, 1).toUpperCase()}</span>
+            <div className="sidebar-identity-text">
+              <span className="sidebar-identity-name">{sectorName || username}</span>
+              <span className="sidebar-identity-role">{username}</span>
+            </div>
+          </div>
         )}
+
         <button
           type="button"
           className="sidebar-nav-item"
@@ -144,6 +155,19 @@ export default function Sidebar({ role, username, sectorName, active, onNavigate
         >
           <span className="sidebar-nav-icon" aria-hidden="true">{theme === "dark" ? SUN_ICON : MOON_ICON}</span>
           {!collapsed && <span className="sidebar-nav-label">{theme === "dark" ? "Light mode" : "Dark mode"}</span>}
+        </button>
+
+        <button
+          type="button"
+          className="sidebar-nav-item"
+          onClick={() => setCollapsed((value) => !value)}
+          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+        >
+          <span className="sidebar-nav-icon" aria-hidden="true">
+            {collapsed ? EXPAND_ICON : COLLAPSE_ICON}
+          </span>
+          {!collapsed && <span className="sidebar-nav-label">Collapse sidebar</span>}
         </button>
 
         <button
