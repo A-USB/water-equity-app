@@ -1629,3 +1629,229 @@ main { padding-top: 40px; }
   .report-summary div:last-child { border-bottom: 0; }
   .report-controls { align-items: stretch; flex-direction: column; }
 }
+
+/* ---------- distribution engine ---------- */
+.dist-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.dist-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px;
+}
+
+.dist-card-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--c-ink-soft);
+}
+
+.dist-card-value {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--c-heading);
+}
+
+.dist-red { color: var(--c-bad); }
+.dist-orange { color: #d9a441; }
+.dist-green { color: var(--c-good); }
+
+.dist-supply-panel {
+  margin-bottom: 20px;
+}
+
+.dist-supply-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+}
+
+.dist-supply-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--c-heading);
+}
+
+.dist-supply-value {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--c-good);
+}
+
+.dist-slider {
+  width: 100%;
+  height: 6px;
+  appearance: none;
+  background: var(--c-line);
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+}
+
+.dist-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--c-good);
+  border: 3px solid var(--c-surface);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  cursor: grab;
+}
+
+.dist-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--c-good);
+  border: 3px solid var(--c-surface);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  cursor: grab;
+}
+
+.dist-supply-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--c-ink-soft);
+}
+
+.dist-loading {
+  text-align: center;
+  color: var(--c-ink-soft);
+  font-size: 14px;
+  padding: 12px 0;
+}
+
+.dist-table-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--c-heading);
+  margin: 0 0 16px;
+}
+
+.dist-table tbody tr { cursor: pointer; }
+.dist-table tbody tr:hover { background: var(--c-bg); }
+
+.dist-row-expanded { background: var(--c-bg); }
+
+.dist-district-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: var(--c-ink);
+}
+
+.dist-expand-icon {
+  font-size: 10px;
+  color: var(--c-ink-soft);
+  width: 14px;
+  flex-shrink: 0;
+}
+
+.dist-tier-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.dist-tier-1 { background: rgba(181, 69, 31, 0.12); color: var(--c-bad); }
+.dist-tier-2 { background: rgba(217, 164, 65, 0.15); color: #b8860b; }
+.dist-tier-3 { background: var(--c-bg); color: var(--c-ink-soft); }
+.dist-tier-4 { background: rgba(30, 127, 140, 0.1); color: var(--c-good); }
+
+.dist-sector-row td {
+  padding: 0 !important;
+  background: var(--c-bg);
+}
+
+.dist-sector-detail {
+  padding: 16px 20px 20px;
+}
+
+.dist-sector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: var(--c-heading);
+}
+
+.dist-spread-badge {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--c-surface);
+}
+
+.dist-sector-detail .history-table {
+  font-size: 13px;
+}
+
+.dist-publish {
+  text-align: center;
+  padding: 28px 0 12px;
+}
+
+.dist-publish-btn {
+  font-size: 16px;
+  padding: 14px 36px;
+}
+
+.dist-published-msg {
+  color: var(--c-good);
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+/* Incoming water allocation card on sector portal */
+.dist-incoming h3 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--c-heading);
+  margin: 0 0 14px;
+}
+
+.dist-incoming-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.dist-incoming-grid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+@media (max-width: 900px) {
+  .dist-summary { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .dist-summary { grid-template-columns: 1fr; }
+  .dist-incoming-grid { grid-template-columns: 1fr; }
+}
