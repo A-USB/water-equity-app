@@ -11,6 +11,8 @@ import WasacPortal from "./portals/WasacPortal";
 import ReportsPage from "./portals/ReportsPage";
 import SettingsPage from "./portals/SettingsPage";
 import NeedsMapPage from "./portals/NeedsMapPage";
+import DistributionPage from "./portals/DistributionPage";
+
 
 export default function App() {
   const [auth, setAuth] = useState(undefined); // undefined = still checking, null = logged out
@@ -80,6 +82,7 @@ export default function App() {
             <>
               {activePage === "dashboard" && <WasacPortal />}
               {activePage === "map" && <NeedsMapPage />}
+              {activePage === "distribution" && <DistributionPage />}
               {activePage === "reports" && <ReportsPage />}
               {activePage === "settings" && <SettingsPage auth={auth} />}
             </>
