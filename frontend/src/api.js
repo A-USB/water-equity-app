@@ -93,3 +93,42 @@ export async function getPublicDistricts() {
   const res = await fetch(`${BASE}/public/districts`);
   return handle(res);
 }
+
+export async function getDistributionConfig() {
+  const res = await fetch(`${BASE}/distribution/config`, { headers: authHeaders() });
+  if (!res.ok) throw new Error("Failed to fetch distribution config");
+  return res.json();
+}
+
+export async function updateDistributionConfig(updates) {
+  const res = await fetch(`${BASE}/distribution/config`, {
+    method: "PUT",
+    headers: { ...authHeaders(), "Content-Type": "application/json" },
+    body: JSON.stringify(updates),
+  });
+  if (!res.ok) throw new Error("Failed to update config");
+  return res.json();
+}
+
+export async function calculateDistribution(supply) {
+  const url = supply ? `${BASE}/distribution/calculate?supply=${supply}` : `${BASE}/distribution/calculate`;
+  const res = await fetch(url, { headers: authHeaders() });
+  if (!res.ok) throw new Error("Failed to calculate distribution");
+  return res.json();
+}
+
+export async function publishDistribution(totalSupply_m3) {
+  const res = await fetch(`${BASE}/distribution/publish`, {
+    method: "POST",
+    headers: { ...authHeaders(), "Content-Type": "application/json" },
+    body: JSON.stringify({ totalSupply_m3 }),
+  });
+  if (!res.ok) throw new Error("Failed to publish");
+  return res.json();
+}
+
+export async function getActiveDistribution() {
+  const res = await fetch(`${BASE}/distribution/active`, { headers: authHeaders() });
+  if (!res.ok) throw new Error("Failed to fetch active distribution");
+  return res.json();
+}
