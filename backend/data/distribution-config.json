@@ -1,0 +1,23 @@
+{
+  "totalSupply_m3": 160000,
+  "basePoolPct": 0.30,
+  "needPoolPct": 0.70,
+  "targetFloorPct": 75,
+  "targetCeilingPct": 85,
+  "maxSectorSpreadPct": 25,
+  "perCapitaUrban_lpcd": 80,
+  "perCapitaRural_lpcd": 25,
+  "urbanDistricts": ["Gasabo", "Kicukiro", "Nyarugenge"],
+  "stressTiers": {
+    "Bugesera": 1.5, "Nyagatare": 1.5, "Kayonza": 1.5,
+    "Kirehe": 1.5, "Gatsibo": 1.5, "Kamonyi": 1.5,
+    "Ruhango": 1.5, "Gisagara": 1.5,
+    "Gasabo": 1.3, "Kicukiro": 1.3, "Nyarugenge": 1.3,
+    "Rwamagana": 1.0, "Ngoma": 1.0, "Nyanza": 1.0,
+    "Huye": 1.0, "Muhanga": 1.0, "Gicumbi": 1.0, "Rulindo": 1.0,
+    "Nyamagabe": 1.0, "Nyaruguru": 1.0,
+    "Rubavu": 0.7, "Rusizi": 0.7, "Rutsiro": 0.7,
+    "Karongi": 0.7, "Nyamasheke": 0.7, "Nyabihu": 0.7,
+    "Ngororero": 0.7, "Musanze": 0.7, "Burera": 0.7, "Gakenke": 0.7
+  }
+}
