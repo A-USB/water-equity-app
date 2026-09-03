@@ -5,12 +5,15 @@ import path from "path";
 import crypto from "crypto";
 import bcrypt from "bcryptjs";
 import { fileURLToPath } from "url";
+import { computeDistribution } from "./distribution.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.join(__dirname, "data");
 const SECTORS_FILE = path.join(DATA_DIR, "sectors.json");
 const REPORTS_FILE = path.join(DATA_DIR, "reports.json");
 const USERS_FILE = path.join(DATA_DIR, "users.json");
+const DISTRIBUTION_CONFIG_FILE = path.join(DATA_DIR, "distribution-config.json");
+const DISTRIBUTIONS_FILE = path.join(DATA_DIR, "distributions.json");
 
 // ---------- storage helpers ----------
 function readJSON(file) {
@@ -450,6 +453,68 @@ app.get("/api/reports", authenticate, requireRole("wasac"), (req, res) => {
     district: sectorsById[report.sectorId]?.district || "Unknown district",
   })).sort((a, b) => new Date(b.date) - new Date(a.date));
   res.json(reports);
+});
+
+// ---------- distribution ----------
+app.get("/api/distribution/config", authenticate, requireRole("wasac"), (req, res) => {
+  res.json(readJSON(DISTRIBUTION_CONFIG_FILE));
+});
+
+app.put("/api/distribution/config", authenticate, requireRole("wasac"), (req, res) => {
+  const config = { ...readJSON(DISTRIBUTION_CONFIG_FILE), ...req.body };
+  writeJSON(DISTRIBUTION_CONFIG_FILE, config);
+  res.json(config);
+});
+
+app.get("/api/distribution/calculate", authenticate, requireRole("wasac"), (req, res) => {
+  const sectors = readJSON(SECTORS_FILE);
+  const reports = readJSON(REPORTS_FILE);
+  const config = readJSON(DISTRIBUTION_CONFIG_FILE);
+  // Allow override of totalSupply via query param
+  if (req.query.supply) config.totalSupply_m3 = Number(req.query.supply);
+  const scored = computeScores(sectors, reports);
+  const result = computeDistribution(scored, config);
+  res.json(result);
+});
+
+app.post("/api/distribution/publish", authenticate, requireRole("wasac"), (req, res) => {
+  const sectors = readJSON(SECTORS_FILE);
+  const reports = readJSON(REPORTS_FILE);
+  const config = readJSON(DISTRIBUTION_CONFIG_FILE);
+  if (req.body.totalSupply_m3) config.totalSupply_m3 = Number(req.body.totalSupply_m3);
+  const scored = computeScores(sectors, reports);
+  const result = computeDistribution(scored, config);
+  const plan = {
+    id: "dist_" + Date.now(),
+    publishedAt: new Date().toISOString(),
+    publishedBy: req.user.username,
+    ...result,
+  };
+  const distributions = readJSON(DISTRIBUTIONS_FILE);
+  distributions.unshift(plan);
+  // Keep only last 50 plans
+  if (distributions.length > 50) distributions.length = 50;
+  writeJSON(DISTRIBUTIONS_FILE, distributions);
+  res.status(201).json(plan);
+});
+
+app.get("/api/distribution/active", authenticate, (req, res) => {
+  const distributions = readJSON(DISTRIBUTIONS_FILE);
+  if (distributions.length === 0) return res.json(null);
+  const latest = distributions[0];
+  // For sector users, filter to only their sector's data
+  if (req.user.role === "sector" && req.user.sectorId) {
+    const sectorAlloc = latest.districts
+      .flatMap(d => d.sectors)
+      .find(s => s.id === req.user.sectorId);
+    return res.json({
+      id: latest.id,
+      publishedAt: latest.publishedAt,
+      summary: latest.summary,
+      sectorAllocation: sectorAlloc || null,
+    });
+  }
+  res.json(latest);
 });
 
 const PORT = process.env.PORT || 4000;
