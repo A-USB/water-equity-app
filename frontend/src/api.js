@@ -110,18 +110,26 @@ export async function updateDistributionConfig(updates) {
   return res.json();
 }
 
-export async function calculateDistribution(supply) {
-  const url = supply ? `${BASE}/distribution/calculate?supply=${supply}` : `${BASE}/distribution/calculate`;
+export async function calculateDistribution(supply, overrides = {}) {
+  const params = new URLSearchParams();
+  if (supply !== undefined && supply !== null) params.set("supply", supply);
+  Object.entries(overrides).forEach(([key, val]) => {
+    if (val !== undefined && val !== null) params.set(key, val);
+  });
+  const queryString = params.toString();
+  const url = queryString ? `${BASE}/distribution/calculate?${queryString}` : `${BASE}/distribution/calculate`;
   const res = await fetch(url, { headers: authHeaders() });
   if (!res.ok) throw new Error("Failed to calculate distribution");
   return res.json();
 }
 
-export async function publishDistribution(totalSupply_m3) {
+export async function publishDistribution(payload) {
+  // Supports either number (legacy/simple) or object payload { totalSupply_m3, title, notes, config }
+  const body = typeof payload === "number" ? { totalSupply_m3: payload } : payload;
   const res = await fetch(`${BASE}/distribution/publish`, {
     method: "POST",
     headers: { ...authHeaders(), "Content-Type": "application/json" },
-    body: JSON.stringify({ totalSupply_m3 }),
+    body: JSON.stringify(body),
   });
   if (!res.ok) throw new Error("Failed to publish");
   return res.json();
@@ -132,3 +140,16 @@ export async function getActiveDistribution() {
   if (!res.ok) throw new Error("Failed to fetch active distribution");
   return res.json();
 }
+
+export async function getDistributionHistory() {
+  const res = await fetch(`${BASE}/distribution/history`, { headers: authHeaders() });
+  if (!res.ok) throw new Error("Failed to fetch distribution history");
+  return res.json();
+}
+
+export async function getDistributionPlan(id) {
+  const res = await fetch(`${BASE}/distribution/plans/${encodeURIComponent(id)}`, { headers: authHeaders() });
+  if (!res.ok) throw new Error("Failed to fetch distribution plan");
+  return res.json();
+}
+
