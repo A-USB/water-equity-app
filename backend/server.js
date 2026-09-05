@@ -461,17 +461,27 @@ app.get("/api/distribution/config", authenticate, requireRole("wasac"), (req, re
 });
 
 app.put("/api/distribution/config", authenticate, requireRole("wasac"), (req, res) => {
-  const config = { ...readJSON(DISTRIBUTION_CONFIG_FILE), ...req.body };
-  writeJSON(DISTRIBUTION_CONFIG_FILE, config);
-  res.json(config);
+  const current = readJSON(DISTRIBUTION_CONFIG_FILE);
+  const updated = { ...current, ...req.body };
+  writeJSON(DISTRIBUTION_CONFIG_FILE, updated);
+  res.json(updated);
 });
 
 app.get("/api/distribution/calculate", authenticate, requireRole("wasac"), (req, res) => {
   const sectors = readJSON(SECTORS_FILE);
   const reports = readJSON(REPORTS_FILE);
-  const config = readJSON(DISTRIBUTION_CONFIG_FILE);
-  // Allow override of totalSupply via query param
+  const config = { ...readJSON(DISTRIBUTION_CONFIG_FILE) };
+  
+  // Allow overrides via query params
   if (req.query.supply) config.totalSupply_m3 = Number(req.query.supply);
+  if (req.query.basePoolPct) config.basePoolPct = Number(req.query.basePoolPct);
+  if (req.query.needPoolPct) config.needPoolPct = Number(req.query.needPoolPct);
+  if (req.query.targetFloorPct) config.targetFloorPct = Number(req.query.targetFloorPct);
+  if (req.query.targetCeilingPct) config.targetCeilingPct = Number(req.query.targetCeilingPct);
+  if (req.query.maxSectorSpreadPct) config.maxSectorSpreadPct = Number(req.query.maxSectorSpreadPct);
+  if (req.query.perCapitaUrban_lpcd) config.perCapitaUrban_lpcd = Number(req.query.perCapitaUrban_lpcd);
+  if (req.query.perCapitaRural_lpcd) config.perCapitaRural_lpcd = Number(req.query.perCapitaRural_lpcd);
+
   const scored = computeScores(sectors, reports);
   const result = computeDistribution(scored, config);
   res.json(result);
@@ -480,42 +490,95 @@ app.get("/api/distribution/calculate", authenticate, requireRole("wasac"), (req,
 app.post("/api/distribution/publish", authenticate, requireRole("wasac"), (req, res) => {
   const sectors = readJSON(SECTORS_FILE);
   const reports = readJSON(REPORTS_FILE);
-  const config = readJSON(DISTRIBUTION_CONFIG_FILE);
+  const baseConfig = readJSON(DISTRIBUTION_CONFIG_FILE);
+  const config = { ...baseConfig, ...(req.body.config || {}) };
+  
   if (req.body.totalSupply_m3) config.totalSupply_m3 = Number(req.body.totalSupply_m3);
+  
   const scored = computeScores(sectors, reports);
   const result = computeDistribution(scored, config);
+  
   const plan = {
     id: "dist_" + Date.now(),
+    title: req.body.title || `Daily Plan - ${new Date().toLocaleDateString("en-RW", { month: "short", day: "numeric", year: "numeric" })}`,
+    notes: req.body.notes || "",
     publishedAt: new Date().toISOString(),
     publishedBy: req.user.username,
+    configUsed: config,
     ...result,
   };
-  const distributions = readJSON(DISTRIBUTIONS_FILE);
+  
+  const distributions = fs.existsSync(DISTRIBUTIONS_FILE) ? readJSON(DISTRIBUTIONS_FILE) : [];
   distributions.unshift(plan);
-  // Keep only last 50 plans
+  // Keep up to 50 historical plans
   if (distributions.length > 50) distributions.length = 50;
   writeJSON(DISTRIBUTIONS_FILE, distributions);
+  
   res.status(201).json(plan);
 });
 
 app.get("/api/distribution/active", authenticate, (req, res) => {
-  const distributions = readJSON(DISTRIBUTIONS_FILE);
+  const distributions = fs.existsSync(DISTRIBUTIONS_FILE) ? readJSON(DISTRIBUTIONS_FILE) : [];
   if (distributions.length === 0) return res.json(null);
   const latest = distributions[0];
-  // For sector users, filter to only their sector's data
+  
+  // For sector users, filter to only their sector's and district's context
   if (req.user.role === "sector" && req.user.sectorId) {
-    const sectorAlloc = latest.districts
-      .flatMap(d => d.sectors)
-      .find(s => s.id === req.user.sectorId);
+    let matchedSector = null;
+    let matchedDistrict = null;
+    
+    for (const d of (latest.districts || [])) {
+      const s = (d.sectors || []).find((sec) => sec.id === req.user.sectorId);
+      if (s) {
+        matchedSector = s;
+        matchedDistrict = {
+          district: d.district,
+          totalPopulation: d.totalPopulation,
+          currentAvailability: d.currentAvailability,
+          projectedAvailability: d.projectedAvailability,
+          totalAllocation_m3: d.totalAllocation_m3,
+          lpcd: d.lpcd,
+        };
+        break;
+      }
+    }
+    
     return res.json({
       id: latest.id,
+      title: latest.title || "Active Allocation Plan",
+      notes: latest.notes || "",
       publishedAt: latest.publishedAt,
+      publishedBy: latest.publishedBy,
       summary: latest.summary,
-      sectorAllocation: sectorAlloc || null,
+      district: matchedDistrict,
+      sectorAllocation: matchedSector || null,
     });
   }
+  
   res.json(latest);
+});
+
+app.get("/api/distribution/history", authenticate, requireRole("wasac"), (req, res) => {
+  const distributions = fs.existsSync(DISTRIBUTIONS_FILE) ? readJSON(DISTRIBUTIONS_FILE) : [];
+  const list = distributions.map((d) => ({
+    id: d.id,
+    title: d.title || `Plan ${d.id}`,
+    notes: d.notes || "",
+    publishedAt: d.publishedAt,
+    publishedBy: d.publishedBy,
+    summary: d.summary,
+    districtCount: d.districts?.length || 0,
+  }));
+  res.json(list);
+});
+
+app.get("/api/distribution/plans/:id", authenticate, requireRole("wasac"), (req, res) => {
+  const distributions = fs.existsSync(DISTRIBUTIONS_FILE) ? readJSON(DISTRIBUTIONS_FILE) : [];
+  const plan = distributions.find((d) => d.id === req.params.id);
+  if (!plan) return res.status(404).json({ error: "Distribution plan not found" });
+  res.json(plan);
 });
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Water equity API running on port ${PORT}`));
+

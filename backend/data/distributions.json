@@ -1,1 +1,1699 @@
-[]
+[
+  {
+    "id": "dist_1788453190452",
+    "publishedAt": "2026-09-03T16:33:10.452Z",
+    "publishedBy": "wasac1",
+    "summary": {
+      "totalSupply_m3": 164000,
+      "totalAllocated_m3": 163999.99999999994,
+      "totalPopulation": 5598000,
+      "avgAvailabilityBefore": 62.14044301536263,
+      "avgAvailabilityAfter": 100,
+      "districtsBeforeFloor": 0,
+      "districtsAfterFloor": 0,
+      "equityIndex": 1
+    },
+    "districts": [
+      {
+        "district": "Gisagara",
+        "totalPopulation": 170000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_gisagara_1",
+            "name": "Gisagara Sector 1",
+            "population": 32000,
+            "currentAvailability": 35,
+            "projectedAvailability": 100,
+            "allocation_m3": 1496.6584461728892
+          },
+          {
+            "id": "demo_gisagara_2",
+            "name": "Gisagara Sector 2",
+            "population": 33000,
+            "currentAvailability": 36,
+            "projectedAvailability": 100,
+            "allocation_m3": 1512.638021575307
+          },
+          {
+            "id": "demo_gisagara_3",
+            "name": "Gisagara Sector 3",
+            "population": 34000,
+            "currentAvailability": 37,
+            "projectedAvailability": 100,
+            "allocation_m3": 1527.6188735150738
+          },
+          {
+            "id": "demo_gisagara_4",
+            "name": "Gisagara Sector 4",
+            "population": 35000,
+            "currentAvailability": 38,
+            "projectedAvailability": 100,
+            "allocation_m3": 1541.6010019921894
+          },
+          {
+            "id": "demo_gisagara_5",
+            "name": "Gisagara Sector 5",
+            "population": 36000,
+            "currentAvailability": 39,
+            "projectedAvailability": 100,
+            "allocation_m3": 1554.584407006654
+          }
+        ],
+        "currentAvailability": 37,
+        "demand_m3": 4250,
+        "stressTier": 1.5,
+        "deficit_m3": 2677.5,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 5993.100750262114,
+        "totalAllocation_m3": 7633.100750262114,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Gakenke",
+        "totalPopulation": 205000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_gakenke_1",
+            "name": "Gakenke Sector 1",
+            "population": 39000,
+            "currentAvailability": 36,
+            "projectedAvailability": 100,
+            "allocation_m3": 979.7843006759244
+          },
+          {
+            "id": "demo_gakenke_2",
+            "name": "Gakenke Sector 2",
+            "population": 40000,
+            "currentAvailability": 37,
+            "projectedAvailability": 100,
+            "allocation_m3": 986.3443103408996
+          },
+          {
+            "id": "demo_gakenke_3",
+            "name": "Gakenke Sector 3",
+            "population": 41000,
+            "currentAvailability": 38,
+            "projectedAvailability": 100,
+            "allocation_m3": 992.3576525337935
+          },
+          {
+            "id": "demo_gakenke_4",
+            "name": "Gakenke Sector 4",
+            "population": 42000,
+            "currentAvailability": 39,
+            "projectedAvailability": 100,
+            "allocation_m3": 997.824327254606
+          },
+          {
+            "id": "demo_gakenke_5",
+            "name": "Gakenke Sector 5",
+            "population": 43000,
+            "currentAvailability": 40,
+            "projectedAvailability": 100,
+            "allocation_m3": 1002.7443345033374
+          }
+        ],
+        "currentAvailability": 38,
+        "demand_m3": 5125,
+        "stressTier": 0.7,
+        "deficit_m3": 3177.5,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 3319.054925308561,
+        "totalAllocation_m3": 4959.054925308561,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Burera",
+        "totalPopulation": 210000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_burera_1",
+            "name": "Burera Sector 1",
+            "population": 40000,
+            "currentAvailability": 39,
+            "projectedAvailability": 100,
+            "allocation_m3": 965.1739358907587
+          },
+          {
+            "id": "demo_burera_2",
+            "name": "Burera Sector 2",
+            "population": 41000,
+            "currentAvailability": 40,
+            "projectedAvailability": 100,
+            "allocation_m3": 970.6874152046443
+          },
+          {
+            "id": "demo_burera_3",
+            "name": "Burera Sector 3",
+            "population": 42000,
+            "currentAvailability": 41,
+            "projectedAvailability": 100,
+            "allocation_m3": 975.6495465871413
+          },
+          {
+            "id": "demo_burera_4",
+            "name": "Burera Sector 4",
+            "population": 43000,
+            "currentAvailability": 42,
+            "projectedAvailability": 100,
+            "allocation_m3": 980.0603300382497
+          },
+          {
+            "id": "demo_burera_5",
+            "name": "Burera Sector 5",
+            "population": 44000,
+            "currentAvailability": 43,
+            "projectedAvailability": 100,
+            "allocation_m3": 983.9197655579696
+          }
+        ],
+        "currentAvailability": 41,
+        "demand_m3": 5250,
+        "stressTier": 0.7,
+        "deficit_m3": 3097.5000000000005,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 3235.4909932787627,
+        "totalAllocation_m3": 4875.490993278763,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Gasabo",
+        "totalPopulation": 210000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_gasabo_1",
+            "name": "Gasabo Sector 1",
+            "population": 40000,
+            "currentAvailability": 39,
+            "projectedAvailability": 100,
+            "allocation_m3": 4131.134354664526
+          },
+          {
+            "id": "demo_gasabo_2",
+            "name": "Gasabo Sector 2",
+            "population": 41000,
+            "currentAvailability": 40,
+            "projectedAvailability": 100,
+            "allocation_m3": 4154.733130968305
+          },
+          {
+            "id": "demo_gasabo_3",
+            "name": "Gasabo Sector 3",
+            "population": 42000,
+            "currentAvailability": 41,
+            "projectedAvailability": 100,
+            "allocation_m3": 4175.972029641707
+          },
+          {
+            "id": "demo_gasabo_4",
+            "name": "Gasabo Sector 4",
+            "population": 43000,
+            "currentAvailability": 42,
+            "projectedAvailability": 100,
+            "allocation_m3": 4194.8510506847315
+          },
+          {
+            "id": "demo_gasabo_5",
+            "name": "Gasabo Sector 5",
+            "population": 44000,
+            "currentAvailability": 43,
+            "projectedAvailability": 100,
+            "allocation_m3": 4211.370194097377
+          }
+        ],
+        "currentAvailability": 41,
+        "demand_m3": 16800,
+        "stressTier": 1.3,
+        "deficit_m3": 9912.000000000002,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 19228.060760056647,
+        "totalAllocation_m3": 20868.060760056647,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Gicumbi",
+        "totalPopulation": 275000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_gicumbi_1",
+            "name": "Gicumbi Sector 1",
+            "population": 53000,
+            "currentAvailability": 40,
+            "projectedAvailability": 100,
+            "allocation_m3": 1515.373355384453
+          },
+          {
+            "id": "demo_gicumbi_2",
+            "name": "Gicumbi Sector 2",
+            "population": 54000,
+            "currentAvailability": 41,
+            "projectedAvailability": 100,
+            "allocation_m3": 1517.3732825126
+          },
+          {
+            "id": "demo_gicumbi_3",
+            "name": "Gicumbi Sector 3",
+            "population": 55000,
+            "currentAvailability": 42,
+            "projectedAvailability": 100,
+            "allocation_m3": 1518.706567264698
+          },
+          {
+            "id": "demo_gicumbi_4",
+            "name": "Gicumbi Sector 4",
+            "population": 56000,
+            "currentAvailability": 43,
+            "projectedAvailability": 100,
+            "allocation_m3": 1519.3732096407468
+          },
+          {
+            "id": "demo_gicumbi_5",
+            "name": "Gicumbi Sector 5",
+            "population": 57000,
+            "currentAvailability": 44,
+            "projectedAvailability": 100,
+            "allocation_m3": 1519.3732096407468
+          }
+        ],
+        "currentAvailability": 42,
+        "demand_m3": 6875,
+        "stressTier": 1,
+        "deficit_m3": 3987.5000000000005,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 5950.199624443245,
+        "totalAllocation_m3": 7590.199624443245,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Huye",
+        "totalPopulation": 120000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_huye_2",
+            "name": "Huye Sector 2",
+            "population": 23000,
+            "currentAvailability": 44,
+            "projectedAvailability": 100,
+            "allocation_m3": 807.3582070788274
+          },
+          {
+            "id": "demo_huye_3",
+            "name": "Huye Sector 3",
+            "population": 24000,
+            "currentAvailability": 45,
+            "projectedAvailability": 100,
+            "allocation_m3": 821.3017875249072
+          },
+          {
+            "id": "demo_huye_4",
+            "name": "Huye Sector 4",
+            "population": 25000,
+            "currentAvailability": 46,
+            "projectedAvailability": 100,
+            "allocation_m3": 834.3738941931072
+          },
+          {
+            "id": "demo_huye_5",
+            "name": "Huye Sector 5",
+            "population": 26000,
+            "currentAvailability": 47,
+            "projectedAvailability": 100,
+            "allocation_m3": 846.5745270834271
+          },
+          {
+            "id": "demo_huye_1",
+            "name": "Huye Sector 1",
+            "population": 22000,
+            "currentAvailability": 43,
+            "projectedAvailability": 100,
+            "allocation_m3": 792.5431528548675
+          }
+        ],
+        "currentAvailability": 45,
+        "demand_m3": 3000,
+        "stressTier": 1,
+        "deficit_m3": 1650.0000000000002,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 2462.151568735136,
+        "totalAllocation_m3": 4102.151568735137,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Nyamasheke",
+        "totalPopulation": 255000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_nyamasheke_2",
+            "name": "Nyamasheke Sector 2",
+            "population": 50000,
+            "currentAvailability": 35,
+            "projectedAvailability": 100,
+            "allocation_m3": 1174.0034534525578
+          },
+          {
+            "id": "demo_nyamasheke_3",
+            "name": "Nyamasheke Sector 3",
+            "population": 51000,
+            "currentAvailability": 36,
+            "projectedAvailability": 100,
+            "allocation_m3": 1177.7280836982827
+          },
+          {
+            "id": "demo_nyamasheke_4",
+            "name": "Nyamasheke Sector 4",
+            "population": 52000,
+            "currentAvailability": 37,
+            "projectedAvailability": 100,
+            "allocation_m3": 1180.9206239089044
+          },
+          {
+            "id": "demo_nyamasheke_5",
+            "name": "Nyamasheke Sector 5",
+            "population": 53000,
+            "currentAvailability": 38,
+            "projectedAvailability": 100,
+            "allocation_m3": 1183.5810740844222
+          },
+          {
+            "id": "demo_nyamasheke_1",
+            "name": "Nyamasheke Sector 1",
+            "population": 49000,
+            "currentAvailability": 90,
+            "projectedAvailability": 100,
+            "allocation_m3": 439.71920500960556
+          }
+        ],
+        "currentAvailability": 47.2,
+        "demand_m3": 6375,
+        "stressTier": 0.7,
+        "deficit_m3": 3366,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 3515.9524401537738,
+        "totalAllocation_m3": 5155.952440153774,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Kirehe",
+        "totalPopulation": 115000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_kirehe_3",
+            "name": "Kirehe Sector 3",
+            "population": 23000,
+            "currentAvailability": 50,
+            "projectedAvailability": 100,
+            "allocation_m3": 972.7016639748554
+          },
+          {
+            "id": "demo_kirehe_4",
+            "name": "Kirehe Sector 4",
+            "population": 24000,
+            "currentAvailability": 51,
+            "projectedAvailability": 100,
+            "allocation_m3": 988.103760968367
+          },
+          {
+            "id": "demo_kirehe_5",
+            "name": "Kirehe Sector 5",
+            "population": 25000,
+            "currentAvailability": 52,
+            "projectedAvailability": 100,
+            "allocation_m3": 1002.3210812700703
+          },
+          {
+            "id": "demo_kirehe_1",
+            "name": "Kirehe Sector 1",
+            "population": 21000,
+            "currentAvailability": 48,
+            "projectedAvailability": 100,
+            "allocation_m3": 938.3431399124062
+          },
+          {
+            "id": "demo_kirehe_2",
+            "name": "Kirehe Sector 2",
+            "population": 22000,
+            "currentAvailability": 49,
+            "projectedAvailability": 100,
+            "allocation_m3": 956.1147902895351
+          }
+        ],
+        "currentAvailability": 50,
+        "demand_m3": 2875,
+        "stressTier": 1.5,
+        "deficit_m3": 1437.5,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 3217.5844364152344,
+        "totalAllocation_m3": 4857.584436415234,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Gatsibo",
+        "totalPopulation": 248000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_gatsibo_1",
+            "name": "Gatsibo Sector 1",
+            "population": 56000,
+            "currentAvailability": 53,
+            "projectedAvailability": 100,
+            "allocation_m3": 1766.2370672812795
+          },
+          {
+            "id": "demo_gatsibo_2",
+            "name": "Gatsibo Sector 2",
+            "population": 57000,
+            "currentAvailability": 54,
+            "projectedAvailability": 100,
+            "allocation_m3": 1761.3239123993949
+          },
+          {
+            "id": "demo_gatsibo_3",
+            "name": "Gatsibo Sector 3",
+            "population": 58000,
+            "currentAvailability": 55,
+            "projectedAvailability": 100,
+            "allocation_m3": 1755.4281265411337
+          },
+          {
+            "id": "demo_gatsibo_4",
+            "name": "Gatsibo Sector 4",
+            "population": 59000,
+            "currentAvailability": 56,
+            "projectedAvailability": 100,
+            "allocation_m3": 1748.5497097064958
+          },
+          {
+            "id": "demo_gatsibo_5",
+            "name": "Gatsibo Sector 5",
+            "population": 18000,
+            "currentAvailability": 57,
+            "projectedAvailability": 100,
+            "allocation_m3": 853.3728902271745
+          }
+        ],
+        "currentAvailability": 55,
+        "demand_m3": 6200,
+        "stressTier": 1.5,
+        "deficit_m3": 2789.9999999999995,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 6244.911706155479,
+        "totalAllocation_m3": 7884.911706155479,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Kicukiro",
+        "totalPopulation": 190000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_kicukiro_1",
+            "name": "Kicukiro Sector 1",
+            "population": 36000,
+            "currentAvailability": 53,
+            "projectedAvailability": 100,
+            "allocation_m3": 2962.199256832758
+          },
+          {
+            "id": "demo_kicukiro_2",
+            "name": "Kicukiro Sector 2",
+            "population": 37000,
+            "currentAvailability": 54,
+            "projectedAvailability": 100,
+            "allocation_m3": 2974.4195507965887
+          },
+          {
+            "id": "demo_kicukiro_3",
+            "name": "Kicukiro Sector 3",
+            "population": 38000,
+            "currentAvailability": 55,
+            "projectedAvailability": 100,
+            "allocation_m3": 2984.195785967654
+          },
+          {
+            "id": "demo_kicukiro_4",
+            "name": "Kicukiro Sector 4",
+            "population": 39000,
+            "currentAvailability": 56,
+            "projectedAvailability": 100,
+            "allocation_m3": 2991.527962345953
+          },
+          {
+            "id": "demo_kicukiro_5",
+            "name": "Kicukiro Sector 5",
+            "population": 40000,
+            "currentAvailability": 57,
+            "projectedAvailability": 100,
+            "allocation_m3": 2996.416079931486
+          }
+        ],
+        "currentAvailability": 55,
+        "demand_m3": 15200,
+        "stressTier": 1.3,
+        "deficit_m3": 6839.999999999999,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 13268.758635874441,
+        "totalAllocation_m3": 14908.758635874441,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Muhanga",
+        "totalPopulation": 160000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_muhanga_1",
+            "name": "Muhanga Sector 1",
+            "population": 30000,
+            "currentAvailability": 55,
+            "projectedAvailability": 100,
+            "allocation_m3": 831.0343988028936
+          },
+          {
+            "id": "demo_muhanga_2",
+            "name": "Muhanga Sector 2",
+            "population": 31000,
+            "currentAvailability": 56,
+            "projectedAvailability": 100,
+            "allocation_m3": 837.0350892746504
+          },
+          {
+            "id": "demo_muhanga_3",
+            "name": "Muhanga Sector 3",
+            "population": 32000,
+            "currentAvailability": 57,
+            "projectedAvailability": 100,
+            "allocation_m3": 842.1785382504422
+          },
+          {
+            "id": "demo_muhanga_4",
+            "name": "Muhanga Sector 4",
+            "population": 33000,
+            "currentAvailability": 58,
+            "projectedAvailability": 100,
+            "allocation_m3": 846.4647457302685
+          },
+          {
+            "id": "demo_muhanga_5",
+            "name": "Muhanga Sector 5",
+            "population": 34000,
+            "currentAvailability": 59,
+            "projectedAvailability": 100,
+            "allocation_m3": 849.8937117141295
+          }
+        ],
+        "currentAvailability": 57,
+        "demand_m3": 4000,
+        "stressTier": 1,
+        "deficit_m3": 1720.0000000000002,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 2566.6064837723843,
+        "totalAllocation_m3": 4206.606483772384,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Kayonza",
+        "totalPopulation": 100000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_kayonza_3",
+            "name": "Kayonza Sector 3",
+            "population": 20000,
+            "currentAvailability": 35,
+            "projectedAvailability": 100,
+            "allocation_m3": 1070.2351978763706
+          },
+          {
+            "id": "demo_kayonza_4",
+            "name": "Kayonza Sector 4",
+            "population": 21000,
+            "currentAvailability": 36,
+            "projectedAvailability": 100,
+            "allocation_m3": 1098.2871127201195
+          },
+          {
+            "id": "demo_kayonza_5",
+            "name": "Kayonza Sector 5",
+            "population": 22000,
+            "currentAvailability": 37,
+            "projectedAvailability": 100,
+            "allocation_m3": 1125.0639405255158
+          },
+          {
+            "id": "demo_kayonza_1",
+            "name": "Kayonza Sector 1",
+            "population": 18000,
+            "currentAvailability": 89,
+            "projectedAvailability": 100,
+            "allocation_m3": 367.6622397443011
+          },
+          {
+            "id": "demo_kayonza_2",
+            "name": "Kayonza Sector 2",
+            "population": 19000,
+            "currentAvailability": 90,
+            "projectedAvailability": 100,
+            "allocation_m3": 362.56189159089223
+          }
+        ],
+        "currentAvailability": 57.4,
+        "demand_m3": 2500,
+        "stressTier": 1.5,
+        "deficit_m3": 1065,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 2383.8103824571995,
+        "totalAllocation_m3": 4023.8103824571995,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Rusizi",
+        "totalPopulation": 285000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_rusizi_1",
+            "name": "Rusizi Sector 1",
+            "population": 55000,
+            "currentAvailability": 58,
+            "projectedAvailability": 100,
+            "allocation_m3": 932.4729119159823
+          },
+          {
+            "id": "demo_rusizi_2",
+            "name": "Rusizi Sector 2",
+            "population": 56000,
+            "currentAvailability": 59,
+            "projectedAvailability": 100,
+            "allocation_m3": 928.5004573268776
+          },
+          {
+            "id": "demo_rusizi_3",
+            "name": "Rusizi Sector 3",
+            "population": 57000,
+            "currentAvailability": 60,
+            "projectedAvailability": 100,
+            "allocation_m3": 923.9605092250437
+          },
+          {
+            "id": "demo_rusizi_4",
+            "name": "Rusizi Sector 4",
+            "population": 58000,
+            "currentAvailability": 61,
+            "projectedAvailability": 100,
+            "allocation_m3": 918.8530676104803
+          },
+          {
+            "id": "demo_rusizi_5",
+            "name": "Rusizi Sector 5",
+            "population": 59000,
+            "currentAvailability": 62,
+            "projectedAvailability": 100,
+            "allocation_m3": 913.1781324831878
+          }
+        ],
+        "currentAvailability": 60,
+        "demand_m3": 7125,
+        "stressTier": 0.7,
+        "deficit_m3": 2850,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 2976.9650785615727,
+        "totalAllocation_m3": 4616.965078561572,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Nyagatare",
+        "totalPopulation": 185000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_nyagatare_4",
+            "name": "Nyagatare Sector 4",
+            "population": 38000,
+            "currentAvailability": 35,
+            "projectedAvailability": 100,
+            "allocation_m3": 1703.229374027331
+          },
+          {
+            "id": "demo_nyagatare_5",
+            "name": "Nyagatare Sector 5",
+            "population": 39000,
+            "currentAvailability": 36,
+            "projectedAvailability": 100,
+            "allocation_m3": 1718.0039220070926
+          },
+          {
+            "id": "demo_nyagatare_1",
+            "name": "Nyagatare Sector 1",
+            "population": 35000,
+            "currentAvailability": 88,
+            "projectedAvailability": 100,
+            "allocation_m3": 538.3130910076659
+          },
+          {
+            "id": "demo_nyagatare_2",
+            "name": "Nyagatare Sector 2",
+            "population": 36000,
+            "currentAvailability": 89,
+            "projectedAvailability": 100,
+            "allocation_m3": 524.675046718655
+          },
+          {
+            "id": "demo_nyagatare_3",
+            "name": "Nyagatare Sector 3",
+            "population": 37000,
+            "currentAvailability": 90,
+            "projectedAvailability": 100,
+            "allocation_m3": 509.9004987388935
+          }
+        ],
+        "currentAvailability": 67.6,
+        "demand_m3": 4625,
+        "stressTier": 1.5,
+        "deficit_m3": 1498.5000000000002,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 3354.1219324996378,
+        "totalAllocation_m3": 4994.121932499638,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Ruhango",
+        "totalPopulation": 195000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_ruhango_1",
+            "name": "Ruhango Sector 1",
+            "population": 37000,
+            "currentAvailability": 66,
+            "projectedAvailability": 100,
+            "allocation_m3": 1033.2749697068891
+          },
+          {
+            "id": "demo_ruhango_2",
+            "name": "Ruhango Sector 2",
+            "population": 38000,
+            "currentAvailability": 67,
+            "projectedAvailability": 100,
+            "allocation_m3": 1030.9685523637934
+          },
+          {
+            "id": "demo_ruhango_3",
+            "name": "Ruhango Sector 3",
+            "population": 39000,
+            "currentAvailability": 68,
+            "projectedAvailability": 100,
+            "allocation_m3": 1027.5089263491498
+          },
+          {
+            "id": "demo_ruhango_4",
+            "name": "Ruhango Sector 4",
+            "population": 40000,
+            "currentAvailability": 69,
+            "projectedAvailability": 100,
+            "allocation_m3": 1022.8960916629585
+          },
+          {
+            "id": "demo_ruhango_5",
+            "name": "Ruhango Sector 5",
+            "population": 41000,
+            "currentAvailability": 70,
+            "projectedAvailability": 100,
+            "allocation_m3": 1017.1300483052191
+          }
+        ],
+        "currentAvailability": 68,
+        "demand_m3": 4875,
+        "stressTier": 1.5,
+        "deficit_m3": 1559.9999999999998,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 3491.7785883880097,
+        "totalAllocation_m3": 5131.77858838801,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Rubavu",
+        "totalPopulation": 260000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_rubavu_1",
+            "name": "Rubavu Sector 1",
+            "population": 50000,
+            "currentAvailability": 67,
+            "projectedAvailability": 100,
+            "allocation_m3": 761.9785825148947
+          },
+          {
+            "id": "demo_rubavu_2",
+            "name": "Rubavu Sector 2",
+            "population": 51000,
+            "currentAvailability": 68,
+            "projectedAvailability": 100,
+            "allocation_m3": 756.1172088032417
+          },
+          {
+            "id": "demo_rubavu_3",
+            "name": "Rubavu Sector 3",
+            "population": 52000,
+            "currentAvailability": 69,
+            "projectedAvailability": 100,
+            "allocation_m3": 749.6045713458495
+          },
+          {
+            "id": "demo_rubavu_4",
+            "name": "Rubavu Sector 4",
+            "population": 53000,
+            "currentAvailability": 70,
+            "projectedAvailability": 100,
+            "allocation_m3": 742.4406701427181
+          },
+          {
+            "id": "demo_rubavu_5",
+            "name": "Rubavu Sector 5",
+            "population": 54000,
+            "currentAvailability": 71,
+            "projectedAvailability": 100,
+            "allocation_m3": 734.6255051938474
+          }
+        ],
+        "currentAvailability": 69,
+        "demand_m3": 6500,
+        "stressTier": 0.7,
+        "deficit_m3": 2015.0000000000005,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 2104.7665380005515,
+        "totalAllocation_m3": 3744.7665380005515,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Ngororero",
+        "totalPopulation": 130000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_ngororero_1",
+            "name": "Ngororero Sector 1",
+            "population": 24000,
+            "currentAvailability": 67,
+            "projectedAvailability": 100,
+            "allocation_m3": 532.8507783125917
+          },
+          {
+            "id": "demo_ngororero_2",
+            "name": "Ngororero Sector 2",
+            "population": 25000,
+            "currentAvailability": 68,
+            "projectedAvailability": 100,
+            "allocation_m3": 536.6013619709006
+          },
+          {
+            "id": "demo_ngororero_3",
+            "name": "Ngororero Sector 3",
+            "population": 26000,
+            "currentAvailability": 69,
+            "projectedAvailability": 100,
+            "allocation_m3": 539.4142997146323
+          },
+          {
+            "id": "demo_ngororero_4",
+            "name": "Ngororero Sector 4",
+            "population": 27000,
+            "currentAvailability": 70,
+            "projectedAvailability": 100,
+            "allocation_m3": 541.2895915437867
+          },
+          {
+            "id": "demo_ngororero_5",
+            "name": "Ngororero Sector 5",
+            "population": 28000,
+            "currentAvailability": 71,
+            "projectedAvailability": 100,
+            "allocation_m3": 542.227237458364
+          }
+        ],
+        "currentAvailability": 69,
+        "demand_m3": 3250,
+        "stressTier": 0.7,
+        "deficit_m3": 1007.5000000000002,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 1052.3832690002757,
+        "totalAllocation_m3": 2692.3832690002755,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Bugesera",
+        "totalPopulation": 125000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_bugesera_1",
+            "name": "Bugesera Sector 1",
+            "population": 23000,
+            "currentAvailability": 68,
+            "projectedAvailability": 100,
+            "allocation_m3": 739.2884647476237
+          },
+          {
+            "id": "demo_bugesera_2",
+            "name": "Bugesera Sector 2",
+            "population": 24000,
+            "currentAvailability": 69,
+            "projectedAvailability": 100,
+            "allocation_m3": 744.8861059085039
+          },
+          {
+            "id": "demo_bugesera_3",
+            "name": "Bugesera Sector 3",
+            "population": 25000,
+            "currentAvailability": 70,
+            "projectedAvailability": 100,
+            "allocation_m3": 749.0843367791636
+          },
+          {
+            "id": "demo_bugesera_4",
+            "name": "Bugesera Sector 4",
+            "population": 26000,
+            "currentAvailability": 71,
+            "projectedAvailability": 100,
+            "allocation_m3": 751.8831573596035
+          },
+          {
+            "id": "demo_bugesera_5",
+            "name": "Bugesera Sector 5",
+            "population": 27000,
+            "currentAvailability": 72,
+            "projectedAvailability": 100,
+            "allocation_m3": 753.2825676498235
+          }
+        ],
+        "currentAvailability": 70,
+        "demand_m3": 3125,
+        "stressTier": 1.5,
+        "deficit_m3": 937.5000000000001,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 2098.424632444718,
+        "totalAllocation_m3": 3738.424632444718,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Rwamagana",
+        "totalPopulation": 174000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_rwamagana_1",
+            "name": "Rwamagana Sector 1",
+            "population": 58000,
+            "currentAvailability": 69,
+            "projectedAvailability": 100,
+            "allocation_m3": 1070.1844989789681
+          },
+          {
+            "id": "demo_rwamagana_2",
+            "name": "Rwamagana Sector 2",
+            "population": 59000,
+            "currentAvailability": 70,
+            "projectedAvailability": 100,
+            "allocation_m3": 1056.8099222471865
+          },
+          {
+            "id": "demo_rwamagana_3",
+            "name": "Rwamagana Sector 3",
+            "population": 18000,
+            "currentAvailability": 71,
+            "projectedAvailability": 100,
+            "allocation_m3": 460.6859307734908
+          },
+          {
+            "id": "demo_rwamagana_4",
+            "name": "Rwamagana Sector 4",
+            "population": 19000,
+            "currentAvailability": 72,
+            "projectedAvailability": 100,
+            "allocation_m3": 465.4625653205556
+          },
+          {
+            "id": "demo_rwamagana_5",
+            "name": "Rwamagana Sector 5",
+            "population": 20000,
+            "currentAvailability": 73,
+            "projectedAvailability": 100,
+            "allocation_m3": 469.2838729582075
+          }
+        ],
+        "currentAvailability": 71,
+        "demand_m3": 4350,
+        "stressTier": 1,
+        "deficit_m3": 1261.5000000000002,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 1882.4267902784084,
+        "totalAllocation_m3": 3522.4267902784086,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Karongi",
+        "totalPopulation": 140000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_karongi_1",
+            "name": "Karongi Sector 1",
+            "population": 26000,
+            "currentAvailability": 69,
+            "projectedAvailability": 100,
+            "allocation_m3": 538.176660566266
+          },
+          {
+            "id": "demo_karongi_2",
+            "name": "Karongi Sector 2",
+            "population": 27000,
+            "currentAvailability": 70,
+            "projectedAvailability": 100,
+            "allocation_m3": 540.0434775256138
+          },
+          {
+            "id": "demo_karongi_3",
+            "name": "Karongi Sector 3",
+            "population": 28000,
+            "currentAvailability": 71,
+            "projectedAvailability": 100,
+            "allocation_m3": 540.9768860052877
+          },
+          {
+            "id": "demo_karongi_4",
+            "name": "Karongi Sector 4",
+            "population": 29000,
+            "currentAvailability": 72,
+            "projectedAvailability": 100,
+            "allocation_m3": 540.9768860052877
+          },
+          {
+            "id": "demo_karongi_5",
+            "name": "Karongi Sector 5",
+            "population": 30000,
+            "currentAvailability": 73,
+            "projectedAvailability": 100,
+            "allocation_m3": 540.0434775256138
+          }
+        ],
+        "currentAvailability": 71,
+        "demand_m3": 3500,
+        "stressTier": 0.7,
+        "deficit_m3": 1015.0000000000001,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 1060.217387628069,
+        "totalAllocation_m3": 2700.217387628069,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Nyabihu",
+        "totalPopulation": 151000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "s5",
+            "name": "Mukamira",
+            "population": 38000,
+            "currentAvailability": 76,
+            "projectedAvailability": 100,
+            "allocation_m3": 593.7218488980266
+          },
+          {
+            "id": "demo_nyabihu_4",
+            "name": "Nyabihu Sector 4",
+            "population": 26000,
+            "currentAvailability": 69,
+            "projectedAvailability": 100,
+            "allocation_m3": 543.4661322790059
+          },
+          {
+            "id": "demo_nyabihu_5",
+            "name": "Nyabihu Sector 5",
+            "population": 27000,
+            "currentAvailability": 70,
+            "projectedAvailability": 100,
+            "allocation_m3": 545.3625744155728
+          },
+          {
+            "id": "s4",
+            "name": "Jenda",
+            "population": 31000,
+            "currentAvailability": 75,
+            "projectedAvailability": 100,
+            "allocation_m3": 528.7687057206131
+          },
+          {
+            "id": "s6",
+            "name": "Karago",
+            "population": 29000,
+            "currentAvailability": 77,
+            "projectedAvailability": 100,
+            "allocation_m3": 477.56476803330884
+          }
+        ],
+        "currentAvailability": 73.4,
+        "demand_m3": 3775,
+        "stressTier": 0.7,
+        "deficit_m3": 1004.1499999999996,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 1048.884029346527,
+        "totalAllocation_m3": 2688.8840293465273,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Nyarugenge",
+        "totalPopulation": 318000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "s7",
+            "name": "Nyamirambo",
+            "population": 92000,
+            "currentAvailability": 50,
+            "projectedAvailability": 100,
+            "allocation_m3": 6002.9583266557165
+          },
+          {
+            "id": "s8",
+            "name": "Muhima",
+            "population": 54000,
+            "currentAvailability": 73,
+            "projectedAvailability": 100,
+            "allocation_m3": 2503.8311816205787
+          },
+          {
+            "id": "s9",
+            "name": "Kimisagara",
+            "population": 61000,
+            "currentAvailability": 80,
+            "projectedAvailability": 100,
+            "allocation_m3": 2238.779539189527
+          },
+          {
+            "id": "demo_nyarugenge_4",
+            "name": "Nyarugenge Sector 4",
+            "population": 55000,
+            "currentAvailability": 82,
+            "projectedAvailability": 100,
+            "allocation_m3": 1982.6371956637217
+          },
+          {
+            "id": "demo_nyarugenge_5",
+            "name": "Nyarugenge Sector 5",
+            "population": 56000,
+            "currentAvailability": 83,
+            "projectedAvailability": 100,
+            "allocation_m3": 1940.3180258638058
+          }
+        ],
+        "currentAvailability": 73.6,
+        "demand_m3": 25440,
+        "stressTier": 1.3,
+        "deficit_m3": 6716.160000000001,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 13028.52426899335,
+        "totalAllocation_m3": 14668.52426899335,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Nyaruguru",
+        "totalPopulation": 137000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_nyaruguru_1",
+            "name": "Nyaruguru Sector 1",
+            "population": 59000,
+            "currentAvailability": 74,
+            "projectedAvailability": 100,
+            "allocation_m3": 1087.5682753194162
+          },
+          {
+            "id": "demo_nyaruguru_2",
+            "name": "Nyaruguru Sector 2",
+            "population": 18000,
+            "currentAvailability": 75,
+            "projectedAvailability": 100,
+            "allocation_m3": 440.5797472584113
+          },
+          {
+            "id": "demo_nyaruguru_3",
+            "name": "Nyaruguru Sector 3",
+            "population": 19000,
+            "currentAvailability": 76,
+            "projectedAvailability": 100,
+            "allocation_m3": 444.16086457240215
+          },
+          {
+            "id": "demo_nyaruguru_4",
+            "name": "Nyaruguru Sector 4",
+            "population": 20000,
+            "currentAvailability": 77,
+            "projectedAvailability": 100,
+            "allocation_m3": 446.5482761150626
+          },
+          {
+            "id": "demo_nyaruguru_5",
+            "name": "Nyaruguru Sector 5",
+            "population": 21000,
+            "currentAvailability": 78,
+            "projectedAvailability": 100,
+            "allocation_m3": 447.7419818863929
+          }
+        ],
+        "currentAvailability": 76,
+        "demand_m3": 3425,
+        "stressTier": 1,
+        "deficit_m3": 822,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 1226.599145151686,
+        "totalAllocation_m3": 2866.5991451516857,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Ngoma",
+        "totalPopulation": 195000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_ngoma_1",
+            "name": "Ngoma Sector 1",
+            "population": 37000,
+            "currentAvailability": 74,
+            "projectedAvailability": 100,
+            "allocation_m3": 691.3884434568315
+          },
+          {
+            "id": "demo_ngoma_2",
+            "name": "Ngoma Sector 2",
+            "population": 38000,
+            "currentAvailability": 75,
+            "projectedAvailability": 100,
+            "allocation_m3": 685.2981929062471
+          },
+          {
+            "id": "demo_ngoma_3",
+            "name": "Ngoma Sector 3",
+            "population": 39000,
+            "currentAvailability": 76,
+            "projectedAvailability": 100,
+            "allocation_m3": 678.1929005972318
+          },
+          {
+            "id": "demo_ngoma_4",
+            "name": "Ngoma Sector 4",
+            "population": 40000,
+            "currentAvailability": 77,
+            "projectedAvailability": 100,
+            "allocation_m3": 670.0725665297857
+          },
+          {
+            "id": "demo_ngoma_5",
+            "name": "Ngoma Sector 5",
+            "population": 41000,
+            "currentAvailability": 78,
+            "projectedAvailability": 100,
+            "allocation_m3": 660.937190703909
+          }
+        ],
+        "currentAvailability": 76,
+        "demand_m3": 4875,
+        "stressTier": 1,
+        "deficit_m3": 1170,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 1745.8892941940053,
+        "totalAllocation_m3": 3385.8892941940053,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Musanze",
+        "totalPopulation": 240000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_musanze_1",
+            "name": "Musanze Sector 1",
+            "population": 46000,
+            "currentAvailability": 75,
+            "projectedAvailability": 100,
+            "allocation_m3": 635.086428480023
+          },
+          {
+            "id": "demo_musanze_2",
+            "name": "Musanze Sector 2",
+            "population": 47000,
+            "currentAvailability": 76,
+            "projectedAvailability": 100,
+            "allocation_m3": 626.4739496154647
+          },
+          {
+            "id": "demo_musanze_3",
+            "name": "Musanze Sector 3",
+            "population": 48000,
+            "currentAvailability": 77,
+            "projectedAvailability": 100,
+            "allocation_m3": 617.0785181268557
+          },
+          {
+            "id": "demo_musanze_4",
+            "name": "Musanze Sector 4",
+            "population": 49000,
+            "currentAvailability": 78,
+            "projectedAvailability": 100,
+            "allocation_m3": 606.9001340141958
+          },
+          {
+            "id": "demo_musanze_5",
+            "name": "Musanze Sector 5",
+            "population": 50000,
+            "currentAvailability": 79,
+            "projectedAvailability": 100,
+            "allocation_m3": 595.9387972774853
+          }
+        ],
+        "currentAvailability": 77,
+        "demand_m3": 6000,
+        "stressTier": 0.7,
+        "deficit_m3": 1380,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 1441.4778275140247,
+        "totalAllocation_m3": 3081.4778275140247,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Nyanza",
+        "totalPopulation": 155000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "s1",
+            "name": "Busasamana",
+            "population": 45000,
+            "currentAvailability": 72,
+            "projectedAvailability": 100,
+            "allocation_m3": 910.1327484745218
+          },
+          {
+            "id": "s2",
+            "name": "Muyira",
+            "population": 27000,
+            "currentAvailability": 73,
+            "projectedAvailability": 100,
+            "allocation_m3": 600.7964684065093
+          },
+          {
+            "id": "s3",
+            "name": "Ntyazo",
+            "population": 24000,
+            "currentAvailability": 74,
+            "projectedAvailability": 100,
+            "allocation_m3": 539.6282774326086
+          },
+          {
+            "id": "demo_nyanza_4",
+            "name": "Nyanza Sector 4",
+            "population": 29000,
+            "currentAvailability": 84,
+            "projectedAvailability": 100,
+            "allocation_m3": 446.4196054723789
+          },
+          {
+            "id": "demo_nyanza_5",
+            "name": "Nyanza Sector 5",
+            "population": 30000,
+            "currentAvailability": 85,
+            "projectedAvailability": 100,
+            "allocation_m3": 438.26384667585876
+          }
+        ],
+        "currentAvailability": 77.6,
+        "demand_m3": 3875,
+        "stressTier": 1,
+        "deficit_m3": 868.0000000000003,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 1295.240946461878,
+        "totalAllocation_m3": 2935.2409464618777,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Nyamagabe",
+        "totalPopulation": 160000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_nyamagabe_5",
+            "name": "Nyamagabe Sector 5",
+            "population": 34000,
+            "currentAvailability": 35,
+            "projectedAvailability": 100,
+            "allocation_m3": 1433.2381219494314
+          },
+          {
+            "id": "demo_nyamagabe_1",
+            "name": "Nyamagabe Sector 1",
+            "population": 30000,
+            "currentAvailability": 87,
+            "projectedAvailability": 100,
+            "allocation_m3": 399.4344670873653
+          },
+          {
+            "id": "demo_nyamagabe_2",
+            "name": "Nyamagabe Sector 2",
+            "population": 31000,
+            "currentAvailability": 88,
+            "projectedAvailability": 100,
+            "allocation_m3": 389.2100353359823
+          },
+          {
+            "id": "demo_nyamagabe_3",
+            "name": "Nyamagabe Sector 3",
+            "population": 32000,
+            "currentAvailability": 89,
+            "projectedAvailability": 100,
+            "allocation_m3": 377.8495556122233
+          },
+          {
+            "id": "demo_nyamagabe_4",
+            "name": "Nyamagabe Sector 4",
+            "population": 33000,
+            "currentAvailability": 90,
+            "projectedAvailability": 100,
+            "allocation_m3": 365.3530279160884
+          }
+        ],
+        "currentAvailability": 77.8,
+        "demand_m3": 4000,
+        "stressTier": 1,
+        "deficit_m3": 887.9999999999999,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 1325.085207901091,
+        "totalAllocation_m3": 2965.085207901091,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Rutsiro",
+        "totalPopulation": 105000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_rutsiro_5",
+            "name": "Rutsiro Sector 5",
+            "population": 23000,
+            "currentAvailability": 80,
+            "projectedAvailability": 100,
+            "allocation_m3": 448.64542686802156
+          },
+          {
+            "id": "demo_rutsiro_1",
+            "name": "Rutsiro Sector 1",
+            "population": 19000,
+            "currentAvailability": 76,
+            "projectedAvailability": 100,
+            "allocation_m3": 445.9145416609989
+          },
+          {
+            "id": "demo_rutsiro_2",
+            "name": "Rutsiro Sector 2",
+            "population": 20000,
+            "currentAvailability": 77,
+            "projectedAvailability": 100,
+            "allocation_m3": 448.64542686802156
+          },
+          {
+            "id": "demo_rutsiro_3",
+            "name": "Rutsiro Sector 3",
+            "population": 21000,
+            "currentAvailability": 78,
+            "projectedAvailability": 100,
+            "allocation_m3": 450.01086947153294
+          },
+          {
+            "id": "demo_rutsiro_4",
+            "name": "Rutsiro Sector 4",
+            "population": 22000,
+            "currentAvailability": 79,
+            "projectedAvailability": 100,
+            "allocation_m3": 450.01086947153294
+          }
+        ],
+        "currentAvailability": 78,
+        "demand_m3": 2625,
+        "stressTier": 0.7,
+        "deficit_m3": 577.4999999999999,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 603.227134340108,
+        "totalAllocation_m3": 2243.227134340108,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Kamonyi",
+        "totalPopulation": 255000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_kamonyi_1",
+            "name": "Kamonyi Sector 1",
+            "population": 49000,
+            "currentAvailability": 78,
+            "projectedAvailability": 100,
+            "allocation_m3": 935.8524459984881
+          },
+          {
+            "id": "demo_kamonyi_2",
+            "name": "Kamonyi Sector 2",
+            "population": 50000,
+            "currentAvailability": 79,
+            "projectedAvailability": 100,
+            "allocation_m3": 918.5480045441764
+          },
+          {
+            "id": "demo_kamonyi_3",
+            "name": "Kamonyi Sector 3",
+            "population": 51000,
+            "currentAvailability": 80,
+            "projectedAvailability": 100,
+            "allocation_m3": 900.0075315574138
+          },
+          {
+            "id": "demo_kamonyi_4",
+            "name": "Kamonyi Sector 4",
+            "population": 52000,
+            "currentAvailability": 81,
+            "projectedAvailability": 100,
+            "allocation_m3": 880.2310270382004
+          },
+          {
+            "id": "demo_kamonyi_5",
+            "name": "Kamonyi Sector 5",
+            "population": 53000,
+            "currentAvailability": 82,
+            "projectedAvailability": 100,
+            "allocation_m3": 859.2184909865366
+          }
+        ],
+        "currentAvailability": 80,
+        "demand_m3": 6375,
+        "stressTier": 1.5,
+        "deficit_m3": 1274.9999999999998,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 2853.857500124816,
+        "totalAllocation_m3": 4493.8575001248155,
+        "projectedAvailability": 100
+      },
+      {
+        "district": "Rulindo",
+        "totalPopulation": 130000,
+        "avgAvailability": 0,
+        "sectorCount": 5,
+        "sectors": [
+          {
+            "id": "demo_rulindo_1",
+            "name": "Rulindo Sector 1",
+            "population": 24000,
+            "currentAvailability": 81,
+            "projectedAvailability": 100,
+            "allocation_m3": 505.43582376497085
+          },
+          {
+            "id": "demo_rulindo_2",
+            "name": "Rulindo Sector 2",
+            "population": 25000,
+            "currentAvailability": 82,
+            "projectedAvailability": 100,
+            "allocation_m3": 500.73096902247795
+          },
+          {
+            "id": "demo_rulindo_3",
+            "name": "Rulindo Sector 3",
+            "population": 26000,
+            "currentAvailability": 83,
+            "projectedAvailability": 100,
+            "allocation_m3": 494.45782936582054
+          },
+          {
+            "id": "demo_rulindo_4",
+            "name": "Rulindo Sector 4",
+            "population": 27000,
+            "currentAvailability": 84,
+            "projectedAvailability": 100,
+            "allocation_m3": 486.6164047949987
+          },
+          {
+            "id": "demo_rulindo_5",
+            "name": "Rulindo Sector 5",
+            "population": 28000,
+            "currentAvailability": 85,
+            "projectedAvailability": 100,
+            "allocation_m3": 477.20669531001255
+          }
+        ],
+        "currentAvailability": 83,
+        "demand_m3": 3250,
+        "stressTier": 1,
+        "deficit_m3": 552.5000000000001,
+        "baseAllocation_m3": 1640,
+        "needAllocation_m3": 824.4477222582805,
+        "totalAllocation_m3": 2464.4477222582805,
+        "projectedAvailability": 100
+      }
+    ]
+  }
+]
