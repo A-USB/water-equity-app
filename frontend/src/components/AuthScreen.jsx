@@ -23,7 +23,7 @@ const ROLES = {
   },
 };
 
-export default function AuthScreen({ onLoggedIn }) {
+export default function AuthScreen({ onLoggedIn, theme, onToggleTheme }) {
   const [mode, setMode] = useState("login"); // "login" | "signup"
   const [role, setRole] = useState("sector");
   const [username, setUsername] = useState("");
@@ -31,6 +31,8 @@ export default function AuthScreen({ onLoggedIn }) {
   const [sectorName, setSectorName] = useState("");
   const [district, setDistrict] = useState("");
   const [population, setPopulation] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [remember, setRemember] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
@@ -59,100 +61,139 @@ export default function AuthScreen({ onLoggedIn }) {
 
   return (
     <div className="login-page">
-      <div className="login-page-center">
-      <div className="auth-card">
-        <h1 className="auth-title">{isSignup ? "Create your account" : "Sign in to your account"}</h1>
-        <p className="auth-subtitle">
-          {isSignup ? "Enter your details to get started" : "Enter your credentials to continue"}
-        </p>
+      <button className="auth-theme-toggle" type="button" onClick={onToggleTheme}>
+        <span aria-hidden="true">{theme === "dark" ? "☼" : "☾"}</span>
+        {theme === "dark" ? "Light mode" : "Dark mode"}
+      </button>
 
-        <div className="auth-role-row">
-          {Object.entries(ROLES).map(([key, r]) => (
-            <button
-              type="button"
-              key={key}
-              className={`auth-role-card ${role === key ? "auth-role-active" : ""}`}
-              onClick={() => setRole(key)}
-            >
-              <span className="auth-role-icon">{r.icon}</span>
-              <span className="auth-role-label">{r.label}</span>
-              <span className="auth-role-sub">{r.sub}</span>
+      <div className="auth-layout">
+        <section className="auth-story">
+          <div className="auth-story-content">
+            <img className="auth-logo" src="/logo.svg" alt="Mira" />
+            <p className="auth-kicker">Water for a brighter tomorrow</p>
+            <h1>Clean water.<br />Stronger communities.</h1>
+            <p className="auth-story-copy">
+              A shared view of water availability across Rwanda — from the people
+              reporting on the ground to the teams acting on what they see.
+            </p>
+            <div className="auth-story-points">
+              <span><b>◌</b> Access to clean water</span>
+              <span><b>♧</b> Stronger communities</span>
+              <span><b>◇</b> A sustainable future</span>
+            </div>
+          </div>
+          <div className="auth-water-art" aria-hidden="true">
+            <span className="auth-water-sun" />
+            <span className="auth-water-hill auth-water-hill-one" />
+            <span className="auth-water-hill auth-water-hill-two" />
+            <span className="auth-water-river" />
+          </div>
+        </section>
+
+        <main className="auth-panel">
+          <div className="auth-panel-top">
+            <span>{isSignup ? "Already have an account?" : "Don't have an account?"}</span>
+            <button type="button" onClick={() => setMode(isSignup ? "login" : "signup")}>
+              {isSignup ? "Sign in" : "Sign up"}
             </button>
-          ))}
-        </div>
+          </div>
 
-        <form onSubmit={handleSubmit}>
-          {isSignup && role === "sector" && (
-            <>
+          <div className="auth-card">
+            <p className="auth-eyebrow">{isSignup ? "Create your account" : "Mira account"}</p>
+            <h2 className="auth-title">{isSignup ? "Join the network" : "Welcome back"}</h2>
+            <p className="auth-subtitle">
+              {isSignup
+                ? "Choose your portal and enter your details to get started."
+                : "Sign in and continue making an impact."}
+            </p>
+
+            <div className="auth-role-row">
+              {Object.entries(ROLES).map(([key, r]) => (
+                <button
+                  type="button"
+                  key={key}
+                  className={`auth-role-card ${role === key ? "auth-role-active" : ""}`}
+                  onClick={() => setRole(key)}
+                >
+                  <span className="auth-role-icon">{r.icon}</span>
+                  <span className="auth-role-label">{key === "sector" ? "Sector official" : "WASAC team"}</span>
+                  <span className="auth-role-sub">{r.sub}</span>
+                </button>
+              ))}
+            </div>
+
+            <form onSubmit={handleSubmit}>
+              {isSignup && role === "sector" && (
+                <>
+                  <label className="field">
+                    <span>Sector name</span>
+                    <input value={sectorName} onChange={(e) => setSectorName(e.target.value)} placeholder="e.g. Kigoma" required />
+                  </label>
+                  <div className="field-row">
+                    <label className="field">
+                      <span>District</span>
+                      <input value={district} onChange={(e) => setDistrict(e.target.value)} placeholder="e.g. Nyanza" required />
+                    </label>
+                    <label className="field">
+                      <span>Population</span>
+                      <input type="number" min="0" value={population} onChange={(e) => setPopulation(e.target.value)} placeholder="e.g. 22000" required />
+                    </label>
+                  </div>
+                </>
+              )}
+
               <label className="field">
-                <span>Sector name</span>
-                <input value={sectorName} onChange={(e) => setSectorName(e.target.value)} placeholder="e.g. Kigoma" required />
+                <span>Username</span>
+                <input value={username} onChange={(e) => setUsername(e.target.value)} placeholder="e.g. nyamirambo" autoFocus={!isSignup} required />
               </label>
-              <div className="field-row">
-                <label className="field">
-                  <span>District</span>
-                  <input value={district} onChange={(e) => setDistrict(e.target.value)} placeholder="e.g. Nyanza" required />
-                </label>
-                <label className="field">
-                  <span>Population</span>
+
+              <label className="field">
+                <span>Password</span>
+                <div className="password-wrap">
                   <input
-                    type="number"
-                    min="0"
-                    value={population}
-                    onChange={(e) => setPopulation(e.target.value)}
-                    placeholder="e.g. 22000"
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter your password"
+                    minLength={isSignup ? 6 : undefined}
                     required
                   />
-                </label>
-              </div>
-            </>
-          )}
+                  <button type="button" className="password-toggle" onClick={() => setShowPassword((value) => !value)} aria-label={showPassword ? "Hide password" : "Show password"}>
+                    {showPassword ? "◉" : "◌"}
+                  </button>
+                </div>
+                {isSignup && <span className="field-hint">Must be at least 6 characters long</span>}
+              </label>
 
-          <label className="field">
-            <span>Username</span>
-            <input value={username} onChange={(e) => setUsername(e.target.value)} placeholder="e.g. nyamirambo" required />
-          </label>
+              {!isSignup && (
+                <div className="auth-options">
+                  <label className="remember-option">
+                    <input type="checkbox" checked={remember} onChange={(e) => setRemember(e.target.checked)} />
+                    <span>Remember me</span>
+                  </label>
+                  <button type="button" className="auth-muted-action" onClick={() => setError("Password recovery is not enabled for this local demo yet.")}>
+                    Forgot password?
+                  </button>
+                </div>
+              )}
 
-          <label className="field">
-            <span>Password</span>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              minLength={isSignup ? 6 : undefined}
-              required
-            />
-            {isSignup && <span className="field-hint">Must be at least 6 characters long</span>}
-          </label>
-
-          {error && <p className="form-error">{error}</p>}
-
-          <button type="submit" className="btn-primary btn-block auth-submit" disabled={busy}>
-            {busy ? "Please wait…" : isSignup ? "Create your account" : "Sign in"}
-          </button>
-        </form>
-
-        <p className="auth-switch">
-          {isSignup ? (
-            <>
-              Already have an account?{" "}
-              <button type="button" onClick={() => setMode("login")}>
-                Sign in
+              {error && <p className="form-error">{error}</p>}
+              <button type="submit" className="btn-primary btn-block auth-submit" disabled={busy}>
+                {busy ? "Please wait…" : isSignup ? "Create account →" : "Sign in →"}
               </button>
-            </>
-          ) : (
-            <>
-              Don't have an account?{" "}
-              <button type="button" onClick={() => setMode("signup")}>
-                Sign up
-              </button>
-            </>
-          )}
-        </p>
+            </form>
+
+            <div className="auth-or"><span>or</span></div>
+            <button type="button" className="auth-secondary-action" onClick={() => setError("Google sign-in is not connected for this app yet.")}>
+              <strong>G</strong> Continue with Google
+            </button>
+
+            <p className="auth-terms">
+              By continuing, you agree to our <button type="button">Terms of Service</button> and <button type="button">Privacy Policy</button>.
+            </p>
+          </div>
+        </main>
       </div>
-      </div>
-      <Footer />
     </div>
   );
 }
