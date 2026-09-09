@@ -481,6 +481,8 @@ app.get("/api/distribution/calculate", authenticate, requireRole("wasac"), (req,
   if (req.query.maxSectorSpreadPct) config.maxSectorSpreadPct = Number(req.query.maxSectorSpreadPct);
   if (req.query.perCapitaUrban_lpcd) config.perCapitaUrban_lpcd = Number(req.query.perCapitaUrban_lpcd);
   if (req.query.perCapitaRural_lpcd) config.perCapitaRural_lpcd = Number(req.query.perCapitaRural_lpcd);
+  if (req.query.nonRevenueLossPct) config.nonRevenueLossPct = Number(req.query.nonRevenueLossPct);
+  if (req.query.scenario) config.scenario = String(req.query.scenario);
 
   const scored = computeScores(sectors, reports);
   const result = computeDistribution(scored, config);
@@ -494,7 +496,8 @@ app.post("/api/distribution/publish", authenticate, requireRole("wasac"), (req, 
   const config = { ...baseConfig, ...(req.body.config || {}) };
   
   if (req.body.totalSupply_m3) config.totalSupply_m3 = Number(req.body.totalSupply_m3);
-  
+  if (req.body.scenario) config.scenario = String(req.body.scenario);
+
   const scored = computeScores(sectors, reports);
   const result = computeDistribution(scored, config);
   

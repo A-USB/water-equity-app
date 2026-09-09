@@ -8,6 +8,50 @@
   "perCapitaUrban_lpcd": 80,
   "perCapitaRural_lpcd": 25,
   "urbanDistricts": ["Gasabo", "Kicukiro", "Nyarugenge"],
+
+  "nonRevenueLossPct": 0.30,
+
+  "_sources_note": "Source types and capacities below are built from WASAC's own published treatment-plant registry (wasac.rw/en/about/water-treatment-plants) plus reporting confirming Nzove/Kanzenze/Gihira draw from rivers (Nyabarongo, Nyabarongo, Sebeya respectively) that visibly drop in dry season. Districts absent from districtCapacity_m3 have no centrally-tracked plant (likely rural/borehole schemes) and are left uncapped until better data is found.",
+  "districtSourceType": {
+    "Gasabo": "river", "Kicukiro": "river", "Nyarugenge": "river",
+    "Bugesera": "river", "Nyagatare": "river", "Kayonza": "river", "Kirehe": "river",
+    "Gatsibo": "river", "Rubavu": "river", "Ngoma": "river",
+    "Rwamagana": "lake", "Rusizi": "lake", "Karongi": "lake", "Rutsiro": "lake",
+    "Nyamasheke": "lake", "Musanze": "borehole", "Burera": "borehole",
+    "Gakenke": "borehole", "Nyabihu": "borehole", "Ngororero": "borehole"
+  },
+
+  "_districtCapacity_m3_note": "Built from WASAC's published per-plant capacities, summed by hosting district. Nzove + Kimisagara (both physically in Nyarugenge, serve all of Kigali) and Karenge's Kigali-bound 80% share are pooled (115,000 m3/day total) and split across Gasabo/Kicukiro/Nyarugenge by population share (210k/190k/318k). Karenge's remaining 20% (3,000) plus Muhazi (5,400) stay with Rwamagana. Districts not listed here have no known centrally-tracked plant and are left uncapped (unlimited) — verify before trusting those numbers in a real report.",
+  "districtCapacity_m3": {
+    "Gasabo": 33600,
+    "Kicukiro": 30400,
+    "Nyarugenge": 50900,
+    "Bugesera": 46300,
+    "Rubavu": 23000,
+    "Rwamagana": 8400,
+    "Musanze": 12500,
+    "Rusizi": 8720,
+    "Huye": 8500,
+    "Nyagatare": 7200,
+    "Gicumbi": 5500,
+    "Karongi": 3300,
+    "Muhanga": 3700,
+    "Ngororero": 3074,
+    "Ruhango": 2000,
+    "Nyaruguru": 1945,
+    "Nyamagabe": 1700,
+    "Ngoma": 13700,
+    "Nyanza": 8000
+  },
+
+  "seasonalFactors": {
+    "river": { "Emergency": 0.5, "Dry": 0.7, "Standard": 0.9, "Surplus": 1.0 },
+    "lake": { "Emergency": 0.85, "Dry": 0.9, "Standard": 1.0, "Surplus": 1.0 },
+    "borehole": { "Emergency": 0.9, "Dry": 0.95, "Standard": 1.0, "Surplus": 1.0 },
+    "pipeline": { "Emergency": 0.85, "Dry": 0.95, "Standard": 1.0, "Surplus": 1.0 },
+    "mixed": { "Emergency": 0.7, "Dry": 0.85, "Standard": 0.95, "Surplus": 1.0 }
+  },
+
   "stressTiers": {
     "Bugesera": 1.5, "Nyagatare": 1.5, "Kayonza": 1.5,
     "Kirehe": 1.5, "Gatsibo": 1.5, "Kamonyi": 1.5,
