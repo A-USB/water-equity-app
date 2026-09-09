@@ -3,6 +3,7 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianG
 import { getSectorReports } from "../api";
 import { formatNumber, reportStatus } from "../utils";
 import ReportHistory from "./ReportHistory";
+import { IconAlertTriangle } from "./Icons";
 
 export default function SectorDetailModal({ sector, onClose }) {
   const [reports, setReports] = useState(null);
@@ -39,9 +40,9 @@ export default function SectorDetailModal({ sector, onClose }) {
         </div>
 
         {status.level !== "fresh" && (
-          <p className={`modal-stale-notice stale-${status.level}`}>
-            {status.level === "critical" ? "⚠ " : ""}
-            {status.days === null ? "This sector has never submitted a report." : `${status.label} — this sector may need a follow-up.`}
+          <p className={`modal-stale-notice stale-${status.level}`} style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
+            {status.level === "critical" && <IconAlertTriangle size={14} />}
+            <span>{status.days === null ? "This sector has never submitted a report." : `${status.label} — this sector may need a follow-up.`}</span>
           </p>
         )}
 

@@ -1,27 +1,29 @@
 import { colorForAvailability, formatNumber } from "../utils";
+import { IconAlertTriangle } from "./Icons";
 
-export default function DistrictCard({ d, onOpen }) {
+export default function DistrictCard({ district: d, isSelected, onSelect }) {
   return (
-    <article className="district-card" onClick={() => onOpen(d)} role="button" tabIndex={0}>
-      <div className="district-card-head">
-        <h3>{d.district}</h3>
-        <span className="need-badge" style={{ "--badge-color": colorForAvailability(100 - d.avgNeedScore) }}>
-          <span className="need-badge-num">{d.avgNeedScore}</span>
-          <span className="need-badge-label">need</span>
+    <article
+      className={`panel district-card ${isSelected ? "selected" : ""}`}
+      onClick={onSelect}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") onSelect();
+      }}
+    >
+      <div className="sector-card-top">
+        <strong className="sector-card-name">{d.district}</strong>
+        <span
+          className="sector-status-pill"
+          style={{
+            background: colorForAvailability(d.avgAvailability),
+            color: "#ffffff",
+          }}
+        >
+          {d.avgAvailability === null ? "No data" : `${d.avgAvailability}%`}
         </span>
       </div>
-
-      <div className="gauge-track" style={{ height: 20 }}>
-        <div
-          className="gauge-fill"
-          style={{
-            width: d.avgAvailability === null ? "100%" : `${d.avgAvailability}%`,
-            background: colorForAvailability(d.avgAvailability),
-            opacity: d.avgAvailability === null ? 0.25 : 1,
-          }}
-        />
-      </div>
-
       <div className="sector-card-meta">
         <span>{d.avgAvailability === null ? "No reports yet" : `${d.avgAvailability}% avg availability`}</span>
       </div>
@@ -33,7 +35,11 @@ export default function DistrictCard({ d, onOpen }) {
         <span>
           {d.reportedCount}/{d.sectorCount} reporting
         </span>
-        {d.staleCount > 0 && <span className="district-stale-flag">⚠ {d.staleCount} need attention</span>}
+        {d.staleCount > 0 && (
+          <span className="district-stale-flag" style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
+            <IconAlertTriangle size={12} /> {d.staleCount} need attention
+          </span>
+        )}
       </div>
     </article>
   );
