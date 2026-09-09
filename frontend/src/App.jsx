@@ -60,7 +60,7 @@ export default function App() {
     return stage === "landing" ? (
       <Home onContinue={() => setStage("auth")} theme={theme} onToggleTheme={toggleTheme} />
     ) : (
-      <AuthScreen onLoggedIn={handleLoggedIn} />
+      <AuthScreen onLoggedIn={handleLoggedIn} theme={theme} onToggleTheme={toggleTheme} />
     );
   }
 
