@@ -3,6 +3,7 @@ import { getDistricts, getActiveDistribution } from "../api";
 import { colorForAvailability, formatNumber } from "../utils";
 import { featurePath } from "../mapUtils";
 import rwandaDistricts from "../data/rwanda-districts.min.json";
+import { IconMapPin, IconDroplet } from "../components/Icons";
 
 export default function NeedsMapPage() {
   const [districts, setDistricts] = useState(null);
@@ -51,14 +52,16 @@ export default function NeedsMapPage() {
               className={`dist-map-mode-btn ${mapMode === "current" ? "active" : ""}`}
               onClick={() => setMapMode("current")}
             >
-              📍 Current Reported Scarcity
+              <IconMapPin size={15} />
+              <span>Current Reported Scarcity</span>
             </button>
             <button
               type="button"
               className={`dist-map-mode-btn ${mapMode === "projected" ? "active" : ""}`}
               onClick={() => setMapMode("projected")}
             >
-              💧 Projected Equity Allocation
+              <IconDroplet size={15} />
+              <span>Projected Equity Allocation</span>
             </button>
           </div>
         </div>

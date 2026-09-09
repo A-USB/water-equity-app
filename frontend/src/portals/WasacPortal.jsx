@@ -146,12 +146,14 @@ export default function WasacPortal() {
             )}
 
             {districts && districts.length > 0 && (
-              <div className="district-grid">
-                {visibleDistricts.map((d) => (
-                  <DistrictCard key={d.district} d={d} onOpen={openDistrictView} />
-                ))}
-              </div>
-            )}
+        <div className="district-grid">
+            {visibleDistricts.map((d) => (
+            <DistrictCard key={d.district} district={d}
+            onSelect={() => openDistrictView(d)}
+            />
+          ))}
+        </div>
+)}
             <Pagination page={districtPage} totalPages={districtTotalPages} onChange={setDistrictPage} />
           </>
         )}

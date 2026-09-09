@@ -15,10 +15,26 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  Legend,
   ReferenceLine,
   CartesianGrid,
 } from "recharts";
+import {
+  IconDownload,
+  IconPublish,
+  IconSliders,
+  IconHistory,
+  IconRotateCcw,
+  IconRefresh,
+  IconTrendingUp,
+  IconChevronDown,
+  IconChevronRight,
+  IconChevronLeft,
+  IconCheck,
+  IconCheckCircle,
+  IconAlertTriangle,
+  IconX,
+  IconLoader,
+} from "../components/Icons";
 
 const SCENARIOS = [
   { label: "Severe Drought", supply: 80000, desc: "Critical deficit allocation", tag: "Emergency", cls: "preset-drought" },
@@ -34,15 +50,18 @@ export default function DistributionPage() {
   const [showParamTuner, setShowParamTuner] = useState(false);
   
   const [supply, setSupply] = useState(160000);
+  const [activeScenarioTag, setActiveScenarioTag] = useState("Standard");
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   
-  // Table search & filter state
+  // Table search, filter, sort & pagination state
   const [searchQuery, setSearchQuery] = useState("");
   const [tierFilter, setTierFilter] = useState("all");
   const [floorFilter, setFloorFilter] = useState("all");
   const [sortBy, setSortBy] = useState("currentAsc");
   const [expandedDistrict, setExpandedDistrict] = useState(null);
+  const [districtPage, setDistrictPage] = useState(1);
+  const [pageSize, setPageSize] = useState(5); // Default 5 per page
 
   // Publish Modal State
   const [showPublishModal, setShowPublishModal] = useState(false);
@@ -51,11 +70,13 @@ export default function DistributionPage() {
   const [publishing, setPublishing] = useState(false);
   const [publishSuccessMsg, setPublishSuccessMsg] = useState(null);
 
-  // History Tab State
+  // History Tab State & Pagination
   const [historyList, setHistoryList] = useState([]);
   const [historyLoading, setHistoryLoading] = useState(false);
   const [selectedHistoryPlan, setSelectedHistoryPlan] = useState(null);
   const [activePublishedPlan, setActivePublishedPlan] = useState(null);
+  const [historyPage, setHistoryPage] = useState(1);
+  const historyPageSize = 5;
 
   // Load initial config and active plan
   const loadInitial = useCallback(async () => {
@@ -101,6 +122,7 @@ export default function DistributionPage() {
             perCapitaRural_lpcd: customParams.perCapitaRural_lpcd,
           }
         : {};
+      overrides.scenario = activeScenarioTag;
       const result = await calculateDistribution(supply, overrides);
       setData(result);
     } catch (err) {
@@ -108,7 +130,7 @@ export default function DistributionPage() {
     } finally {
       setLoading(false);
     }
-  }, [config, customParams, supply]);
+  }, [config, customParams, supply, activeScenarioTag]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -136,9 +158,15 @@ export default function DistributionPage() {
     }
   }, [activeTab, loadHistory]);
 
+  // Reset page when filter, search, sort, or page size changes
+  useEffect(() => {
+    setDistrictPage(1);
+  }, [searchQuery, tierFilter, floorFilter, sortBy, pageSize]);
+
   // Handle Scenario preset select
   function applyScenario(s) {
     setSupply(s.supply);
+    setActiveScenarioTag(s.tag);
   }
 
   // Reset custom parameters to initial default config
@@ -162,6 +190,7 @@ export default function DistributionPage() {
     try {
       const payload = {
         totalSupply_m3: supply,
+        scenario: activeScenarioTag,
         title: planTitle.trim() || `Daily Plan · ${new Date().toLocaleDateString("en-RW", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" })}`,
         notes: planNotes.trim(),
         config: customParams
@@ -218,7 +247,6 @@ export default function DistributionPage() {
     ];
 
     data.districts.forEach((d) => {
-      // District aggregate row
       rows.push([
         d.district,
         "[ALL SECTORS]",
@@ -232,7 +260,6 @@ export default function DistributionPage() {
         Math.round(d.lpcd),
       ]);
 
-      // Sector level rows
       d.sectors.forEach((s) => {
         rows.push([
           d.district,
@@ -324,10 +351,27 @@ export default function DistributionPage() {
     return list;
   }, [data, searchQuery, tierFilter, floorFilter, sortBy, customParams]);
 
+  // Paginated Districts
+  const totalDistricts = filteredDistricts.length;
+  const totalPages = Math.max(1, Math.ceil(totalDistricts / pageSize));
+  const paginatedDistricts = useMemo(() => {
+    const start = (districtPage - 1) * pageSize;
+    return filteredDistricts.slice(start, start + pageSize);
+  }, [filteredDistricts, districtPage, pageSize]);
+
+  const startDistrictIndex = totalDistricts === 0 ? 0 : (districtPage - 1) * pageSize + 1;
+  const endDistrictIndex = Math.min(districtPage * pageSize, totalDistricts);
+
+  // Paginated History
+  const totalHistoryPages = Math.max(1, Math.ceil(historyList.length / historyPageSize));
+  const paginatedHistoryList = useMemo(() => {
+    const start = (historyPage - 1) * historyPageSize;
+    return historyList.slice(start, start + historyPageSize);
+  }, [historyList, historyPage, historyPageSize]);
+
   // Chart data preparation for Recharts
   const chartData = useMemo(() => {
     if (!data || !data.districts) return [];
-    // Sort districts by current availability ascending for a clean comparative slope
     return [...data.districts]
       .sort((a, b) => a.currentAvailability - b.currentAvailability)
       .map((d) => ({
@@ -369,7 +413,8 @@ export default function DistributionPage() {
 
         <div className="dist-header-actions">
           <button className="btn-secondary dist-export-btn" onClick={handleExportCsv} title="Export distribution spreadsheet">
-            📥 Export CSV
+            <IconDownload size={15} />
+            <span>Export CSV</span>
           </button>
           <button
             className="btn-primary dist-publish-main-btn"
@@ -378,7 +423,8 @@ export default function DistributionPage() {
               setShowPublishModal(true);
             }}
           >
-            📤 Publish Plan
+            <IconPublish size={15} />
+            <span>Publish Plan</span>
           </button>
         </div>
       </header>
@@ -386,7 +432,8 @@ export default function DistributionPage() {
       {/* Success Notification */}
       {publishSuccessMsg && (
         <div className="dist-toast-banner">
-          <span>✅</span> {publishSuccessMsg}
+          <IconCheckCircle size={18} className="dist-toast-icon" />
+          <span>{publishSuccessMsg}</span>
         </div>
       )}
 
@@ -396,13 +443,15 @@ export default function DistributionPage() {
           className={`dist-tab-btn ${activeTab === "simulator" ? "dist-tab-active" : ""}`}
           onClick={() => setActiveTab("simulator")}
         >
-          <span className="dist-tab-icon">🎛️</span> Interactive Simulator
+          <span className="dist-tab-icon"><IconSliders size={16} /></span>
+          <span>Interactive Simulator</span>
         </button>
         <button
           className={`dist-tab-btn ${activeTab === "history" ? "dist-tab-active" : ""}`}
           onClick={() => setActiveTab("history")}
         >
-          <span className="dist-tab-icon">📜</span> Published Plans & History
+          <span className="dist-tab-icon"><IconHistory size={16} /></span>
+          <span>Published Plans & History</span>
           {historyList.length > 0 && <span className="dist-tab-badge">{historyList.length}</span>}
         </button>
       </div>
@@ -482,8 +531,9 @@ export default function DistributionPage() {
                   </span>
                 </span>
               </div>
-              <span className="dist-card-sub dist-green">
-                ▲ +{Math.round(summary.avgAvailabilityAfter - summary.avgAvailabilityBefore)}% national boost
+              <span className="dist-card-sub dist-green dist-lift-sub">
+                <IconTrendingUp size={13} />
+                <span>+{Math.round(summary.avgAvailabilityAfter - summary.avgAvailabilityBefore)}% national boost</span>
               </span>
             </div>
           </section>
@@ -502,7 +552,8 @@ export default function DistributionPage() {
                 className={`btn-secondary dist-tune-toggle ${showParamTuner ? "active" : ""}`}
                 onClick={() => setShowParamTuner((v) => !v)}
               >
-                ⚙️ {showParamTuner ? "Hide Formula Parameters" : "Tune Formula Parameters"}
+                <IconSliders size={14} />
+                <span>{showParamTuner ? "Hide Formula Parameters" : "Tune Formula Parameters"}</span>
               </button>
             </div>
 
@@ -574,8 +625,9 @@ export default function DistributionPage() {
                     <h3>Distribution Formula Parameters</h3>
                     <p>Adjust weights, thresholds, and consumption targets for the simulation.</p>
                   </div>
-                  <button type="button" className="btn-ghost" onClick={handleResetParams}>
-                    ↺ Reset Defaults
+                  <button type="button" className="btn-ghost dist-btn-with-icon" onClick={handleResetParams}>
+                    <IconRotateCcw size={14} />
+                    <span>Reset Defaults</span>
                   </button>
                 </div>
 
@@ -714,7 +766,7 @@ export default function DistributionPage() {
 
             <div className="dist-recharts-wrap">
               <ResponsiveContainer width="100%" height={320}>
-                <BarChart data={chartData} margin={{ top: 18, right: 16, left: -10, bottom: 40 }}>
+                <BarChart data={chartData} margin={{ top: 18, right: 64, left: -4, bottom: 40 }}>
                   <CartesianGrid stroke="var(--c-line)" vertical={false} strokeDasharray="3 3" />
                   <XAxis
                     dataKey="name"
@@ -727,7 +779,7 @@ export default function DistributionPage() {
                     domain={[0, 100]}
                     tick={{ fontSize: 11, fill: "var(--c-ink-soft)" }}
                     unit="%"
-                    width={40}
+                    width={48}
                   />
                   <Tooltip
                     cursor={{ fill: "var(--c-line)", opacity: 0.3 }}
@@ -746,13 +798,13 @@ export default function DistributionPage() {
                     y={floorThreshold}
                     stroke="var(--c-bad)"
                     strokeDasharray="4 4"
-                    label={{ value: `Floor (${floorThreshold}%)`, fill: "var(--c-bad)", fontSize: 11, position: "top" }}
+                    label={{ value: `Floor (${floorThreshold}%)`, fill: "var(--c-bad)", fontSize: 11, position: "right" }}
                   />
                   <ReferenceLine
                     y={ceilingThreshold}
                     stroke="var(--c-good)"
                     strokeDasharray="4 4"
-                    label={{ value: `Ceiling (${ceilingThreshold}%)`, fill: "var(--c-good)", fontSize: 11, position: "top" }}
+                    label={{ value: `Ceiling (${ceilingThreshold}%)`, fill: "var(--c-good)", fontSize: 11, position: "right" }}
                   />
                   <Bar dataKey="Current" fill="#b5451f" opacity={0.65} radius={[3, 3, 0, 0]} />
                   <Bar dataKey="Projected" fill="var(--c-good)" radius={[3, 3, 0, 0]} />
@@ -767,7 +819,7 @@ export default function DistributionPage() {
               <div>
                 <h2 className="dist-section-title">District Allocation & Sector Drill-down</h2>
                 <p className="dist-section-sub">
-                  Showing {filteredDistricts.length} of {data.districts.length} districts. Click any row to view individual sector quotas.
+                  Showing {filteredDistricts.length} matching districts (Page {districtPage} of {totalPages}). Click any row to view individual sector quotas.
                 </p>
               </div>
 
@@ -817,7 +869,12 @@ export default function DistributionPage() {
               </div>
             </div>
 
-            {loading && <div className="dist-loading-indicator">⚡ Recalculating allocations…</div>}
+            {loading && (
+              <div className="dist-loading-indicator">
+                <IconLoader size={14} />
+                <span>Recalculating allocations…</span>
+              </div>
+            )}
 
             <div className="table-wrap dist-table-wrap">
               <table className="history-table dist-table">
@@ -842,7 +899,7 @@ export default function DistributionPage() {
                       </td>
                     </tr>
                   ) : (
-                    filteredDistricts.map((d) => {
+                    paginatedDistricts.map((d) => {
                       const tier = tierLabel(d.stressTier);
                       const change = Math.round(d.projectedAvailability - d.currentAvailability);
                       const isExpanded = expandedDistrict === d.district;
@@ -858,7 +915,9 @@ export default function DistributionPage() {
                           aria-expanded={isExpanded}
                         >
                           <td className="dist-district-name">
-                            <span className="dist-expand-icon">{isExpanded ? "▼" : "▶"}</span>
+                            <span className="dist-expand-icon">
+                              {isExpanded ? <IconChevronDown size={14} /> : <IconChevronRight size={14} />}
+                            </span>
                             <strong>{d.district}</strong>
                             <small className="dist-sector-count">({d.sectors.length} sectors)</small>
                           </td>
@@ -884,7 +943,13 @@ export default function DistributionPage() {
                           </td>
                           <td className="dist-change-cell">
                             <span className={change > 0 ? "dist-green dist-badge-lift" : "dist-neutral"}>
-                              {change > 0 ? `+${change}% ▲` : `${change}%`}
+                              {change > 0 ? (
+                                <>
+                                  <IconTrendingUp size={12} className="dist-inline-icon" /> +{change}%
+                                </>
+                              ) : (
+                                `${change}%`
+                              )}
                             </span>
                           </td>
                           <td className="mono font-semibold">
@@ -893,7 +958,15 @@ export default function DistributionPage() {
                           <td className="mono">{Math.round(d.lpcd)} L/day</td>
                           <td>
                             <span className={`dist-status-pill ${meetsFloor ? "compliant" : "sub-floor"}`}>
-                              {meetsFloor ? `✔ >= ${floorThreshold}%` : `⚠ < ${floorThreshold}%`}
+                              {meetsFloor ? (
+                                <>
+                                  <IconCheck size={12} /> &ge; {floorThreshold}%
+                                </>
+                              ) : (
+                                <>
+                                  <IconAlertTriangle size={12} /> &lt; {floorThreshold}%
+                                </>
+                              )}
                             </span>
                           </td>
                         </tr>,
@@ -920,7 +993,8 @@ export default function DistributionPage() {
                                           isSpreadOk ? "dist-spread-ok" : "dist-spread-warn"
                                         }`}
                                       >
-                                        Intra-District Spread: {spread}% {isSpreadOk ? "✔ Compliant" : "⚠ High Spread"}
+                                        {isSpreadOk ? <IconCheck size={12} /> : <IconAlertTriangle size={12} />}
+                                        <span>Intra-District Spread: {spread}% ({isSpreadOk ? "Compliant" : "High Spread"})</span>
                                       </span>
                                     );
                                   })()}
@@ -966,7 +1040,7 @@ export default function DistributionPage() {
                                             </td>
                                             <td>
                                               <span className={sChange > 0 ? "dist-green" : ""}>
-                                                {sChange > 0 ? `+${sChange}% ▲` : `${sChange}%`}
+                                                {sChange > 0 ? `+${sChange}%` : `${sChange}%`}
                                               </span>
                                             </td>
                                             <td className="mono font-semibold">
@@ -989,6 +1063,72 @@ export default function DistributionPage() {
                 </tbody>
               </table>
             </div>
+
+            {/* Pagination Controls */}
+            {totalDistricts > 0 && (
+              <div className="dist-pagination-bar">
+                <div className="dist-pagination-left">
+                  <span className="dist-pagination-info">
+                    Showing <strong>{startDistrictIndex}–{endDistrictIndex}</strong> of <strong>{totalDistricts}</strong> districts
+                  </span>
+                  <label className="dist-page-size-wrap">
+                    <span>Per page:</span>
+                    <select
+                      value={pageSize}
+                      onChange={(e) => {
+                        setPageSize(Number(e.target.value));
+                        setDistrictPage(1);
+                      }}
+                      className="dist-page-size-select"
+                    >
+                      <option value={5}>5</option>
+                      <option value={10}>10</option>
+                      <option value={15}>15</option>
+                      <option value={30}>All (30)</option>
+                    </select>
+                  </label>
+                </div>
+
+                {totalPages > 1 && (
+                  <div className="dist-pagination-controls">
+                    <button
+                      type="button"
+                      className="btn-ghost dist-page-nav-btn"
+                      onClick={() => setDistrictPage((p) => Math.max(1, p - 1))}
+                      disabled={districtPage <= 1}
+                      aria-label="Previous page"
+                    >
+                      <IconChevronLeft size={14} />
+                      <span>Prev</span>
+                    </button>
+
+                    <div className="dist-page-numbers">
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+                        <button
+                          key={num}
+                          type="button"
+                          className={`dist-page-num-btn ${districtPage === num ? "active" : ""}`}
+                          onClick={() => setDistrictPage(num)}
+                        >
+                          {num}
+                        </button>
+                      ))}
+                    </div>
+
+                    <button
+                      type="button"
+                      className="btn-ghost dist-page-nav-btn"
+                      onClick={() => setDistrictPage((p) => Math.min(totalPages, p + 1))}
+                      disabled={districtPage >= totalPages}
+                      aria-label="Next page"
+                    >
+                      <span>Next</span>
+                      <IconChevronRight size={14} />
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
           </section>
         </>
       ) : (
@@ -1001,8 +1141,9 @@ export default function DistributionPage() {
                 Historical record of official water allocation directives published by WASAC headquarters.
               </p>
             </div>
-            <button className="btn-secondary" onClick={loadHistory} disabled={historyLoading}>
-              {historyLoading ? "Refreshing…" : "↻ Refresh History"}
+            <button className="btn-secondary dist-btn-with-icon" onClick={loadHistory} disabled={historyLoading}>
+              <IconRefresh size={14} className={historyLoading ? "icon-spin" : ""} />
+              <span>{historyLoading ? "Refreshing…" : "Refresh History"}</span>
             </button>
           </div>
 
@@ -1034,59 +1175,101 @@ export default function DistributionPage() {
           ) : historyList.length === 0 ? (
             <p className="empty-state">No published plans recorded yet. Publish your first plan from the simulator.</p>
           ) : (
-            <div className="table-wrap">
-              <table className="history-table dist-history-table">
-                <thead>
-                  <tr>
-                    <th>Plan Title</th>
-                    <th>Published At</th>
-                    <th>Author</th>
-                    <th>Supply Volume</th>
-                    <th>Equity Index</th>
-                    <th>Avg Availability</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {historyList.map((plan, idx) => {
-                    const isLatest = idx === 0;
-                    return (
-                      <tr key={plan.id}>
-                        <td>
-                          <strong>{plan.title}</strong>
-                          {isLatest && <span className="dist-latest-badge">Current</span>}
-                          {plan.notes && <small className="dist-plan-note-preview">{plan.notes}</small>}
-                        </td>
-                        <td>{new Date(plan.publishedAt).toLocaleString()}</td>
-                        <td>{plan.publishedBy}</td>
-                        <td className="mono">{formatNumber(plan.summary.totalSupply_m3)} m³</td>
-                        <td>
-                          <span
-                            className={plan.summary.equityIndex >= 0.85 ? "dist-green font-semibold" : "dist-orange font-semibold"}
-                          >
-                            {(plan.summary.equityIndex * 100).toFixed(1)}%
-                          </span>
-                        </td>
-                        <td>
-                          <span style={{ color: colorForAvailability(plan.summary.avgAvailabilityAfter) }}>
-                            {Math.round(plan.summary.avgAvailabilityAfter)}%
-                          </span>
-                        </td>
-                        <td>
-                          <button
-                            type="button"
-                            className="btn-ghost btn-sm"
-                            onClick={() => handleViewHistoryPlan(plan.id)}
-                          >
-                            View Breakdown
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+            <>
+              <div className="table-wrap">
+                <table className="history-table dist-history-table">
+                  <thead>
+                    <tr>
+                      <th>Plan Title</th>
+                      <th>Published At</th>
+                      <th>Author</th>
+                      <th>Supply Volume</th>
+                      <th>Equity Index</th>
+                      <th>Avg Availability</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {paginatedHistoryList.map((plan, idx) => {
+                      const isLatest = historyPage === 1 && idx === 0;
+                      return (
+                        <tr key={plan.id}>
+                          <td>
+                            <strong>{plan.title}</strong>
+                            {isLatest && <span className="dist-latest-badge">Current</span>}
+                            {plan.notes && <small className="dist-plan-note-preview">{plan.notes}</small>}
+                          </td>
+                          <td>{new Date(plan.publishedAt).toLocaleString()}</td>
+                          <td>{plan.publishedBy}</td>
+                          <td className="mono">{formatNumber(plan.summary.totalSupply_m3)} m³</td>
+                          <td>
+                            <span
+                              className={plan.summary.equityIndex >= 0.85 ? "dist-green font-semibold" : "dist-orange font-semibold"}
+                            >
+                              {(plan.summary.equityIndex * 100).toFixed(1)}%
+                            </span>
+                          </td>
+                          <td>
+                            <span style={{ color: colorForAvailability(plan.summary.avgAvailabilityAfter) }}>
+                              {Math.round(plan.summary.avgAvailabilityAfter)}%
+                            </span>
+                          </td>
+                          <td>
+                            <button
+                              type="button"
+                              className="btn-ghost btn-sm"
+                              onClick={() => handleViewHistoryPlan(plan.id)}
+                            >
+                              View Breakdown
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+
+              {historyList.length > 0 && totalHistoryPages > 1 && (
+                <div className="dist-pagination-bar">
+                  <span className="dist-pagination-info">
+                    Showing <strong>{(historyPage - 1) * historyPageSize + 1}–{Math.min(historyPage * historyPageSize, historyList.length)}</strong> of <strong>{historyList.length}</strong> published plans
+                  </span>
+                  <div className="dist-pagination-controls">
+                    <button
+                      type="button"
+                      className="btn-ghost dist-page-nav-btn"
+                      onClick={() => setHistoryPage((p) => Math.max(1, p - 1))}
+                      disabled={historyPage <= 1}
+                    >
+                      <IconChevronLeft size={14} />
+                      <span>Prev</span>
+                    </button>
+                    <div className="dist-page-numbers">
+                      {Array.from({ length: totalHistoryPages }, (_, i) => i + 1).map((num) => (
+                        <button
+                          key={num}
+                          type="button"
+                          className={`dist-page-num-btn ${historyPage === num ? "active" : ""}`}
+                          onClick={() => setHistoryPage(num)}
+                        >
+                          {num}
+                        </button>
+                      ))}
+                    </div>
+                    <button
+                      type="button"
+                      className="btn-ghost dist-page-nav-btn"
+                      onClick={() => setHistoryPage((p) => Math.min(totalHistoryPages, p + 1))}
+                      disabled={historyPage >= totalHistoryPages}
+                    >
+                      <span>Next</span>
+                      <IconChevronRight size={14} />
+                    </button>
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </section>
       )}
@@ -1100,8 +1283,8 @@ export default function DistributionPage() {
                 <h2>Publish National Allocation Plan</h2>
                 <p className="hero-sub">Commit this water allocation plan as the official active directive for all sectors.</p>
               </div>
-              <button className="btn-ghost" onClick={() => !publishing && setShowPublishModal(false)}>
-                ✕
+              <button className="btn-ghost dist-modal-close" onClick={() => !publishing && setShowPublishModal(false)} aria-label="Close modal">
+                <IconX size={18} />
               </button>
             </div>
 
@@ -1177,8 +1360,8 @@ export default function DistributionPage() {
                   Published on {new Date(selectedHistoryPlan.publishedAt).toLocaleString()} by {selectedHistoryPlan.publishedBy}
                 </p>
               </div>
-              <button className="btn-ghost" onClick={() => setSelectedHistoryPlan(null)}>
-                ✕
+              <button className="btn-ghost dist-modal-close" onClick={() => setSelectedHistoryPlan(null)} aria-label="Close modal">
+                <IconX size={18} />
               </button>
             </div>
 
