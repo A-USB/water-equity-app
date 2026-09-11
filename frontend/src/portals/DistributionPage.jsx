@@ -53,6 +53,7 @@ export default function DistributionPage() {
   const [activeScenarioTag, setActiveScenarioTag] = useState("Standard");
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [selectedProvince, setSelectedProvince] = useState("Kigali City");
   
   // Table search, filter, sort & pagination state
   const [searchQuery, setSearchQuery] = useState("");
@@ -370,17 +371,45 @@ export default function DistributionPage() {
   }, [historyList, historyPage, historyPageSize]);
 
   // Chart data preparation for Recharts
+  const PROVINCE_BY_DISTRICT = useMemo(() => ({
+    Gasabo: "Kigali City", Kicukiro: "Kigali City", Nyarugenge: "Kigali City",
+    Burera: "Northern", Gakenke: "Northern", Gicumbi: "Northern", Musanze: "Northern", Rulindo: "Northern",
+    Gisagara: "Southern", Huye: "Southern", Kamonyi: "Southern", Muhanga: "Southern",
+    Nyamagabe: "Southern", Nyanza: "Southern", Nyaruguru: "Southern", Ruhango: "Southern",
+    Bugesera: "Eastern", Gatsibo: "Eastern", Kayonza: "Eastern", Kirehe: "Eastern",
+    Ngoma: "Eastern", Nyagatare: "Eastern", Rwamagana: "Eastern",
+    Karongi: "Western", Ngororero: "Western", Nyabihu: "Western", Nyamasheke: "Western",
+    Rubavu: "Western", Rusizi: "Western", Rutsiro: "Western",
+  }), []);
+
+  const PROVINCE_ORDER = ["Kigali City", "Northern", "Southern", "Eastern", "Western"];
+  const PROVINCE_COLORS = {
+    "Kigali City": "#5b8def",
+    Northern: "#7fb56e",
+    Southern: "#d9a441",
+    Eastern: "#c46b6b",
+    Western: "#8f7fc9",
+  };
+
   const chartData = useMemo(() => {
     if (!data || !data.districts) return [];
     return [...data.districts]
+      .filter((d) => (PROVINCE_BY_DISTRICT[d.district] ?? "Other") === selectedProvince)
       .sort((a, b) => a.currentAvailability - b.currentAvailability)
       .map((d) => ({
         name: d.district,
+        province: PROVINCE_BY_DISTRICT[d.district] ?? "Other",
         Current: Math.round(d.currentAvailability),
         Projected: Math.round(d.projectedAvailability),
         Volume: Math.round(d.totalAllocation_m3),
       }));
-  }, [data]);
+  }, [data, PROVINCE_BY_DISTRICT, selectedProvince]);
+
+  const provincesWithData = useMemo(() => {
+    if (!data || !data.districts) return [];
+    const present = new Set(data.districts.map((d) => PROVINCE_BY_DISTRICT[d.district] ?? "Other"));
+    return PROVINCE_ORDER.filter((p) => present.has(p));
+  }, [data, PROVINCE_BY_DISTRICT]);
 
   if (!config || !data) {
     return (
@@ -467,8 +496,33 @@ export default function DistributionPage() {
                 <span className="dist-card-unit">m³/day</span>
               </div>
               <span className="dist-card-sub">
-                Allocated: <strong>{formatNumber(Math.round(summary.totalAllocated_m3))} m³</strong>
+                Effective after {Math.round((summary.nonRevenueLossPct ?? 0.3) * 100)}% loss: <strong>{formatNumber(Math.round(summary.effectiveSupply_m3 ?? 0))} m³</strong>
               </span>
+            </div>
+
+            <div className="panel dist-card">
+              <span className="dist-card-label">Base / Need Split</span>
+              <div className="dist-card-main dist-split-main">
+                <span className="dist-split-figure">
+                  <strong>{formatNumber(Math.round(summary.basePool_m3 ?? 0))} m³</strong>
+                  <small>Base ({Math.round((config?.basePoolPct ?? 0.3) * 100)}%)</small>
+                </span>
+                <span className="dist-split-figure">
+                  <strong>{formatNumber(Math.round(summary.needPool_m3 ?? 0))} m³</strong>
+                  <small>Need ({Math.round((config?.needPoolPct ?? 0.7) * 100)}%)</small>
+                </span>
+              </div>
+              <div className="dist-split-bar">
+                <div
+                  className="dist-split-bar-base"
+                  style={{ width: `${Math.round((config?.basePoolPct ?? 0.3) * 100)}%` }}
+                />
+                <div
+                  className="dist-split-bar-need"
+                  style={{ width: `${Math.round((config?.needPoolPct ?? 0.7) * 100)}%` }}
+                />
+              </div>
+              <span className="dist-card-sub">Equal share per district, then stress-weighted by need</span>
             </div>
 
             <div className="panel dist-card">
@@ -514,7 +568,9 @@ export default function DistributionPage() {
                 <span className="dist-card-unit">below {floorThreshold}%</span>
               </div>
               <span className="dist-card-sub">
-                {summary.districtsBeforeFloor - summary.districtsAfterFloor} districts lifted to standard
+                {summary.floorGuaranteed === false
+                  ? `Not guaranteed — lowest is ${Math.round(summary.minProjectedAvailability ?? 0)}%`
+                  : `${summary.districtsBeforeFloor - summary.districtsAfterFloor} districts lifted to standard`}
               </span>
             </div>
 
@@ -534,6 +590,21 @@ export default function DistributionPage() {
               <span className="dist-card-sub dist-green dist-lift-sub">
                 <IconTrendingUp size={13} />
                 <span>+{Math.round(summary.avgAvailabilityAfter - summary.avgAvailabilityBefore)}% national boost</span>
+              </span>
+            </div>
+
+            <div className="panel dist-card">
+              <span className="dist-card-label">Network Capacity Limits</span>
+              <div className="dist-card-main">
+                <span className={`dist-card-value ${(summary.capacityConstrainedDistricts ?? 0) > 0 ? "dist-orange" : "dist-green"}`}>
+                  {summary.capacityConstrainedDistricts ?? 0}
+                </span>
+                <span className="dist-card-unit">districts capped</span>
+              </div>
+              <span className="dist-card-sub">
+                {(summary.unusedSurplus_m3 ?? 0) > 1
+                  ? `${formatNumber(Math.round(summary.unusedSurplus_m3))} m³ couldn't be delivered anywhere`
+                  : "All available supply was delivered"}
               </span>
             </div>
           </section>
@@ -748,7 +819,7 @@ export default function DistributionPage() {
               <div>
                 <h2 className="dist-section-title">Availability Impact by District</h2>
                 <p className="dist-section-sub">
-                  Comparison of Current Reported Availability vs Projected Availability after equity allocation (Districts ordered from highest scarcity to lowest).
+                  Current vs Projected Availability after equity allocation. Select a province to inspect its districts.
                 </p>
               </div>
               <div className="dist-chart-legend-custom">
@@ -764,14 +835,34 @@ export default function DistributionPage() {
               </div>
             </div>
 
+            <div className="dist-province-tabs" role="tablist" aria-label="Filter chart by province">
+              {provincesWithData.map((p) => (
+                <button
+                  key={p}
+                  type="button"
+                  role="tab"
+                  aria-selected={selectedProvince === p}
+                  className={`dist-province-tab${selectedProvince === p ? " dist-province-tab-active" : ""}`}
+                  style={selectedProvince === p ? { borderColor: PROVINCE_COLORS[p], color: PROVINCE_COLORS[p] } : undefined}
+                  onClick={() => setSelectedProvince(p)}
+                >
+                  <span className="dist-province-dot" style={{ background: PROVINCE_COLORS[p] }} />
+                  {p}
+                  <small>
+                    ({data && data.districts ? data.districts.filter((d) => (PROVINCE_BY_DISTRICT[d.district] ?? "Other") === p).length : 0})
+                  </small>
+                </button>
+              ))}
+            </div>
+
             <div className="dist-recharts-wrap">
               <ResponsiveContainer width="100%" height={320}>
                 <BarChart data={chartData} margin={{ top: 18, right: 64, left: -4, bottom: 40 }}>
                   <CartesianGrid stroke="var(--c-line)" vertical={false} strokeDasharray="3 3" />
                   <XAxis
                     dataKey="name"
-                    tick={{ fontSize: 11, fill: "var(--c-ink-soft)" }}
-                    angle={-45}
+                    tick={{ fontSize: 12, fill: "var(--c-ink-soft)" }}
+                    angle={-40}
                     textAnchor="end"
                     interval={0}
                   />
@@ -793,6 +884,7 @@ export default function DistributionPage() {
                       fontFamily: "var(--font-body)",
                     }}
                     formatter={(val, name) => [`${val}%`, name]}
+                    labelFormatter={(label) => `${label} · ${selectedProvince}`}
                   />
                   <ReferenceLine
                     y={floorThreshold}
@@ -920,6 +1012,11 @@ export default function DistributionPage() {
                             </span>
                             <strong>{d.district}</strong>
                             <small className="dist-sector-count">({d.sectors.length} sectors)</small>
+                            {d.capacityConstrained && (
+                              <span className="dist-capacity-badge" title="This district's allocation is capped by its real network/production capacity, not by the equity formula">
+                                <IconAlertTriangle size={11} /> Capacity-capped
+                              </span>
+                            )}
                           </td>
                           <td>{formatNumber(d.totalPopulation)}</td>
                           <td>
