@@ -10,7 +10,7 @@ export function computeDistribution(scoredSectors, config) {
         sectorCount: 0,
         sectors: [],
         reportedCount: 0,
-        reportedAvailabilitySum: 0
+        reportedAvailabilitySum: 0,
       });
     }
     const d = districtMap.get(sector.district);
@@ -20,13 +20,20 @@ export function computeDistribution(scoredSectors, config) {
       id: sector.id,
       name: sector.name,
       population: sector.population || 0,
-      currentAvailability: sector.latestAvailability !== null && sector.latestAvailability !== undefined ? sector.latestAvailability : 50,
+      currentAvailability:
+        sector.latestAvailability !== null &&
+        sector.latestAvailability !== undefined
+          ? sector.latestAvailability
+          : 50,
       projectedAvailability: 0,
       allocation_m3: 0,
       lpcd: 0,
     });
 
-    if (sector.latestAvailability !== null && sector.latestAvailability !== undefined) {
+    if (
+      sector.latestAvailability !== null &&
+      sector.latestAvailability !== undefined
+    ) {
       d.reportedCount += 1;
       d.reportedAvailabilitySum += sector.latestAvailability;
     }
@@ -35,8 +42,9 @@ export function computeDistribution(scoredSectors, config) {
   // Non-revenue water: treated supply that never reaches consumers (leaks, theft,
   // poor metering). WASAC's own strategy targets cutting this over time, so the
   // number should be tunable rather than assumed away.
-  const nonRevenueLossPct = Number(config.nonRevenueLossPct ?? 0.30);
-  const effectiveSupply_m3 = Number(config.totalSupply_m3 || 0) * (1 - nonRevenueLossPct);
+  const nonRevenueLossPct = Number(config.nonRevenueLossPct ?? 0.3);
+  const effectiveSupply_m3 =
+    Number(config.totalSupply_m3 || 0) * (1 - nonRevenueLossPct);
 
   // Which seasonal scenario is active (Emergency / Dry / Standard / Surplus) — drives
   // how much each district's *source* (river, borehole, lake, pipeline...) can deliver.
@@ -46,11 +54,14 @@ export function computeDistribution(scoredSectors, config) {
   let sumOfAllWeightedDeficits = 0;
 
   for (const d of districtMap.values()) {
-    d.currentAvailability = d.reportedCount > 0 ? d.reportedAvailabilitySum / d.reportedCount : 50;
+    d.currentAvailability =
+      d.reportedCount > 0 ? d.reportedAvailabilitySum / d.reportedCount : 50;
 
     // 2. Compute daily demand per district based on urban/rural target
     const isUrban = (config.urbanDistricts || []).includes(d.district);
-    const perCapitaTarget = isUrban ? (config.perCapitaUrban_lpcd || 80) : (config.perCapitaRural_lpcd || 25);
+    const perCapitaTarget = isUrban
+      ? config.perCapitaUrban_lpcd || 80
+      : config.perCapitaRural_lpcd || 25;
     d.isUrban = isUrban;
     d.demand_m3 = (d.totalPopulation * perCapitaTarget) / 1000;
 
@@ -58,16 +69,29 @@ export function computeDistribution(scoredSectors, config) {
     // and network can carry today, independent of how much the formula *wants* to
     // send it. This is what actually separates a district like Kigali (real
     // production shortfall) from a district that's simply well-served.
-    const sourceType = (config.districtSourceType && config.districtSourceType[d.district]) || "mixed";
-    const rawCapacity_m3 = config.districtCapacity_m3 && config.districtCapacity_m3[d.district];
-    const seasonalFactor = (config.seasonalFactors && config.seasonalFactors[sourceType] && config.seasonalFactors[sourceType][scenarioKey]) ?? 1;
+    const sourceType =
+      (config.districtSourceType && config.districtSourceType[d.district]) ||
+      "mixed";
+    const rawCapacity_m3 =
+      config.districtCapacity_m3 && config.districtCapacity_m3[d.district];
+    const seasonalFactor =
+      (config.seasonalFactors &&
+        config.seasonalFactors[sourceType] &&
+        config.seasonalFactors[sourceType][scenarioKey]) ??
+      1;
     d.sourceType = sourceType;
-    d.maxDeliverable_m3 = rawCapacity_m3 !== undefined ? rawCapacity_m3 * seasonalFactor : Infinity;
+    d.maxDeliverable_m3 =
+      rawCapacity_m3 !== undefined ? rawCapacity_m3 * seasonalFactor : Infinity;
     d.capacityConstrained = false;
+    d.demandSaturated = false;
 
     // 3. Compute deficit per district
-    const deficit_m3 = Math.max(0, d.demand_m3 * (1 - d.currentAvailability / 100));
-    const stressTier = (config.stressTiers && config.stressTiers[d.district]) || 1.0;
+    const deficit_m3 = Math.max(
+      0,
+      d.demand_m3 * (1 - d.currentAvailability / 100),
+    );
+    const stressTier =
+      (config.stressTiers && config.stressTiers[d.district]) || 1.0;
     d.stressTier = stressTier;
     d.deficit_m3 = deficit_m3;
     d.weightedDeficit = deficit_m3 * stressTier;
@@ -81,18 +105,50 @@ export function computeDistribution(scoredSectors, config) {
   // callers can try to place it somewhere else instead of letting it vanish.
   function addCapped(d, amount) {
     if (amount <= 0) return 0;
-    const room = Math.max(0, d.maxDeliverable_m3 - d.totalAllocation_m3);
+
+    // A district can never usefully absorb more than the volume that takes it
+    // from its current supply up to 100% of its own demand — beyond that,
+    // extra water isn't "delivered," it just has nowhere real to go. Without
+    // this cap, districts silently overshoot demand, get clipped to 100% for
+    // display, and the excess volume vanishes instead of going somewhere
+    // that actually needs it.
+    const alreadySupplied_m3 = (d.currentAvailability / 100) * d.demand_m3;
+    const roomToFullDemand_m3 = Math.max(
+      0,
+      d.demand_m3 - alreadySupplied_m3 - d.totalAllocation_m3,
+    );
+    const physicalRoom_m3 = Math.max(
+      0,
+      d.maxDeliverable_m3 - d.totalAllocation_m3,
+    );
+    const room = Math.min(roomToFullDemand_m3, physicalRoom_m3);
+
     const applied = Math.min(amount, room);
     d.totalAllocation_m3 += applied;
-    const boost = d.demand_m3 > 0 ? (d.totalAllocation_m3 / d.demand_m3) * 100 : 0;
-    d.projectedAvailability = Math.min(100, Math.max(d.currentAvailability, d.currentAvailability + boost));
-    if (applied < amount - 0.001) d.capacityConstrained = true;
+    const boost =
+      d.demand_m3 > 0 ? (d.totalAllocation_m3 / d.demand_m3) * 100 : 0;
+    d.projectedAvailability = Math.min(
+      100,
+      Math.max(d.currentAvailability, d.currentAvailability + boost),
+    );
+
+    // Distinguish *why* a district stopped absorbing water: a real network/
+    // source bottleneck (capacityConstrained) vs. simply not needing more
+    // today (demandSaturated) — these call for very different operational
+    // responses, so collapsing them into one flag was hiding information.
+    if (applied < amount - 0.001) {
+      if (physicalRoom_m3 < roomToFullDemand_m3 - 0.001) {
+        d.capacityConstrained = true;
+      } else {
+        d.demandSaturated = true;
+      }
+    }
     return amount - applied;
   }
 
   const numDistricts = districts.length || 1;
-  const basePoolPct = Number(config.basePoolPct ?? 0.30);
-  const needPoolPct = Number(config.needPoolPct ?? 0.70);
+  const basePoolPct = Number(config.basePoolPct ?? 0.3);
+  const needPoolPct = Number(config.needPoolPct ?? 0.7);
   const basePool = effectiveSupply_m3 * basePoolPct;
   const needPool = effectiveSupply_m3 * needPoolPct;
 
@@ -108,13 +164,51 @@ export function computeDistribution(scoredSectors, config) {
     if (sumOfAllWeightedDeficits <= 0) {
       d.needAllocation_m3 = needPool / numDistricts;
     } else {
-      d.needAllocation_m3 = needPool * (d.weightedDeficit / sumOfAllWeightedDeficits);
+      d.needAllocation_m3 =
+        needPool * (d.weightedDeficit / sumOfAllWeightedDeficits);
     }
 
     d.projectedAvailability = d.currentAvailability;
     const wanted = d.baseAllocation_m3 + d.needAllocation_m3;
     const leftover = addCapped(d, wanted);
-    unusedSurplus_m3 += leftover; // water this district's network couldn't carry today
+    unusedSurplus_m3 += leftover; // water this district couldn't absorb (full or capacity-limited)
+  }
+
+  // Districts that hit their real demand ceiling (or a physical capacity
+  // ceiling) above will have returned their unused share as "unusedSurplus_m3."
+  // Before writing that off, give it one pass toward districts that are still
+  // genuinely below 100% of their own demand — otherwise water a well-served
+  // district didn't need just evaporates from the plan instead of reaching
+  // somewhere it's still short.
+  if (unusedSurplus_m3 > 0.001) {
+    let pendingSurplus_m3 = unusedSurplus_m3;
+    unusedSurplus_m3 = 0;
+
+    const stillShort = districts.filter(
+      (d) => d.projectedAvailability < 100 - 0.001,
+    );
+    const totalRemainingNeed_m3 = stillShort.reduce(
+      (sum, d) =>
+        sum +
+        Math.max(0, ((100 - d.projectedAvailability) / 100) * d.demand_m3),
+      0,
+    );
+
+    if (totalRemainingNeed_m3 > 0.001) {
+      for (const d of stillShort) {
+        const remainingNeed_m3 = Math.max(
+          0,
+          ((100 - d.projectedAvailability) / 100) * d.demand_m3,
+        );
+        const share =
+          pendingSurplus_m3 * (remainingNeed_m3 / totalRemainingNeed_m3);
+        const leftover = addCapped(d, share);
+        unusedSurplus_m3 += leftover;
+      }
+    } else {
+      // Nobody has any remaining need at all — genuinely unused today.
+      unusedSurplus_m3 = pendingSurplus_m3;
+    }
   }
 
   // Count districts below floor before equity clamp
@@ -131,8 +225,12 @@ export function computeDistribution(scoredSectors, config) {
   // respecting each district's physical delivery ceiling)
   let totalSurplusRedistributed_m3 = 0;
   for (let i = 0; i < 15; i++) {
-    const belowFloor = districts.filter(d => d.projectedAvailability < targetFloor);
-    const aboveCeiling = districts.filter(d => d.projectedAvailability > targetCeiling);
+    const belowFloor = districts.filter(
+      (d) => d.projectedAvailability < targetFloor,
+    );
+    const aboveCeiling = districts.filter(
+      (d) => d.projectedAvailability > targetCeiling,
+    );
 
     if (belowFloor.length === 0 || aboveCeiling.length === 0) break;
 
@@ -147,7 +245,10 @@ export function computeDistribution(scoredSectors, config) {
           d.projectedAvailability = d.currentAvailability;
         }
       } else {
-        const maxAllowedTotalAlloc = Math.max(0, ((targetCeiling - d.currentAvailability) / 100) * d.demand_m3);
+        const maxAllowedTotalAlloc = Math.max(
+          0,
+          ((targetCeiling - d.currentAvailability) / 100) * d.demand_m3,
+        );
         const surplus = d.totalAllocation_m3 - maxAllowedTotalAlloc;
         if (surplus > 0) {
           totalSurplus_m3 += surplus;
@@ -162,15 +263,26 @@ export function computeDistribution(scoredSectors, config) {
 
     // Redistribute surplus proportionally to deficit below floor
     const totalDeficitBelowFloor = belowFloor.reduce((sum, d) => {
-      return sum + Math.max(0, ((targetFloor - d.projectedAvailability) / 100) * d.demand_m3);
+      return (
+        sum +
+        Math.max(
+          0,
+          ((targetFloor - d.projectedAvailability) / 100) * d.demand_m3,
+        )
+      );
     }, 0);
 
     let remainingSurplus = totalSurplus_m3;
 
     if (totalDeficitBelowFloor <= 0.001) {
       // If no districts are below floor, distribute to any below ceiling or below 100%
-      const belowCeiling = districts.filter(d => d.projectedAvailability < targetCeiling);
-      const targets = belowCeiling.length > 0 ? belowCeiling : districts.filter(d => d.projectedAvailability < 100);
+      const belowCeiling = districts.filter(
+        (d) => d.projectedAvailability < targetCeiling,
+      );
+      const targets =
+        belowCeiling.length > 0
+          ? belowCeiling
+          : districts.filter((d) => d.projectedAvailability < 100);
       if (targets.length > 0) {
         const share = remainingSurplus / targets.length;
         for (const d of targets) {
@@ -182,16 +294,27 @@ export function computeDistribution(scoredSectors, config) {
     }
 
     for (const d of belowFloor) {
-      const targetDeficit_m3 = Math.max(0, ((targetFloor - d.projectedAvailability) / 100) * d.demand_m3);
+      const targetDeficit_m3 = Math.max(
+        0,
+        ((targetFloor - d.projectedAvailability) / 100) * d.demand_m3,
+      );
       const shareRatio = targetDeficit_m3 / totalDeficitBelowFloor;
-      const amountToAdd = Math.min(totalSurplus_m3 * shareRatio, targetDeficit_m3);
+      const amountToAdd = Math.min(
+        totalSurplus_m3 * shareRatio,
+        targetDeficit_m3,
+      );
       const leftover = addCapped(d, amountToAdd);
-      remainingSurplus -= (amountToAdd - leftover);
+      remainingSurplus -= amountToAdd - leftover;
     }
 
     if (remainingSurplus > 0.001) {
-      const belowCeil = districts.filter(d => d.projectedAvailability < targetCeiling);
-      const targets = belowCeil.length > 0 ? belowCeil : districts.filter(d => d.projectedAvailability < 100);
+      const belowCeil = districts.filter(
+        (d) => d.projectedAvailability < targetCeiling,
+      );
+      const targets =
+        belowCeil.length > 0
+          ? belowCeil
+          : districts.filter((d) => d.projectedAvailability < 100);
       if (targets.length > 0) {
         const share = remainingSurplus / targets.length;
         let placed = 0;
@@ -208,19 +331,27 @@ export function computeDistribution(scoredSectors, config) {
 
   // Calculate LPCD for each district
   for (const d of districts) {
-    d.lpcd = d.totalPopulation > 0 ? (d.totalAllocation_m3 * 1000) / d.totalPopulation : 0;
+    d.lpcd =
+      d.totalPopulation > 0
+        ? (d.totalAllocation_m3 * 1000) / d.totalPopulation
+        : 0;
   }
 
   // 8. Intra-district sector balancing
   const maxSpreadPct = Number(config.maxSectorSpreadPct ?? 25);
   for (const d of districts) {
     const isUrban = (config.urbanDistricts || []).includes(d.district);
-    const perCapitaTarget = isUrban ? (config.perCapitaUrban_lpcd || 80) : (config.perCapitaRural_lpcd || 25);
+    const perCapitaTarget = isUrban
+      ? config.perCapitaUrban_lpcd || 80
+      : config.perCapitaRural_lpcd || 25;
 
     let sumSectorWeightedDeficits = 0;
     for (const s of d.sectors) {
       s.demand_m3 = (s.population * perCapitaTarget) / 1000;
-      s.deficit_m3 = Math.max(0, s.demand_m3 * (1 - s.currentAvailability / 100));
+      s.deficit_m3 = Math.max(
+        0,
+        s.demand_m3 * (1 - s.currentAvailability / 100),
+      );
       sumSectorWeightedDeficits += s.deficit_m3;
     }
 
@@ -235,11 +366,15 @@ export function computeDistribution(scoredSectors, config) {
       if (sumSectorWeightedDeficits <= 0) {
         needAlloc = districtNeedPool / sectorCount;
       } else {
-        needAlloc = districtNeedPool * (s.deficit_m3 / sumSectorWeightedDeficits);
+        needAlloc =
+          districtNeedPool * (s.deficit_m3 / sumSectorWeightedDeficits);
       }
       s.allocation_m3 = baseAlloc + needAlloc;
       const boost = s.demand_m3 > 0 ? (s.allocation_m3 / s.demand_m3) * 100 : 0;
-      s.projectedAvailability = Math.min(100, Math.max(s.currentAvailability, s.currentAvailability + boost));
+      s.projectedAvailability = Math.min(
+        100,
+        Math.max(s.currentAvailability, s.currentAvailability + boost),
+      );
       s.lpcd = s.population > 0 ? (s.allocation_m3 * 1000) / s.population : 0;
     }
 
@@ -249,28 +384,57 @@ export function computeDistribution(scoredSectors, config) {
         let minSector = d.sectors[0];
         let maxSector = d.sectors[0];
         for (const s of d.sectors) {
-          if (s.projectedAvailability < minSector.projectedAvailability) minSector = s;
-          if (s.projectedAvailability > maxSector.projectedAvailability) maxSector = s;
+          if (s.projectedAvailability < minSector.projectedAvailability)
+            minSector = s;
+          if (s.projectedAvailability > maxSector.projectedAvailability)
+            maxSector = s;
         }
 
-        const spread = maxSector.projectedAvailability - minSector.projectedAvailability;
+        const spread =
+          maxSector.projectedAvailability - minSector.projectedAvailability;
         if (spread <= maxSpreadPct) break;
 
         const moveAvail = (spread - maxSpreadPct) / 2;
-        const moveVolume = (moveAvail / 100) * Math.min(minSector.demand_m3, maxSector.demand_m3);
+        const moveVolume =
+          (moveAvail / 100) *
+          Math.min(minSector.demand_m3, maxSector.demand_m3);
 
         if (moveVolume > 0 && maxSector.allocation_m3 >= moveVolume) {
           maxSector.allocation_m3 -= moveVolume;
           minSector.allocation_m3 += moveVolume;
 
-          const maxBoost = maxSector.demand_m3 > 0 ? (maxSector.allocation_m3 / maxSector.demand_m3) * 100 : 0;
-          const minBoost = minSector.demand_m3 > 0 ? (minSector.allocation_m3 / minSector.demand_m3) * 100 : 0;
+          const maxBoost =
+            maxSector.demand_m3 > 0
+              ? (maxSector.allocation_m3 / maxSector.demand_m3) * 100
+              : 0;
+          const minBoost =
+            minSector.demand_m3 > 0
+              ? (minSector.allocation_m3 / minSector.demand_m3) * 100
+              : 0;
 
-          maxSector.projectedAvailability = Math.min(100, Math.max(maxSector.currentAvailability, maxSector.currentAvailability + maxBoost));
-          minSector.projectedAvailability = Math.min(100, Math.max(minSector.currentAvailability, minSector.currentAvailability + minBoost));
+          maxSector.projectedAvailability = Math.min(
+            100,
+            Math.max(
+              maxSector.currentAvailability,
+              maxSector.currentAvailability + maxBoost,
+            ),
+          );
+          minSector.projectedAvailability = Math.min(
+            100,
+            Math.max(
+              minSector.currentAvailability,
+              minSector.currentAvailability + minBoost,
+            ),
+          );
 
-          maxSector.lpcd = maxSector.population > 0 ? (maxSector.allocation_m3 * 1000) / maxSector.population : 0;
-          minSector.lpcd = minSector.population > 0 ? (minSector.allocation_m3 * 1000) / minSector.population : 0;
+          maxSector.lpcd =
+            maxSector.population > 0
+              ? (maxSector.allocation_m3 * 1000) / maxSector.population
+              : 0;
+          minSector.lpcd =
+            minSector.population > 0
+              ? (minSector.allocation_m3 * 1000) / minSector.population
+              : 0;
         } else {
           break;
         }
@@ -279,33 +443,58 @@ export function computeDistribution(scoredSectors, config) {
   }
 
   // Calculate summary stats
-  const totalAllocated = districts.reduce((sum, d) => sum + d.totalAllocation_m3, 0);
+  const totalAllocated = districts.reduce(
+    (sum, d) => sum + d.totalAllocation_m3,
+    0,
+  );
   const totalPop = districts.reduce((sum, d) => sum + d.totalPopulation, 0);
-  const avgAvailBefore = totalPop > 0
-    ? districts.reduce((sum, d) => sum + (d.currentAvailability * d.totalPopulation), 0) / totalPop
-    : 0;
-  const avgAvailAfter = totalPop > 0
-    ? districts.reduce((sum, d) => sum + (d.projectedAvailability * d.totalPopulation), 0) / totalPop
-    : 0;
+  const avgAvailBefore =
+    totalPop > 0
+      ? districts.reduce(
+          (sum, d) => sum + d.currentAvailability * d.totalPopulation,
+          0,
+        ) / totalPop
+      : 0;
+  const avgAvailAfter =
+    totalPop > 0
+      ? districts.reduce(
+          (sum, d) => sum + d.projectedAvailability * d.totalPopulation,
+          0,
+        ) / totalPop
+      : 0;
 
-  const districtsAfterFloor = districts.filter(d => d.projectedAvailability < targetFloor).length;
-  const capacityConstrainedDistricts = districts.filter(d => d.capacityConstrained).length;
-  const minProjectedAvailability = districts.length > 0
-    ? Math.min(...districts.map(d => d.projectedAvailability))
-    : 0;
+  const districtsAfterFloor = districts.filter(
+    (d) => d.projectedAvailability < targetFloor,
+  ).length;
+  const capacityConstrainedDistricts = districts.filter(
+    (d) => d.capacityConstrained,
+  ).length;
+  const demandSaturatedDistricts = districts.filter(
+    (d) => d.demandSaturated,
+  ).length;
+  const minProjectedAvailability =
+    districts.length > 0
+      ? Math.min(...districts.map((d) => d.projectedAvailability))
+      : 0;
   const floorGuaranteed = districtsAfterFloor === 0;
 
   // Equity index based on standard deviation of projected availability
-  const avgProjAvail = districts.reduce((sum, d) => sum + d.projectedAvailability, 0) / (districts.length || 1);
-  const variance = districts.reduce((sum, d) => sum + Math.pow(d.projectedAvailability - avgProjAvail, 2), 0) / (districts.length || 1);
+  const avgProjAvail =
+    districts.reduce((sum, d) => sum + d.projectedAvailability, 0) /
+    (districts.length || 1);
+  const variance =
+    districts.reduce(
+      (sum, d) => sum + Math.pow(d.projectedAvailability - avgProjAvail, 2),
+      0,
+    ) / (districts.length || 1);
   const stdDev = Math.sqrt(variance);
-  const equityIndex = Math.max(0, Math.min(1, 1 - (stdDev / 100)));
+  const equityIndex = Math.max(0, Math.min(1, 1 - stdDev / 100));
 
   // Clean intermediate fields
-  districts.forEach(d => {
+  districts.forEach((d) => {
     delete d.reportedCount;
     delete d.reportedAvailabilitySum;
-    d.sectors.forEach(s => {
+    d.sectors.forEach((s) => {
       delete s.deficit_m3;
     });
   });
@@ -330,6 +519,7 @@ export function computeDistribution(scoredSectors, config) {
       floorGuaranteed,
       minProjectedAvailability,
       capacityConstrainedDistricts,
+      demandSaturatedDistricts,
       equityIndex: equityIndex,
       surplusRedistributed_m3: totalSurplusRedistributed_m3,
       unusedSurplus_m3,
