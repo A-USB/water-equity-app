@@ -489,17 +489,6 @@ export default function DistributionPage() {
         <>
           {/* Executive KPI Metric Cards */}
           <section className="dist-summary" aria-label="Distribution Key Metrics">
-            <div className="panel dist-card dist-card-primary">
-              <span className="dist-card-label">Daily Supply Input</span>
-              <div className="dist-card-main">
-                <span className="dist-card-value">{formatNumber(supply)}</span>
-                <span className="dist-card-unit">m³/day</span>
-              </div>
-              <span className="dist-card-sub">
-                Effective after {Math.round((summary.nonRevenueLossPct ?? 0.3) * 100)}% loss: <strong>{formatNumber(Math.round(summary.effectiveSupply_m3 ?? 0))} m³</strong>
-              </span>
-            </div>
-
             <div className="panel dist-card">
               <span className="dist-card-label">Base / Need Split</span>
               <div className="dist-card-main dist-split-main">
@@ -523,15 +512,6 @@ export default function DistributionPage() {
                 />
               </div>
               <span className="dist-card-sub">Equal share per district, then stress-weighted by need</span>
-            </div>
-
-            <div className="panel dist-card">
-              <span className="dist-card-label">National Population</span>
-              <div className="dist-card-main">
-                <span className="dist-card-value">{formatNumber(summary.totalPopulation)}</span>
-                <span className="dist-card-unit">residents</span>
-              </div>
-              <span className="dist-card-sub">Across 30 districts & 150+ sectors</span>
             </div>
 
             <div className="panel dist-card">
@@ -571,40 +551,6 @@ export default function DistributionPage() {
                 {summary.floorGuaranteed === false
                   ? `Not guaranteed — lowest is ${Math.round(summary.minProjectedAvailability ?? 0)}%`
                   : `${summary.districtsBeforeFloor - summary.districtsAfterFloor} districts lifted to standard`}
-              </span>
-            </div>
-
-            <div className="panel dist-card">
-              <span className="dist-card-label">National Avg Availability</span>
-              <div className="dist-card-main">
-                <span className="dist-card-value">
-                  <span style={{ color: colorForAvailability(summary.avgAvailabilityBefore) }}>
-                    {Math.round(summary.avgAvailabilityBefore)}%
-                  </span>
-                  <span className="dist-arrow"> → </span>
-                  <span style={{ color: colorForAvailability(summary.avgAvailabilityAfter) }}>
-                    {Math.round(summary.avgAvailabilityAfter)}%
-                  </span>
-                </span>
-              </div>
-              <span className="dist-card-sub dist-green dist-lift-sub">
-                <IconTrendingUp size={13} />
-                <span>+{Math.round(summary.avgAvailabilityAfter - summary.avgAvailabilityBefore)}% national boost</span>
-              </span>
-            </div>
-
-            <div className="panel dist-card">
-              <span className="dist-card-label">Network Capacity Limits</span>
-              <div className="dist-card-main">
-                <span className={`dist-card-value ${(summary.capacityConstrainedDistricts ?? 0) > 0 ? "dist-orange" : "dist-green"}`}>
-                  {summary.capacityConstrainedDistricts ?? 0}
-                </span>
-                <span className="dist-card-unit">districts capped</span>
-              </div>
-              <span className="dist-card-sub">
-                {(summary.unusedSurplus_m3 ?? 0) > 1
-                  ? `${formatNumber(Math.round(summary.unusedSurplus_m3))} m³ couldn't be delivered anywhere`
-                  : "All available supply was delivered"}
               </span>
             </div>
           </section>
