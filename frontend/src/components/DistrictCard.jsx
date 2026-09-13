@@ -14,16 +14,10 @@ export default function DistrictCard({ district: d, isSelected, onSelect }) {
     >
       <div className="sector-card-top">
         <strong className="sector-card-name">{d.district}</strong>
-        <span
-          className="sector-status-pill"
-          style={{
-            background: colorForAvailability(d.avgAvailability),
-            color: "#ffffff",
-          }}
-        >
-          {d.avgAvailability === null ? "No data" : `${d.avgAvailability}%`}
-        </span>
       </div>
+
+          
+
       <div className="sector-card-meta">
         <span>{d.avgAvailability === null ? "No reports yet" : `${d.avgAvailability}% avg availability`}</span>
       </div>
