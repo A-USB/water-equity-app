@@ -198,6 +198,36 @@ button, input, select {
   transform-origin: left;
   animation: grow 900ms ease-out both;
 }
+.stat-cards {
+  display: flex;
+  gap: 16px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 22px;
+  border: 1px solid var(--c-line);
+  border-radius: 12px;
+  flex: 1;
+  min-width: 160px;
+  background: var(--c-surface, #fff);
+}
+
+.stat-card-value {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--c-ink);
+}
+
+.stat-card-label {
+  font-size: 13px;
+  color: var(--c-ink-soft);
+}
 
 @keyframes grow {
   from { transform: scaleX(0); }
@@ -278,6 +308,13 @@ main { padding-top: 40px; }
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
+.trend-badge {
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+.trend-up { color: var(--c-good); }
+.trend-down { color: var(--c-bad); }
 
 .need-badge {
   display: flex;
@@ -4073,4 +4110,8 @@ main { padding-top: 40px; }
 
 [data-theme="dark"] .auth-role-card:hover {
   border-color: rgba(93, 215, 226, 0.35);
+}
+.worsening-was {
+  color: var(--c-ink-soft);
+  font-weight: 400;
 }
