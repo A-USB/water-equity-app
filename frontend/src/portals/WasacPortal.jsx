@@ -6,7 +6,8 @@ import AddSectorForm from "../components/AddSectorForm";
 import Pagination from "../components/Pagination";
 import SectorDetailModal from "../components/SectorDetailModal";
 import NeedsAttention from "../components/NeedsAttention";
-import { colorForAvailability } from "../utils";
+import { colorForAvailability, formatNumber } from "../utils";
+import WorseningFastest from "../components/WorseningFastest";
 
 const PAGE_SIZE = 6;
 const DISTRICT_PAGE_SIZE = 6;
@@ -72,6 +73,22 @@ export default function WasacPortal() {
   );
   const overallAvg = reportedTotal ? Math.round(weightedSum / reportedTotal) : null;
 
+  const totalPopulation = (districts || []).reduce((sum, d) => sum + d.totalPopulation, 0);
+  const attentionCount = (districts || []).reduce((sum, d) => sum + d.staleCount, 0);
+
+  const previousWeightedSum = (districts || []).reduce(
+    (sum, d) => sum + (d.previousAvgAvailability ?? 0) * (d.previousAvgAvailability !== null ? d.reportedCount : 0),
+    0
+  );
+  const previousReportedTotal = (districts || []).reduce(
+    (sum, d) => sum + (d.previousAvgAvailability !== null ? d.reportedCount : 0),
+    0
+  );
+  const previousOverallAvg = previousReportedTotal ? Math.round(previousWeightedSum / previousReportedTotal) : null;
+  const overallTrend = overallAvg !== null && previousOverallAvg !== null ? overallAvg - previousOverallAvg : null;
+  
+
+
   const populations = openDistrict && sectorData ? sectorData.sectors.map((s) => s.population) : [];
   const minPop = populations.length ? Math.min(...populations) : 0;
   const maxPop = populations.length ? Math.max(...populations) : 1;
@@ -92,32 +109,57 @@ export default function WasacPortal() {
             : "Every district, ranked by need — population and reported scarcity combined across all its sectors."}
         </p>
 
-        <div className="hero-stat">
-          <div>
-            <span
-              className="hero-stat-num"
-              style={{ color: colorForAvailability(openDistrict ? openDistrict.avgAvailability : overallAvg) }}
-            >
-              {(openDistrict ? openDistrict.avgAvailability : overallAvg) === null
-                ? "—"
-                : `${openDistrict ? openDistrict.avgAvailability : overallAvg}%`}
-            </span>
-            <span className="hero-stat-label">
-              {openDistrict ? "district avg availability" : "national avg availability"}
-            </span>
+           {!openDistrict && districts && (
+          <div className="stat-cards">
+            <div className="stat-card">
+              <span className="stat-card-value" style={{ color: colorForAvailability(overallAvg) }}>
+                {overallAvg === null ? "—" : `${overallAvg}%`}
+              </span>
+              <span className="stat-card-label">
+                national avg availability
+                {overallTrend !== null && overallTrend !== 0 && (
+                  <span className={`trend-badge ${overallTrend > 0 ? "trend-up" : "trend-down"}`}>
+                    {" "}{overallTrend > 0 ? "▲" : "▼"} {Math.abs(overallTrend)}%
+                  </span>
+                )}
+              </span>
+            </div>
+            <div className="stat-card">
+              <span className="stat-card-value">{formatNumber(totalPopulation)}</span>
+              <span className="stat-card-label">people covered</span>
+            </div>
+            <div className="stat-card">
+              <span
+                className="stat-card-value"
+                style={{ color: attentionCount > 0 ? "var(--c-bad)" : "var(--c-good)" }}
+              >
+                {attentionCount}
+              </span>
+              <span className="stat-card-label">sectors needing attention</span>
+            </div>
           </div>
-          <div className="hero-gauge">
-            <div
-              className="hero-gauge-line"
-              style={{ background: colorForAvailability(openDistrict ? openDistrict.avgAvailability : overallAvg) }}
-            />
+        )}
+
+        {openDistrict && (
+          <div className="hero-stat">
+            <div>
+              <span className="hero-stat-num" style={{ color: colorForAvailability(openDistrict.avgAvailability) }}>
+                {openDistrict.avgAvailability === null ? "—" : `${openDistrict.avgAvailability}%`}
+              </span>
+              <span className="hero-stat-label">district avg availability</span>
+            </div>
+            <div className="hero-gauge">
+              <div className="hero-gauge-line" style={{ background: colorForAvailability(openDistrict.avgAvailability) }} />
+            </div>
           </div>
-        </div>
+        )}
       </header>
 
       <main>
         {!openDistrict && (
           <>
+          <WorseningFastest districts={districts} onOpen={openDistrictView} />
+            <NeedsAttention sectors={allSectors} onOpen={setDetailSector} />
             <NeedsAttention sectors={allSectors} onOpen={setDetailSector} />
 
             <div className="section-head">
