@@ -504,11 +504,11 @@ app.get("/api/districts", authenticate, requireRole("wasac"), (req, res) => {
             pastReportedList.length,
         )
       : null;
-    const MIN_TREND_COVERAGE = 0.6; // require the past snapshot to have reported at least 60% as many sectors as today
+    const MIN_TREND_SECTORS = 2; // a single-sector "average" can land anywhere; two is enough to smooth that out
     const hasSufficientCoverage =
       reportedList.length > 0 &&
       pastReportedList.length >=
-        Math.ceil(reportedList.length * MIN_TREND_COVERAGE);
+        Math.min(reportedList.length, MIN_TREND_SECTORS);
 
     const trendDelta =
       avgAvailability !== null &&
