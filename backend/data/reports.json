@@ -952,51 +952,6 @@
     "date": "2026-09-12T09:07:39.088Z"
   },
   {
-    "id": "demo_r_demo_nyamasheke_1",
-    "sectorId": "demo_nyamasheke_1",
-    "availabilityPercent": 90,
-    "reporterType": "demo",
-    "reportedBy": "demo_seed",
-    "note": "Illustrative national demo reading.",
-    "date": "2026-09-05T09:07:39.088Z"
-  },
-  {
-    "id": "demo_r_demo_nyamasheke_2",
-    "sectorId": "demo_nyamasheke_2",
-    "availabilityPercent": 35,
-    "reporterType": "demo",
-    "reportedBy": "demo_seed",
-    "note": "Illustrative national demo reading.",
-    "date": "2026-09-12T09:07:39.088Z"
-  },
-  {
-    "id": "demo_r_demo_nyamasheke_3",
-    "sectorId": "demo_nyamasheke_3",
-    "availabilityPercent": 36,
-    "reporterType": "demo",
-    "reportedBy": "demo_seed",
-    "note": "Illustrative national demo reading.",
-    "date": "2026-09-11T09:07:39.088Z"
-  },
-  {
-    "id": "demo_r_demo_nyamasheke_4",
-    "sectorId": "demo_nyamasheke_4",
-    "availabilityPercent": 37,
-    "reporterType": "demo",
-    "reportedBy": "demo_seed",
-    "note": "Illustrative national demo reading.",
-    "date": "2026-09-10T09:07:39.088Z"
-  },
-  {
-    "id": "demo_r_demo_nyamasheke_5",
-    "sectorId": "demo_nyamasheke_5",
-    "availabilityPercent": 38,
-    "reporterType": "demo",
-    "reportedBy": "demo_seed",
-    "note": "Illustrative national demo reading.",
-    "date": "2026-09-09T09:07:39.088Z"
-  },
-  {
     "id": "demo_r_demo_nyanza_4",
     "sectorId": "demo_nyanza_4",
     "availabilityPercent": 84,
@@ -1371,5 +1326,95 @@
     "note": "houses urgently need water",
     "reportedBy": "nyamirambo",
     "date": "2026-08-26T09:28:53.825Z"
+  },
+  {
+    "id": "test_past_demo_nyamasheke_1",
+    "sectorId": "demo_nyamasheke_1",
+    "availabilityPercent": 80,
+    "reporterType": "demo",
+    "reportedBy": "trend_test",
+    "note": "Controlled trend test — past snapshot",
+    "date": "2026-09-04T18:39:08.233Z"
+  },
+  {
+    "id": "test_current_demo_nyamasheke_1",
+    "sectorId": "demo_nyamasheke_1",
+    "availabilityPercent": 40,
+    "reporterType": "demo",
+    "reportedBy": "trend_test",
+    "note": "Controlled trend test — current snapshot",
+    "date": "2026-09-13T18:39:08.233Z"
+  },
+  {
+    "id": "test_past_demo_nyamasheke_2",
+    "sectorId": "demo_nyamasheke_2",
+    "availabilityPercent": 82,
+    "reporterType": "demo",
+    "reportedBy": "trend_test",
+    "note": "Controlled trend test — past snapshot",
+    "date": "2026-09-04T18:39:08.233Z"
+  },
+  {
+    "id": "test_current_demo_nyamasheke_2",
+    "sectorId": "demo_nyamasheke_2",
+    "availabilityPercent": 42,
+    "reporterType": "demo",
+    "reportedBy": "trend_test",
+    "note": "Controlled trend test — current snapshot",
+    "date": "2026-09-13T18:39:08.233Z"
+  },
+  {
+    "id": "test_past_demo_nyamasheke_3",
+    "sectorId": "demo_nyamasheke_3",
+    "availabilityPercent": 78,
+    "reporterType": "demo",
+    "reportedBy": "trend_test",
+    "note": "Controlled trend test — past snapshot",
+    "date": "2026-09-04T18:39:08.233Z"
+  },
+  {
+    "id": "test_current_demo_nyamasheke_3",
+    "sectorId": "demo_nyamasheke_3",
+    "availabilityPercent": 38,
+    "reporterType": "demo",
+    "reportedBy": "trend_test",
+    "note": "Controlled trend test — current snapshot",
+    "date": "2026-09-13T18:39:08.233Z"
+  },
+  {
+    "id": "test_past_demo_nyamasheke_4",
+    "sectorId": "demo_nyamasheke_4",
+    "availabilityPercent": 84,
+    "reporterType": "demo",
+    "reportedBy": "trend_test",
+    "note": "Controlled trend test — past snapshot",
+    "date": "2026-09-04T18:39:08.233Z"
+  },
+  {
+    "id": "test_current_demo_nyamasheke_4",
+    "sectorId": "demo_nyamasheke_4",
+    "availabilityPercent": 44,
+    "reporterType": "demo",
+    "reportedBy": "trend_test",
+    "note": "Controlled trend test — current snapshot",
+    "date": "2026-09-13T18:39:08.233Z"
+  },
+  {
+    "id": "test_past_demo_nyamasheke_5",
+    "sectorId": "demo_nyamasheke_5",
+    "availabilityPercent": 81,
+    "reporterType": "demo",
+    "reportedBy": "trend_test",
+    "note": "Controlled trend test — past snapshot",
+    "date": "2026-09-04T18:39:08.233Z"
+  },
+  {
+    "id": "test_current_demo_nyamasheke_5",
+    "sectorId": "demo_nyamasheke_5",
+    "availabilityPercent": 41,
+    "reporterType": "demo",
+    "reportedBy": "trend_test",
+    "note": "Controlled trend test — current snapshot",
+    "date": "2026-09-13T18:39:08.233Z"
   }
 ]
