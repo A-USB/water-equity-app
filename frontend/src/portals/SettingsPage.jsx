@@ -2,8 +2,13 @@ import { useState, useEffect } from "react";
 import { getDistributionConfig, updateDistributionConfig } from "../api";
 
 export default function SettingsPage({ auth }) {
+
   const [email, setEmail] = useState(() => localStorage.getItem("Mira:email") || "");
   const [alerts, setAlerts] = useState(() => localStorage.getItem("Mira:alerts") !== "false");
+  const [alertThreshold, setAlertThreshold] = useState(() => {
+  const saved = localStorage.getItem("Mira:alertThreshold");
+  return saved !== null ? Number(saved) : 40;
+  });
   const [saved, setSaved] = useState(false);
   const [distConfig, setDistConfig] = useState(null);
   const [distSaving, setDistSaving] = useState(false);
@@ -31,6 +36,7 @@ export default function SettingsPage({ auth }) {
     event.preventDefault();
     localStorage.setItem("Mira:email", email);
     localStorage.setItem("Mira:alerts", alerts);
+    localStorage.setItem("Mira:alertThreshold", alertThreshold);
 
     if (distConfig && auth.role === "wasac") {
       setDistSaving(true);
@@ -113,7 +119,38 @@ export default function SettingsPage({ auth }) {
               Default national baseline constants used by the Equity Distribution Engine.
             </p>
 
-            <div className="dist-tuner-grid">
+          <section className="panel settings-section">
+          <h2>Monitoring Alerts</h2>
+          <p className="settings-description">Receive on-device reminders when a sector report is overdue.</p>
+          <label className="toggle-row">
+            <span>
+              <strong>Follow-up Alerts</strong>
+              <small>Flag sectors with stale or missing reports beyond 14 days.</small>
+            </span>
+            <input
+              type="checkbox"
+              checked={alerts}
+              onChange={(event) => setAlerts(event.target.checked)}
+            />
+            <i />
+          </label>
+
+          <label className="field">
+            <span>Availability alert threshold</span>
+            <input
+              type="number"
+              min="0"
+              max="100"
+              value={alertThreshold}
+              onChange={(event) => setAlertThreshold(Number(event.target.value))}
+            />
+          </label>
+          <p className="settings-description">
+            Districts with average availability below this percentage will be flagged on the Dashboard.
+          </p>
+          </section>
+
+          <div className="dist-tuner-grid">
               <label className="field">
                 <span>Default Daily Supply (m³/day)</span>
                 <input
