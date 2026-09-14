@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { getDistricts, getDistrictSectors, getSectors } from "../api";
+import { getDistricts, getDistrictSectors, getSectors, getActiveDistribution } from "../api";
 import DistrictCard from "../components/DistrictCard";
 import SectorCard from "../components/SectorCard";
 import AddSectorForm from "../components/AddSectorForm";
@@ -8,6 +8,8 @@ import SectorDetailModal from "../components/SectorDetailModal";
 import NeedsAttention from "../components/NeedsAttention";
 import { colorForAvailability, formatNumber } from "../utils";
 import WorseningFastest from "../components/WorseningFastest";
+import DistributionStatus from "../components/DistributionStatus";
+import ThresholdAlerts from "../components/ThresholdAlerts";
 
 const PAGE_SIZE = 6;
 const DISTRICT_PAGE_SIZE = 6;
@@ -18,7 +20,13 @@ export default function WasacPortal() {
   const [error, setError] = useState("");
   const [addingSector, setAddingSector] = useState(false);
   const [detailSector, setDetailSector] = useState(null);
+  const [activeDistribution, setActiveDistribution] = useState(null);
+  const [distributionLoaded, setDistributionLoaded] = useState(false);
 
+  const [alertThreshold] = useState(() => {
+  const saved = localStorage.getItem("Mira:alertThreshold");
+  return saved !== null ? Number(saved) : 40;
+  });
   // null = districts overview; otherwise { district aggregate object }
   const [openDistrict, setOpenDistrict] = useState(null);
   const [sectorPage, setSectorPage] = useState(1);
@@ -50,6 +58,13 @@ export default function WasacPortal() {
       setSectorError(err.message);
     }
   }, []);
+
+  useEffect(() => {
+    getActiveDistribution()
+      .then(setActiveDistribution)
+      .catch(() => setActiveDistribution(null))
+      .finally(() => setDistributionLoaded(true));
+    }, []);
 
   useEffect(() => {
     if (openDistrict) loadSectorPage(openDistrict.district, sectorPage);
@@ -109,35 +124,39 @@ export default function WasacPortal() {
             : "Every district, ranked by need — population and reported scarcity combined across all its sectors."}
         </p>
 
-           {!openDistrict && districts && (
-          <div className="stat-cards">
-            <div className="stat-card">
-              <span className="stat-card-value" style={{ color: colorForAvailability(overallAvg) }}>
-                {overallAvg === null ? "—" : `${overallAvg}%`}
-              </span>
-              <span className="stat-card-label">
-                national avg availability
-                {overallTrend !== null && overallTrend !== 0 && (
-                  <span className={`trend-badge ${overallTrend > 0 ? "trend-up" : "trend-down"}`}>
-                    {" "}{overallTrend > 0 ? "▲" : "▼"} {Math.abs(overallTrend)}%
-                  </span>
-                )}
-              </span>
+        {!openDistrict && districts && (
+          <>
+            <div className="stat-cards">
+              <div className="stat-card">
+                <span className="stat-card-value" style={{ color: colorForAvailability(overallAvg) }}>
+                  {overallAvg === null ? "—" : `${overallAvg}%`}
+                </span>
+                <span className="stat-card-label">
+                  national avg availability
+                  {overallTrend !== null && overallTrend !== 0 && (
+                    <span className={`trend-badge ${overallTrend > 0 ? "trend-up" : "trend-down"}`}>
+                      {" "}{overallTrend > 0 ? "▲" : "▼"} {Math.abs(overallTrend)}%
+                    </span>
+                  )}
+                </span>
+              </div>
+              <div className="stat-card">
+                <span className="stat-card-value">{formatNumber(totalPopulation)}</span>
+                <span className="stat-card-label">people covered</span>
+              </div>
+              <div className="stat-card">
+                <span
+                  className="stat-card-value"
+                  style={{ color: attentionCount > 0 ? "var(--c-bad)" : "var(--c-good)" }}
+                >
+                  {attentionCount}
+                </span>
+                <span className="stat-card-label">sectors needing attention</span>
+              </div>
             </div>
-            <div className="stat-card">
-              <span className="stat-card-value">{formatNumber(totalPopulation)}</span>
-              <span className="stat-card-label">people covered</span>
-            </div>
-            <div className="stat-card">
-              <span
-                className="stat-card-value"
-                style={{ color: attentionCount > 0 ? "var(--c-bad)" : "var(--c-good)" }}
-              >
-                {attentionCount}
-              </span>
-              <span className="stat-card-label">sectors needing attention</span>
-            </div>
-          </div>
+
+            <DistributionStatus activeDistribution={activeDistribution} loading={!distributionLoaded} />
+          </>
         )}
 
         {openDistrict && (
@@ -158,10 +177,10 @@ export default function WasacPortal() {
       <main>
         {!openDistrict && (
           <>
+          <ThresholdAlerts districts={districts} threshold={alertThreshold} onOpen={openDistrictView} />
           <WorseningFastest districts={districts} onOpen={openDistrictView} />
             <NeedsAttention sectors={allSectors} onOpen={setDetailSector} />
-            <NeedsAttention sectors={allSectors} onOpen={setDetailSector} />
-
+            
             <div className="section-head">
               <h2>Districts ({districts ? districts.length : "…"})</h2>
               <button className="btn-primary" onClick={() => setAddingSector((v) => !v)}>
