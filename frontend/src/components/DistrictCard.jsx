@@ -18,8 +18,13 @@ export default function DistrictCard({ district: d, isSelected, onSelect }) {
 
           
 
-      <div className="sector-card-meta">
+           <div className="sector-card-meta">
         <span>{d.avgAvailability === null ? "No reports yet" : `${d.avgAvailability}% avg availability`}</span>
+        {d.trendDelta !== null && d.trendDelta !== 0 && (
+          <span className={`trend-badge ${d.trendDelta > 0 ? "trend-up" : "trend-down"}`}>
+            {d.trendDelta > 0 ? "▲" : "▼"} {Math.abs(d.trendDelta)}%
+          </span>
+        )}
       </div>
       <div className="district-card-stats">
         <span>{formatNumber(d.totalPopulation)} people</span>
