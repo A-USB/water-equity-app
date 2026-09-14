@@ -4115,3 +4115,15 @@ main { padding-top: 40px; }
   color: var(--c-ink-soft);
   font-weight: 400;
 }
+.distribution-status {
+  margin-top: 16px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  border: 1px solid var(--c-line);
+  color: var(--c-ink-soft);
+}
+.distribution-status-warning {
+  color: var(--c-bad);
+  border-color: var(--c-bad);
+}
