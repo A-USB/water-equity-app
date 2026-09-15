@@ -148,7 +148,7 @@ export default function Home({ onContinue, theme, onToggleTheme }) {
           <h3>Report your sector</h3>
           <p>
             Log your sector's current water availability in seconds, and keep a running record
-            WASAC can actually see and act on.
+            WASAC can actually see and work wit
           </p>
         </div>
         <div className="landing-card">
