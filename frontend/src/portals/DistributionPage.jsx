@@ -1056,6 +1056,15 @@ export default function DistributionPage() {
 
                                 <div className="table-wrap">
                                   <table className="history-table dist-sector-table">
+                                    <colgroup>
+                                        <col style={{ width: "180px" }} />
+                                        <col style={{ width: "110px" }} />
+                                        <col style={{ width: "150px" }} />
+                                        <col style={{ width: "150px" }} />
+                                        <col style={{ width: "90px" }} />
+                                        <col style={{ width: "110px" }} />
+                                        <col style={{ width: "130px" }} />
+                                    </colgroup>
                                     <thead>
                                       <tr>
                                         <th>Sector</th>
