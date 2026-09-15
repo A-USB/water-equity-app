@@ -116,7 +116,7 @@ export default function SettingsPage({ auth }) {
           <section className="panel settings-section">
             <h2>Distribution Formula Defaults</h2>
             <p className="settings-description">
-              Default national baseline constants used by the Equity Distribution Engine.
+              Default national baseline constants used by the Mira Distribution Engine.
             </p>
 
           <section className="panel settings-section">
