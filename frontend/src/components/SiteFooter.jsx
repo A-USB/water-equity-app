@@ -31,6 +31,7 @@ export default function SiteFooter({ onContinue }) {
           <a href="#how-it-works">How it works</a>
           <a href="#portals">The platform</a>
           <a href="#portals">Sector reporting</a>
+          <a href="#portals">District surveillance</a>
           <a href="#portals">Live water data</a>
         </div>
 
