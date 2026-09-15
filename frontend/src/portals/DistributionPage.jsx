@@ -916,6 +916,16 @@ export default function DistributionPage() {
 
             <div className="table-wrap dist-table-wrap">
               <table className="history-table dist-table">
+              <colgroup>
+                  <col style={{ width: "155px" }} />
+                  <col style={{ width: "90px" }} />
+                  <col style={{ width: "110px" }} />
+                  <col style={{ width: "100px" }} />
+                  <col style={{ width: "85px" }} />
+                  <col style={{ width: "85px" }} />
+                  <col style={{ width: "90px" }} />
+                  <col style={{ width: "110px" }} />
+              </colgroup>
                 <thead>
                   <tr>
                     <th>District</th>
@@ -924,15 +934,14 @@ export default function DistributionPage() {
                     <th>Current Avail.</th>
                     <th>Projected</th>
                     <th>Net Change</th>
-                    <th>Allocated Volume</th>
-                    <th>Per Capita</th>
+                    <th>Allocated Vol.</th>
                     <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredDistricts.length === 0 ? (
                     <tr>
-                      <td colSpan={9} className="empty-state">
+                      <td colSpan={8} className="empty-state">
                         No districts match the selected filters.
                       </td>
                     </tr>
@@ -952,18 +961,21 @@ export default function DistributionPage() {
                           tabIndex={0}
                           aria-expanded={isExpanded}
                         >
-                          <td className="dist-district-name">
-                            <span className="dist-expand-icon">
-                              {isExpanded ? <IconChevronDown size={14} /> : <IconChevronRight size={14} />}
-                            </span>
-                            <strong>{d.district}</strong>
-                            <small className="dist-sector-count">({d.sectors.length} sectors)</small>
-                            {d.capacityConstrained && (
-                              <span className="dist-capacity-badge" title="This district's allocation is capped by its real network/production capacity, not by the equity formula">
-                                <IconAlertTriangle size={11} /> Capacity-capped
+                         <td>
+                            <div className="dist-district-name">
+                              <span className="dist-expand-icon">
+                                {isExpanded ? <IconChevronDown size={14} /> : <IconChevronRight size={14} />}
                               </span>
-                            )}
+                              <strong>{d.district}</strong>
+                              <small className="dist-sector-count">({d.sectors.length} sectors)</small>
+                              {d.capacityConstrained && (
+                                <span className="dist-capacity-badge" title="...">
+                                  <IconAlertTriangle size={11} /> Capacity-capped
+                                </span>
+                              )}
+                            </div>
                           </td>
+
                           <td>{formatNumber(d.totalPopulation)}</td>
                           <td>
                             <span className={`dist-tier-badge ${tier.cls}`}>{tier.text}</span>
@@ -998,7 +1010,6 @@ export default function DistributionPage() {
                           <td className="mono font-semibold">
                             {formatNumber(Math.round(d.totalAllocation_m3))} m³
                           </td>
-                          <td className="mono">{Math.round(d.lpcd)} L/day</td>
                           <td>
                             <span className={`dist-status-pill ${meetsFloor ? "compliant" : "sub-floor"}`}>
                               {meetsFloor ? (
@@ -1017,7 +1028,7 @@ export default function DistributionPage() {
                         // Expanded Sector Breakdown
                         isExpanded && (
                           <tr key={`${d.district}-sectors-drilldown`} className="dist-sector-row">
-                            <td colSpan={9}>
+                            <td colSpan={8}>
                               <div className="dist-sector-detail">
                                 <div className="dist-sector-header">
                                   <div>
