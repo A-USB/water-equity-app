@@ -12,7 +12,7 @@ export default function NeedsAttention({ sectors, onOpen }) {
   return (
     <div className="panel needs-attention">
       <h3 className="panel-title">Needs attention</h3>
-      <p className="needs-attention-sub">Sectors with no report in over two weeks, nationally.</p>
+      <p className="needs-attention-sub">Sectors with no report in over two weeks, on the national level.</p>
       <ul className="needs-attention-list">
         {flagged.map(({ sector, status }) => (
           <li key={sector.id}>
