@@ -2409,6 +2409,7 @@ main { padding-top: 40px; }
   font-size: 13px;
   flex-wrap: nowrap;
   overflow: hidden;
+  min-width: 0;
 }
 
 .dist-district-name strong {
@@ -2431,6 +2432,8 @@ main { padding-top: 40px; }
   font-weight: 400;
   white-space: nowrap;
   flex-shrink: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .dist-capacity-badge {
@@ -2586,8 +2589,6 @@ main { padding-top: 40px; }
 .dist-sector-table {
   font-size: 13px;
   background: var(--c-surface);
-  border-radius: 6px;
-  overflow: hidden;
   border-collapse: collapse;
   width: 100%;
   table-layout: fixed;
