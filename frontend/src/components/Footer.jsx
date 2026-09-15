@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="app-footer-brand">
         <span className="app-footer-name">Mira </span>
       </div>
-      <span className="app-footer-tagline">— a water equity pilot for Rwanda.</span>
+      <span className="app-footer-tagline">— a water equity pilot for Rwanda</span>
     </footer>
   );
 }
